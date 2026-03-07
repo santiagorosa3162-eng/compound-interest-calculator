@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace https://www.yoursite.com with your actual domain before deploying -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://www.yoursite.com/</loc>
+    <loc>https://compound-interest-calculator-c3q.pages.dev/</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://www.yoursite.com/compound-interest-calculator.html</loc>
+    <loc>https://compound-interest-calculator-c3q.pages.dev/financial-calculators.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://compound-interest-calculator-c3q.pages.dev/compound-interest-calculator.html</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.yoursite.com/roi-calculator.html</loc>
+    <loc>https://compound-interest-calculator-c3q.pages.dev/roi-calculator.html</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.yoursite.com/loan-calculator.html</loc>
+    <loc>https://compound-interest-calculator-c3q.pages.dev/loan-calculator.html</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.yoursite.com/mortgage-calculator.html</loc>
+    <loc>https://compound-interest-calculator-c3q.pages.dev/mortgage-calculator.html</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.yoursite.com/retirement-calculator.html</loc>
+    <loc>https://compound-interest-calculator-c3q.pages.dev/retirement-calculator.html</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.yoursite.com/inflation-calculator.html</loc>
+    <loc>https://compound-interest-calculator-c3q.pages.dev/inflation-calculator.html</loc>
     <lastmod>2026-03-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

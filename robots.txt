@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Replace https://www.yoursite.com with your actual domain
-Sitemap: https://www.yoursite.com/sitemap.xml
+Sitemap: https://compound-interest-calculator-c3q.pages.dev/sitemap.xml
