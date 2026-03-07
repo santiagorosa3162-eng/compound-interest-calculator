@@ -412,13 +412,15 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: calc(var(--radius) * 1.5);
-      overflow: hidden;
+      /* overflow: hidden removed — it clips the table's horizontal scrollbar */
       box-shadow: 0 8px 40px rgba(0,0,0,0.3);
     }
 
     .seo-card-inner {
       display: grid;
       grid-template-columns: 56px 1fr;
+      border-radius: calc(var(--radius) * 1.5);  /* mirrors the card radius */
+      overflow: hidden;                           /* clips corner decoration only */
     }
 
     .seo-icon {
@@ -548,13 +550,27 @@
     .example-table-wrap {
       margin: 1.2rem 0;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;   /* smooth momentum scroll on iOS */
+      max-width: 100%;                     /* never wider than the card */
       border-radius: var(--radius-sm);
       border: 1px solid var(--border-2);
+      /* styled scrollbar matching the dark theme */
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-2) transparent;
+    }
+    .example-table-wrap::-webkit-scrollbar { height: 4px; }
+    .example-table-wrap::-webkit-scrollbar-track { background: transparent; }
+    .example-table-wrap::-webkit-scrollbar-thumb {
+      background: var(--border-2);
+      border-radius: 99px;
     }
     .example-table {
+      /* min-width is what tells the browser to scroll instead of squash columns */
+      min-width: 560px;
       width: 100%;
       border-collapse: collapse;
       font-size: 0.85rem;
+      table-layout: auto;   /* columns size to content, not percentage */
     }
     .example-table thead {
       background: var(--bg);
@@ -569,6 +585,11 @@
       text-transform: uppercase;
       color: var(--ink-dim);
       white-space: nowrap;
+    }
+    /* guarantee the last (CAGR) column is never clipped */
+    .example-table th:last-child,
+    .example-table td:last-child {
+      min-width: 110px;
     }
     .example-table td {
       padding: 0.8rem 1rem;
