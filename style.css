@@ -1,4 +1,163 @@
 /* ===========================
+   NAVIGATION
+=========================== */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10, 13, 20, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.nav-brand:hover { color: var(--gold-light); }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 0.15rem;
+  flex-wrap: nowrap;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--ink);
+  background: rgba(255,255,255,0.06);
+}
+
+.nav-links a.active { color: var(--gold); }
+
+body.has-nav { padding-top: calc(56px + 3rem); }
+
+@media (max-width: 560px) {
+  .nav-inner { padding: 0 1rem; gap: 1rem; }
+  .nav-brand { font-size: 0.9rem; }
+  .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.5rem; }
+  body.has-nav { padding-top: calc(56px + 2rem); }
+}
+
+/* ===========================
+   HOMEPAGE
+=========================== */
+.homepage .page-wrap { max-width: 760px; }
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.calc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.5);
+  padding: 2rem 1.8rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+  animation: fadeUp 0.6s ease both;
+}
+
+.calc-card:hover {
+  border-color: rgba(232,201,122,0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 56px rgba(0,0,0,0.4);
+}
+
+.calc-card-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(232,201,122,0.08);
+  border: 1px solid rgba(232,201,122,0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.calc-card-icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+}
+
+.calc-card-body { flex: 1; }
+
+.calc-card-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--ink);
+  margin-bottom: 0.55rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.calc-card-body p {
+  font-size: 0.86rem;
+  color: var(--ink-muted);
+  font-weight: 300;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.calc-card-cta {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: gap 0.2s;
+}
+
+.calc-card:hover .calc-card-cta { gap: 0.6rem; }
+
+@media (max-width: 560px) {
+  .calculator-grid { grid-template-columns: 1fr; }
+  .calc-card { padding: 1.5rem 1.25rem; }
+}
+
+/* ===========================
    TOKENS & RESET
 =========================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
