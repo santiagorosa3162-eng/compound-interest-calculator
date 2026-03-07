@@ -47,7 +47,7 @@
       align-items: flex-start;
       justify-content: center;
       overflow-x: hidden;
-      padding: 3rem 1rem 4rem;
+      padding: calc(56px + 3rem) 1rem 4rem;
       position: relative;
     }
 
@@ -710,7 +710,7 @@
        RESPONSIVE
     =========================== */
     @media (max-width: 560px) {
-      body { padding: 2rem 0.75rem 3rem; }
+      body { padding: calc(56px + 2rem) 0.75rem 3rem; }
 
       .inputs-section,
       .results-section { padding: 1.5rem 1.25rem; }
@@ -731,10 +731,80 @@
       .seo-icon { padding: 1.5rem 1.25rem 0; justify-content: flex-start; }
       .seo-card-body { padding: 0.9rem 1.25rem 1.5rem; }
       .seo-card-body h2 { font-size: 1.2rem; }
+
+      .nav-inner { padding: 0 1rem; gap: 1rem; }
+      .nav-brand { font-size: 0.9rem; }
+      .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.5rem; }
     }
+
+    /* ===========================
+       NAVIGATION
+    =========================== */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 13, 20, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--gold);
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+    .nav-brand:hover { color: var(--gold-light); }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 0.15rem;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ink);
+      background: rgba(255,255,255,0.06);
+    }
+    .nav-links a.active { color: var(--gold); }
   </style>
 </head>
-<body>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html" class="active">ROI Calculator</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <div class="bg-orb orb-1"></div>
   <div class="bg-orb orb-2"></div>
@@ -745,7 +815,7 @@
     <!-- ========== HEADER ========== -->
     <header class="site-header">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Compound Interest Calculator</a>
+        <a href="compound-interest-calculator.html">Compound Interest Calculator</a>
         <span>›</span>
         <span>ROI Calculator</span>
       </nav>

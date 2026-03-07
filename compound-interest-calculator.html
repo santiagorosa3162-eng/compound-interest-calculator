@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="title" content="Compound Interest Calculator – Grow Your Wealth" />
+  <meta name="description" content="Free compound interest calculator. Enter your initial investment, monthly contributions, interest rate, and years to see your future wealth broken down instantly." />
+  <title>Compound Interest Calculator – Grow Your Wealth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="compound-interest-calculator.html" class="active">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI Calculator</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Compound Interest <em>Calculator</em></h1>
+      <p class="subtitle">See exactly how your money compounds over time — principal, contributions, and interest, all laid out clearly.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Investment Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="initial">Initial Investment</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="initial" placeholder="10,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="monthly">Monthly Contribution</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="monthly" placeholder="200" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="rate">Annual Interest Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="rate" placeholder="7" min="0" max="100" step="0.1" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="years">Investment Length</label>
+            <div class="input-wrap">
+              <input type="number" id="years" placeholder="20" min="1" max="100" step="1" />
+              <span class="suffix">yrs</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card result-total-invested">
+            <span class="result-label">Total Invested</span>
+            <span class="result-value" id="totalInvested">—</span>
+          </div>
+          <div class="result-card result-interest">
+            <span class="result-label">Interest Earned</span>
+            <span class="result-value" id="totalInterest">—</span>
+          </div>
+          <div class="result-card result-final featured">
+            <span class="result-label">Final Value</span>
+            <span class="result-value" id="finalValue">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segPrincipal" style="width:0%"></div>
+              <div class="bar-segment seg-contributions" id="segContributions" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segInterest" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Principal</span>
+              <span><i class="dot dot-contributions"></i>Contributions</span>
+              <span><i class="dot dot-interest"></i>Interest</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =============================================
+         SEO CONTENT SECTIONS
+    ============================================= -->
+    <div class="seo-sections">
+
+      <!-- Section 1: What is compound interest? -->
+      <article class="seo-card" id="what-is-compound-interest">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is Compound Interest?</h2>
+            <p>Compound interest is the process of earning interest not just on your original money, but also on the interest you have already accumulated. In simple terms: your money earns returns, and then those returns earn returns too. Over time, this creates a powerful snowball effect.</p>
+            <p>Unlike simple interest — which only ever pays you a percentage of your starting amount — compound interest rewards you for keeping your money invested. The longer you leave it, the faster it grows. This is why financial experts often call compound interest <strong>the eighth wonder of the world</strong>.</p>
+            <p>Whether you are investing in index funds, a high-yield savings account, or a retirement plan, understanding compound interest helps you make smarter decisions with your money. Even small, consistent contributions can grow into significant wealth over a decade or two, thanks entirely to compounding.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 2: Compound interest formula explained -->
+      <article class="seo-card" id="compound-interest-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Compound Interest Formula Explained</h2>
+            <p>This calculator uses a two-part formula that combines a growing lump sum with regular monthly contributions:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">FV = P × (1 + r)<sup>n</sup> + PMT × <span class="formula-frac"><span class="frac-top">(1 + r)<sup>n</sup> − 1</span><span class="frac-line"></span><span class="frac-bottom">r</span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>FV</strong> — Future Value: the total amount your investment will be worth.</li>
+              <li><strong>P</strong> — Principal: your initial lump-sum investment.</li>
+              <li><strong>r</strong> — Annual interest rate expressed as a decimal (e.g. 7% = 0.07).</li>
+              <li><strong>n</strong> — Number of years your money is invested.</li>
+              <li><strong>PMT</strong> — Annual contribution (your monthly amount × 12).</li>
+            </ul>
+
+            <p>The first part of the formula grows your starting balance. The second part calculates how much all your ongoing contributions accumulate. Together, they give you an accurate picture of long-term investment growth using annual compounding.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 3: Example -->
+      <article class="seo-card" id="compound-interest-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: Investing $200 per Month</h2>
+            <p>Let's say you start investing at age 30 with no money saved. You commit to putting away just <strong>$200 every month</strong> into an index fund that returns an average of <strong>7% per year</strong> — a historically reasonable estimate for a diversified stock portfolio.</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>After</th>
+                    <th>Total Invested</th>
+                    <th>Interest Earned</th>
+                    <th>Final Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>10 years</td>
+                    <td>$24,000</td>
+                    <td>$10,761</td>
+                    <td class="highlight">$34,761</td>
+                  </tr>
+                  <tr>
+                    <td>20 years</td>
+                    <td>$48,000</td>
+                    <td>$56,827</td>
+                    <td class="highlight">$104,827</td>
+                  </tr>
+                  <tr>
+                    <td>30 years</td>
+                    <td>$72,000</td>
+                    <td>$170,741</td>
+                    <td class="highlight">$242,741</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>35 years</td>
+                    <td>$84,000</td>
+                    <td>$283,742</td>
+                    <td class="highlight">$367,742</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>Notice how the interest earned accelerates dramatically over time. After 10 years, interest adds about 45% on top of what you invested. After 35 years, it adds over <strong>337%</strong>. That is the compounding effect at work — the longer you stay invested, the harder your money works for you.</p>
+            <p class="example-note">Values calculated at 7% annual compound interest with $0 initial investment and $200/month contributions. For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 4: FAQ -->
+      <article class="seo-card seo-faq" id="compound-interest-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is compound interest?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Compound interest means earning interest on both your original investment and on the interest you have already earned. It is the opposite of simple interest, which only ever calculates a return on your starting balance. With compounding, each period your interest gets added to your total, and the next period's interest is calculated on that larger amount. Over many years this leads to exponential — rather than linear — growth of your savings or investments.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How is compound interest calculated?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The core formula is <strong>FV = P × (1 + r)<sup>n</sup></strong>, where FV is the future value, P is the principal, r is the annual interest rate as a decimal, and n is the number of years. If you also make regular contributions — like monthly deposits — a second term is added to account for those payments growing over time. Our calculator handles both parts automatically so you can see a realistic projection in seconds.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Is compound interest monthly or yearly?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Compound interest can be calculated on any schedule — daily, monthly, quarterly, or annually. The more frequently it compounds, the slightly higher your effective return. A savings account might compound daily. Many investment calculators, including this one, use annual compounding, which is a straightforward and widely-used standard. The difference between monthly and annual compounding is small at typical interest rates, but daily compounding will always produce the highest final value over a long period.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How much can compound interest grow?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The growth potential of compound interest is remarkable — and highly dependent on time. A single $10,000 investment at 7% per year becomes roughly $76,000 in 30 years without any additional contributions. Add $200 per month on top of that, and it grows to over $318,000. The two most important variables are the rate of return and how long you leave the money invested. Starting even five years earlier can add tens of thousands of dollars to your final balance, which is why beginning as early as possible is the most common financial advice given to young investors.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What interest rate is good for investments?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A "good" interest rate depends on the type of investment. High-yield savings accounts currently offer between 4–5% annually, which is excellent for short-term savings with zero risk. For long-term investing, a diversified index fund tracking the S&amp;P 500 has historically returned an average of around 7–10% per year before inflation. When planning for retirement, many financial planners use 6–7% as a conservative estimate to account for inflation and market variability. Anything above 10% is generally considered optimistic and should be approached with caution.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <!-- /seo-sections -->
+
+    <footer class="site-footer">
+      <p>Calculations use annual compounding. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
