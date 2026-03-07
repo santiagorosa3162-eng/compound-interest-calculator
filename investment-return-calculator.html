@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free investment return calculator. Calculate total return, percentage gain, and annualized CAGR on any investment. Enter initial value, final value, and years to see your results instantly." />
+  <title>Investment Return Calculator – Calculate ROI and CAGR</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/investment-return-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html" class="active">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Investment Return <em>Calculator</em></h1>
+      <p class="subtitle">Calculate your total return, percentage gain, and annualized CAGR on any investment. Simply enter your initial investment, final value, and holding period to see how your money performed.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Investment Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="initialInvestment">Initial Investment</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="initialInvestment" placeholder="10,000" min="1" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="finalValue">Final Value</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="finalValue" placeholder="35,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="holdingYears">Holding Period</label>
+            <div class="input-wrap">
+              <input type="number" id="holdingYears" placeholder="10" min="0.1" max="100" step="0.5" />
+              <span class="suffix">yrs</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card">
+            <span class="result-label">Total Return</span>
+            <span class="result-value" id="totalReturn">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Return %</span>
+            <span class="result-value" id="totalReturnPct">—</span>
+          </div>
+          <div class="result-card featured">
+            <span class="result-label">Annualized Return (CAGR)</span>
+            <span class="result-value" id="cagr">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segInitial" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segReturn" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Initial Investment</span>
+              <span><i class="dot dot-interest"></i>Total Return</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-investment-return">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is Investment Return?</h2>
+            <p>Investment return is the profit or loss generated by an investment over a period of time, expressed as both a dollar amount and a percentage. Calculating your return helps you evaluate how well your investment performed, compare it against benchmarks, and decide whether to hold, sell, or reallocate.</p>
+            <p>There are two key ways to express investment return: <strong>total return</strong> (the raw percentage gain or loss over the entire holding period) and <strong>annualized return</strong> (also called CAGR — Compound Annual Growth Rate). CAGR is more useful for comparison because it normalizes returns to a per-year basis, making a 5-year investment and a 10-year investment directly comparable.</p>
+            <p>For example, a 150% total return sounds impressive — but if it took 20 years, the annualized CAGR is only about 4.7%, which is below the historical stock market average. Context from annualized returns tells the true performance story.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="investment-return-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Investment Return Formula (CAGR)</h2>
+            <p>Total return percentage and CAGR are calculated as follows:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">Total Return = <span class="formula-frac"><span class="frac-top">Final Value − Initial Investment</span><span class="frac-line"></span><span class="frac-bottom">Initial Investment</span></span> × 100</span>
+              </div>
+            </div>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">CAGR = <span class="formula-frac"><span class="frac-top">Final Value</span><span class="frac-line"></span><span class="frac-bottom">Initial Investment</span></span><sup>1/n</sup> − 1</span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>CAGR</strong> — Compound Annual Growth Rate: the annualized return rate.</li>
+              <li><strong>Final Value</strong> — The ending value of the investment.</li>
+              <li><strong>Initial Investment</strong> — The starting value or purchase cost.</li>
+              <li><strong>n</strong> — Number of years the investment was held.</li>
+            </ul>
+
+            <p>CAGR represents the smoothed annual rate at which an investment grew, as if it grew at a steady rate each year. In reality, investments fluctuate — CAGR ignores volatility. Two investments with the same CAGR can have very different risk profiles, which is why CAGR should always be considered alongside a risk measure like standard deviation or maximum drawdown.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="return-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: S&amp;P 500 Historical Returns</h2>
+            <p>Here is how a <strong>$10,000 investment</strong> in a broad S&P 500 index fund would have grown at historical average rates:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Period</th>
+                    <th>CAGR</th>
+                    <th>Final Value</th>
+                    <th>Total Return</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>5 years</td>
+                    <td>10%</td>
+                    <td>$16,105</td>
+                    <td class="highlight">+61%</td>
+                  </tr>
+                  <tr>
+                    <td>10 years</td>
+                    <td>10%</td>
+                    <td>$25,937</td>
+                    <td class="highlight">+159%</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>20 years</td>
+                    <td>10%</td>
+                    <td>$67,275</td>
+                    <td class="highlight">+573%</td>
+                  </tr>
+                  <tr>
+                    <td>30 years</td>
+                    <td>10%</td>
+                    <td>$174,494</td>
+                    <td class="highlight">+1,645%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>At a 10% annualized return (the historical S&P 500 average before inflation), $10,000 becomes over $174,000 in 30 years — a 1,645% total return. This illustrates why time in the market is so powerful: the last 10 years of a 30-year investment generate far more growth than the first 10 years combined, due to compounding.</p>
+            <p class="example-note">Historical S&P 500 average ~10% nominal, ~7% inflation-adjusted. Past performance does not guarantee future results.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="investment-return-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is a good investment return?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A "good" return depends on the asset class and risk level. For context: the S&P 500 has historically returned ~10% annually before inflation, or ~7% after inflation. High-yield savings accounts currently offer 4–5%. Investment-grade bonds typically return 4–6% annually. Real estate has historically returned 8–12% (including rental income). For long-term wealth building, a return that consistently beats inflation (3%+) is the minimum threshold. A 7% real return is an excellent long-term benchmark for diversified stock investments. Returns above 15–20% annually over long periods are extremely rare and should be viewed with skepticism.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is the difference between ROI and CAGR?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">ROI (Return on Investment) is the simple percentage gain or loss: (Final − Initial) ÷ Initial × 100. It measures total return regardless of the time period. CAGR (Compound Annual Growth Rate) annualizes the return, showing what steady annual rate would produce the same result. CAGR is better for comparing investments held for different time periods. For example, Investment A gained 50% in 3 years (CAGR: 14.5%) while Investment B gained 75% in 5 years (CAGR: 11.8%). ROI alone would suggest B is better, but CAGR shows A had a higher annual growth rate. Use CAGR for meaningful comparisons across different time horizons.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How do dividends affect investment return?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">This calculator measures return based on beginning and ending values, which works for "total return" only if dividends were reinvested (as in a DRIP program or total return index fund). If dividends were paid out as cash, you need to add the total dividends received to your Final Value to calculate true total return. For individual dividend stocks or funds that distribute income, the price appreciation alone understates your actual return. For S&P 500 index funds, total return (including reinvested dividends) has historically been ~10% annually, compared to ~6–7% for price appreciation alone — dividends account for roughly 30–40% of historical stock market returns.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I include taxes when calculating investment return?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">For evaluating investment performance, use pre-tax returns — that's the standard used in performance reporting and benchmarks. However, for personal financial planning, after-tax return is what matters. Long-term capital gains (assets held over 1 year) are taxed at 0%, 15%, or 20% depending on your income. Short-term gains are taxed as ordinary income (up to 37%). Tax-advantaged accounts (401k, IRA, Roth IRA) shelter returns from taxes, dramatically improving after-tax returns — a 7% pre-tax return becomes a significantly higher after-tax return in a Roth IRA than in a taxable account. Always maximize tax-advantaged accounts before investing in taxable accounts.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="roi-calculator.html" class="related-card">
+          <span class="related-name">ROI Calculator</span>
+          <span class="related-desc">Calculate return on investment, profit, and annualized CAGR</span>
+        </a>
+        <a href="compound-interest-calculator.html" class="related-card">
+          <span class="related-name">Compound Interest Calculator</span>
+          <span class="related-desc">See how investments grow with monthly contributions over time</span>
+        </a>
+        <a href="future-value-calculator.html" class="related-card">
+          <span class="related-name">Future Value Calculator</span>
+          <span class="related-desc">Calculate what any lump sum will grow to at a given rate</span>
+        </a>
+        <a href="savings-calculator.html" class="related-card">
+          <span class="related-name">Savings Calculator</span>
+          <span class="related-desc">Project your savings with regular deposits and compound interest</span>
+        </a>
+        <a href="retirement-calculator.html" class="related-card">
+          <span class="related-name">Retirement Calculator</span>
+          <span class="related-desc">Project your nest egg and monthly retirement income</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Calculations use CAGR formula. Results are estimates and not financial advice. Past investment returns do not guarantee future results.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const initial = parseFloat(document.getElementById('initialInvestment').value);
+      const final_  = parseFloat(document.getElementById('finalValue').value);
+      const years   = parseFloat(document.getElementById('holdingYears').value);
+
+      if (isNaN(initial) || isNaN(final_) || isNaN(years) || initial <= 0 || years <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const totalReturn    = final_ - initial;
+      const totalReturnPct = ((final_ - initial) / initial) * 100;
+      const cagr           = (Math.pow(final_ / initial, 1 / years) - 1) * 100;
+
+      document.getElementById('totalReturn').textContent    = fmt(totalReturn);
+      document.getElementById('totalReturnPct').textContent = totalReturnPct.toFixed(1) + '%';
+      document.getElementById('cagr').textContent           = cagr.toFixed(2) + '%';
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = final_ > 0;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      if (final_ > 0) {
+        const total = final_ > 0 ? final_ : 1;
+        const pctInitial = Math.max(0, Math.min(100, (initial / total) * 100));
+        const pctReturn  = Math.max(0, 100 - pctInitial);
+
+        setTimeout(() => {
+          document.getElementById('segInitial').style.width = pctInitial.toFixed(1) + '%';
+          document.getElementById('segReturn').style.width  = pctReturn.toFixed(1) + '%';
+        }, 50);
+      }
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>

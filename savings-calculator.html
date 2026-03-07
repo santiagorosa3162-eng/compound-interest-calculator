@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free savings calculator. See how your savings grow with regular deposits and compound interest. Instant breakdown of deposits and interest earned over any time period." />
+  <title>Savings Calculator – Calculate How Your Savings Grow</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/savings-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html" class="active">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Savings <em>Calculator</em></h1>
+      <p class="subtitle">Find out exactly how much your savings will grow with regular deposits and compound interest — see your balance, deposits, and earned interest at a glance.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Savings Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="currentBalance">Current Balance</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="currentBalance" placeholder="5,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="monthlyDeposit">Monthly Deposit</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="monthlyDeposit" placeholder="300" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="annualRate">Annual Interest Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="annualRate" placeholder="4.5" min="0" max="100" step="0.1" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="savingsYears">Savings Period</label>
+            <div class="input-wrap">
+              <input type="number" id="savingsYears" placeholder="10" min="1" max="100" step="1" />
+              <span class="suffix">yrs</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card">
+            <span class="result-label">Total Deposited</span>
+            <span class="result-value" id="totalDeposited">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Interest Earned</span>
+            <span class="result-value" id="interestEarned">—</span>
+          </div>
+          <div class="result-card featured">
+            <span class="result-label">Final Balance</span>
+            <span class="result-value" id="finalBalance">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segBalance" style="width:0%"></div>
+              <div class="bar-segment seg-contributions" id="segDeposits" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segInterest" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Starting Balance</span>
+              <span><i class="dot dot-contributions"></i>Deposits</span>
+              <span><i class="dot dot-interest"></i>Interest</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-savings-calculator">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is a Savings Calculator?</h2>
+            <p>A savings calculator helps you project how much money you will have in a savings account, high-yield savings account, or money market account after a set period of regular deposits and compound interest. It takes your starting balance, recurring deposits, interest rate, and time horizon and shows exactly how your wealth accumulates.</p>
+            <p>Unlike a basic investment calculator, a savings calculator is focused on the predictable, low-risk growth typical of FDIC-insured bank accounts. The interest rate stays relatively stable, and your deposits follow a fixed schedule. This makes savings calculators ideal for planning emergency funds, down payment funds, college savings, or any medium-term financial goal.</p>
+            <p>The most valuable insight a savings calculator provides is how much of your final balance comes from <strong>your own deposits</strong> versus <strong>interest earned</strong>. Even modest interest rates add up meaningfully over years of consistent saving — a fact that is easy to underestimate without running the numbers.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="savings-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Savings Growth Formula Explained</h2>
+            <p>This calculator uses the standard future value formula combining a growing lump sum with regular annual contributions:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">FV = P × (1 + r)<sup>n</sup> + PMT × <span class="formula-frac"><span class="frac-top">(1 + r)<sup>n</sup> − 1</span><span class="frac-line"></span><span class="frac-bottom">r</span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>FV</strong> — Future Value: your final savings balance.</li>
+              <li><strong>P</strong> — Principal: your current savings balance.</li>
+              <li><strong>r</strong> — Annual interest rate as a decimal (e.g. 4.5% = 0.045).</li>
+              <li><strong>n</strong> — Number of years saving.</li>
+              <li><strong>PMT</strong> — Annual contributions (monthly deposit × 12).</li>
+            </ul>
+
+            <p>The first term shows your existing balance growing with compound interest. The second term calculates how your regular deposits accumulate and earn interest over time. Together they give you a realistic picture of your savings growth using annual compounding.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="savings-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: Saving $300 per Month at 4.5%</h2>
+            <p>Suppose you open a high-yield savings account with <strong>$5,000</strong> and deposit <strong>$300 every month</strong> at an annual yield of <strong>4.5%</strong>. Here is how your balance grows:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>After</th>
+                    <th>Total Deposited</th>
+                    <th>Interest Earned</th>
+                    <th>Final Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1 year</td>
+                    <td>$8,600</td>
+                    <td>$420</td>
+                    <td class="highlight">$9,020</td>
+                  </tr>
+                  <tr>
+                    <td>3 years</td>
+                    <td>$15,800</td>
+                    <td>$2,086</td>
+                    <td class="highlight">$17,886</td>
+                  </tr>
+                  <tr>
+                    <td>5 years</td>
+                    <td>$23,000</td>
+                    <td>$5,042</td>
+                    <td class="highlight">$28,042</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>10 years</td>
+                    <td>$41,000</td>
+                    <td>$18,154</td>
+                    <td class="highlight">$59,154</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>After 10 years, interest alone contributes over <strong>$18,000</strong> — nearly 31% of your final balance — without you lifting a finger. The longer you save, the more powerful this effect becomes. Starting early is the single most impactful savings decision you can make.</p>
+            <p class="example-note">Values calculated at 4.5% annual compound interest with $5,000 starting balance and $300/month deposits. For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="savings-calculator-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How much should I save each month?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A common guideline is the 50/30/20 rule: allocate 50% of after-tax income to needs, 30% to wants, and 20% to savings and debt repayment. For most people, saving 15–20% of income is a solid long-term target. If that's not immediately achievable, starting with any consistent amount — even $50 per month — builds the habit and grows over time. The most important factor is consistency rather than the specific amount.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is a good savings interest rate?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Traditional savings accounts at large banks often pay as little as 0.01–0.05% APY. High-yield savings accounts (HYSAs) at online banks typically offer 4–5% APY when the federal funds rate is elevated. Money market accounts and short-term CDs can offer comparable rates. For your savings calculator, use your account's actual APY for the most accurate projection. Always compare current rates since they change with Federal Reserve policy decisions.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How does compound interest help savings grow?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Compound interest means your interest earns interest. Each year (or month, if your account compounds monthly), the interest earned is added to your balance, and future interest is calculated on that larger total. Over time this creates exponential growth. For example, at 4% annual interest, $10,000 grows to $10,400 after year one, then $10,816 after year two (not $10,800), because the second year's interest is calculated on $10,400 — the extra $16 is compounding at work.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I prioritize saving or paying off debt?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The general rule is to compare your savings interest rate against your debt interest rate. High-interest debt (like credit cards at 20%+ APR) almost always costs more than you can earn in a savings account, so paying it off first makes mathematical sense. However, it is wise to keep a small emergency fund (1–3 months of expenses) even while paying down debt, to avoid going deeper into debt for unexpected expenses. Low-interest debt (like mortgages at 3–4%) can be carried alongside saving and investing, especially if your investments earn a higher rate.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How long does it take to save $100,000?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">It depends entirely on your monthly deposit and interest rate. Saving $500/month at 4.5% takes approximately 13 years to reach $100,000. Saving $1,000/month at the same rate takes about 7 years. At $2,000/month, you'd reach $100,000 in under 4 years. Use this calculator to model your specific situation — enter your target balance and work backwards to find the monthly deposit needed, or enter your current deposit and see how long it takes to hit your goal.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="compound-interest-calculator.html" class="related-card">
+          <span class="related-name">Compound Interest Calculator</span>
+          <span class="related-desc">See how investments grow with monthly contributions over time</span>
+        </a>
+        <a href="future-value-calculator.html" class="related-card">
+          <span class="related-name">Future Value Calculator</span>
+          <span class="related-desc">Calculate the future value of any lump sum investment</span>
+        </a>
+        <a href="retirement-calculator.html" class="related-card">
+          <span class="related-name">Retirement Calculator</span>
+          <span class="related-desc">Project your nest egg and monthly retirement income</span>
+        </a>
+        <a href="investment-return-calculator.html" class="related-card">
+          <span class="related-name">Investment Return Calculator</span>
+          <span class="related-desc">Calculate total return and CAGR on any investment</span>
+        </a>
+        <a href="budget-calculator.html" class="related-card">
+          <span class="related-name">Budget Calculator</span>
+          <span class="related-desc">Plan your monthly budget and find money to save</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Calculations use annual compounding. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const P     = parseFloat(document.getElementById('currentBalance').value) || 0;
+      const pmt   = parseFloat(document.getElementById('monthlyDeposit').value) || 0;
+      const rPct  = parseFloat(document.getElementById('annualRate').value);
+      const n     = parseFloat(document.getElementById('savingsYears').value);
+
+      if (isNaN(rPct) || isNaN(n) || n <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const r           = rPct / 100;
+      const annualPmt   = pmt * 12;
+      const totalDeposited = P + annualPmt * n;
+
+      let finalBalance;
+      if (r === 0) {
+        finalBalance = totalDeposited;
+      } else {
+        const growth = Math.pow(1 + r, n);
+        finalBalance = P * growth + annualPmt * ((growth - 1) / r);
+      }
+
+      const interestEarned = finalBalance - totalDeposited;
+
+      document.getElementById('totalDeposited').textContent = fmt(totalDeposited);
+      document.getElementById('interestEarned').textContent = fmt(Math.max(0, interestEarned));
+      document.getElementById('finalBalance').textContent   = fmt(finalBalance);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const total = finalBalance > 0 ? finalBalance : 1;
+      const pctBalance  = Math.max(0, (P / total) * 100);
+      const pctDeposits = Math.max(0, ((annualPmt * n) / total) * 100);
+      const pctInterest = Math.max(0, 100 - pctBalance - pctDeposits);
+
+      setTimeout(() => {
+        document.getElementById('segBalance').style.width  = pctBalance.toFixed(1) + '%';
+        document.getElementById('segDeposits').style.width = pctDeposits.toFixed(1) + '%';
+        document.getElementById('segInterest').style.width = pctInterest.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>

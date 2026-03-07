@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free present value calculator. Find out what a future amount of money is worth in today's dollars. Essential for evaluating investments, annuities, and financial decisions." />
+  <title>Present Value Calculator – What Is a Future Amount Worth Today?</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/present-value-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html" class="active">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Present Value <em>Calculator</em></h1>
+      <p class="subtitle">Discover what a future sum of money is worth in today's dollars. Use present value to compare investment options, evaluate annuities, and make smarter financial decisions.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Calculation Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="futureAmount">Future Value (Target Amount)</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="futureAmount" placeholder="100,000" min="1" step="1000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="discountRate">Annual Discount Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="discountRate" placeholder="7" min="0" max="100" step="0.1" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="pvYears">Number of Years</label>
+            <div class="input-wrap">
+              <input type="number" id="pvYears" placeholder="20" min="1" max="100" step="1" />
+              <span class="suffix">yrs</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Present Value</span>
+            <span class="result-value" id="presentVal">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Discount Amount</span>
+            <span class="result-value" id="discountAmount">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Discount</span>
+            <span class="result-value" id="discountPct">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segPV" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segDiscount" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Present Value</span>
+              <span><i class="dot dot-interest"></i>Discounted Amount</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-present-value">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is Present Value?</h2>
+            <p>Present value (PV) is the current worth of a future sum of money, discounted at a specific rate of return. The core concept is that <strong>a dollar today is worth more than a dollar in the future</strong>, because money today can be invested and grow. Present value quantifies exactly how much less a future sum is worth in today's terms.</p>
+            <p>For example, if you could earn 7% annually on your investments, you'd be indifferent between receiving $100,000 today or $386,968 in 20 years — because $100,000 invested at 7% for 20 years grows to that amount. Present value lets you compare apples to apples when evaluating financial options that occur at different points in time.</p>
+            <p>Present value is used in virtually every area of finance: bond pricing, business valuation, pension analysis, real estate investment, insurance payouts, and personal financial decisions like whether to take a lump sum or annuity.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="present-value-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Present Value Formula Explained</h2>
+            <p>The present value formula is the inverse of the future value formula:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">PV = <span class="formula-frac"><span class="frac-top">FV</span><span class="frac-line"></span><span class="frac-bottom">(1 + r)<sup>n</sup></span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>PV</strong> — Present Value: what the future amount is worth today.</li>
+              <li><strong>FV</strong> — Future Value: the amount you expect to receive in the future.</li>
+              <li><strong>r</strong> — Annual discount rate as a decimal (e.g. 7% = 0.07).</li>
+              <li><strong>n</strong> — Number of years until the future payment is received.</li>
+            </ul>
+
+            <p>The discount rate represents the opportunity cost of money — the return you could earn by investing those funds elsewhere. Higher discount rates reduce present value more dramatically. This is why low interest rate environments make future cash flows (like bonds) more valuable, and rising rates cause their prices to fall.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="pv-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: Lump Sum vs Lottery Annuity</h2>
+            <p>A lottery winner is offered two choices: <strong>$500,000 cash today</strong> or <strong>$50,000 per year for 20 years</strong> ($1,000,000 total). Which is better? Present value analysis answers this definitively.</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Discount Rate</th>
+                    <th>PV of Annuity</th>
+                    <th>vs $500,000 Lump Sum</th>
+                    <th>Better Choice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>3%</td>
+                    <td>$744,094</td>
+                    <td>+$244,094</td>
+                    <td class="highlight">Annuity</td>
+                  </tr>
+                  <tr>
+                    <td>5%</td>
+                    <td>$623,111</td>
+                    <td>+$123,111</td>
+                    <td class="highlight">Annuity</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>7%</td>
+                    <td>$529,701</td>
+                    <td>+$29,701</td>
+                    <td class="highlight">Annuity (slight)</td>
+                  </tr>
+                  <tr>
+                    <td>9%</td>
+                    <td>$456,427</td>
+                    <td>−$43,573</td>
+                    <td class="highlight">Lump Sum</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>If you can earn 9% or more on investments, the $500,000 lump sum invested today would outgrow the annuity's present value. If you earn less than about 8%, the annuity is more valuable in present-value terms. This is exactly the kind of decision present value analysis is designed to make clear.</p>
+            <p class="example-note">Annuity PV calculated using standard annuity formula. For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="pv-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What discount rate should I use for present value?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The discount rate should reflect your opportunity cost — what you could reasonably earn on an alternative investment of equal risk. For conservative savings (CDs, bonds), use 3–5%. For moderate investments (balanced fund), use 5–7%. For stock-market-equivalent investments, use 7–10%. For evaluating business cash flows, companies typically use their Weighted Average Cost of Capital (WACC), often 8–12%. Using a higher discount rate makes future cash flows worth less today, so conservative investors should use a rate that reflects what they'd actually earn, not wishful thinking.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How is present value used in bond pricing?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A bond's price is the present value of all its future cash flows — the periodic coupon payments plus the face value returned at maturity — discounted at the current market interest rate (yield). When market yields rise above the coupon rate, the bond's present value falls below face value (it trades at a discount). When yields fall below the coupon, the bond trades at a premium. This inverse relationship between bond prices and interest rates is entirely explained by present value math. Duration measures how sensitive a bond's price is to interest rate changes.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is NPV and how is it related to PV?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Net Present Value (NPV) is the sum of the present values of all future cash flows from an investment, minus the initial investment cost. NPV is the cornerstone of capital budgeting and investment analysis. A positive NPV means the investment is expected to add value (the present value of future returns exceeds the cost). A zero NPV means you earn exactly your required rate of return. A negative NPV means you'd be better off putting the money in an alternative investment. This calculator computes the PV of a single future amount; for multiple cash flows at different times, you'd sum multiple PV calculations.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I take a pension lump sum or monthly payments?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">This is one of the most important financial decisions many people face. Key factors: (1) Calculate the present value of the monthly pension payments using a reasonable discount rate — if the lump sum is less than this PV, monthly payments are better. (2) Consider longevity risk — a pension protects against outliving your money; a lump sum doesn't. (3) Evaluate survivor benefits — some pensions include spousal coverage. (4) Consider your health and life expectancy. (5) Think about your investment confidence — if you're not a disciplined investor, guaranteed monthly income may be more valuable than the flexibility of a lump sum. There is no universal right answer; present value analysis is just the starting point.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="future-value-calculator.html" class="related-card">
+          <span class="related-name">Future Value Calculator</span>
+          <span class="related-desc">Calculate what any amount will be worth in the future</span>
+        </a>
+        <a href="compound-interest-calculator.html" class="related-card">
+          <span class="related-name">Compound Interest Calculator</span>
+          <span class="related-desc">See how investments grow with monthly contributions over time</span>
+        </a>
+        <a href="inflation-calculator.html" class="related-card">
+          <span class="related-name">Inflation Calculator</span>
+          <span class="related-desc">See how inflation erodes the purchasing power of money</span>
+        </a>
+        <a href="investment-return-calculator.html" class="related-card">
+          <span class="related-name">Investment Return Calculator</span>
+          <span class="related-desc">Calculate total return and annualized CAGR on investments</span>
+        </a>
+        <a href="retirement-calculator.html" class="related-card">
+          <span class="related-name">Retirement Calculator</span>
+          <span class="related-desc">Project your nest egg and monthly retirement income</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Calculations use annual discounting. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const FV   = parseFloat(document.getElementById('futureAmount').value);
+      const rPct = parseFloat(document.getElementById('discountRate').value);
+      const n    = parseFloat(document.getElementById('pvYears').value);
+
+      if (isNaN(FV) || isNaN(rPct) || isNaN(n) || FV <= 0 || n <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const r  = rPct / 100;
+      const PV = r === 0 ? FV : FV / Math.pow(1 + r, n);
+      const discountAmount = FV - PV;
+      const discountPct    = (discountAmount / FV) * 100;
+
+      document.getElementById('presentVal').textContent     = fmt(PV);
+      document.getElementById('discountAmount').textContent = fmt(discountAmount);
+      document.getElementById('discountPct').textContent    = discountPct.toFixed(1) + '%';
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const pctPV       = Math.max(0, Math.min(100, (PV / FV) * 100));
+      const pctDiscount = Math.max(0, 100 - pctPV);
+
+      setTimeout(() => {
+        document.getElementById('segPV').style.width       = pctPV.toFixed(1) + '%';
+        document.getElementById('segDiscount').style.width = pctDiscount.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>

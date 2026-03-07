@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free credit card payoff calculator. Enter your balance, APR, and monthly payment to see when you'll be debt-free and how much interest you'll save by paying more." />
+  <title>Credit Card Payoff Calculator – Pay Off Credit Card Debt Faster</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/credit-card-payoff-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html" class="active">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Credit Card Payoff <em>Calculator</em></h1>
+      <p class="subtitle">See exactly how long it will take to pay off your credit card balance and how much interest you'll pay — then discover how much you save by paying a little extra each month.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Credit Card Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="ccBalance">Credit Card Balance</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="ccBalance" placeholder="5,000" min="1" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ccAPR">Annual Percentage Rate (APR)</label>
+            <div class="input-wrap">
+              <input type="number" id="ccAPR" placeholder="21.5" min="0" max="100" step="0.1" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ccPayment">Monthly Payment</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="ccPayment" placeholder="200" min="1" step="10" />
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Time to Pay Off</span>
+            <span class="result-value" id="ccTimeToPayoff">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Interest Paid</span>
+            <span class="result-value" id="ccTotalInterest">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Amount Paid</span>
+            <span class="result-value" id="ccTotalPaid">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segPrincipal" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segInterest" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Balance Paid</span>
+              <span><i class="dot dot-interest"></i>Interest Paid</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-cc-payoff">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M2 10h20" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M6 15h4M14 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Why Credit Card Interest Is So Costly</h2>
+            <p>Credit cards typically carry some of the highest interest rates of any consumer debt — often between 18% and 29% APR. Unlike mortgages or auto loans, most credit cards don't have fixed payoff schedules. The minimum payment is usually just 1–2% of the balance, meaning you could carry a balance for decades while paying far more in interest than the original purchase cost.</p>
+            <p>The good news is that credit card interest compounds monthly. This means the faster you pay down the balance, the less time interest has to accumulate. Even paying $50 or $100 more per month can save you hundreds of dollars and eliminate the debt a year or two sooner. The Credit Card Payoff Calculator makes this immediately visible so you can make an informed decision about how aggressively to tackle your balance.</p>
+            <p>If your credit score has improved since you opened the card, consider calling your issuer to request a lower rate, or look into a <strong>balance transfer to a 0% introductory APR card</strong>. Doing so while using this calculator to maintain a fixed monthly payment can dramatically accelerate your payoff timeline.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="cc-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Credit Card Payoff Formula</h2>
+            <p>The number of monthly payments to eliminate a credit card balance is:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">n = <span class="formula-frac"><span class="frac-top">−log(1 − r × B / PMT)</span><span class="frac-line"></span><span class="frac-bottom">log(1 + r)</span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>n</strong> — Number of months to pay off the balance.</li>
+              <li><strong>B</strong> — Current credit card balance.</li>
+              <li><strong>r</strong> — Monthly interest rate (APR ÷ 12, as a decimal).</li>
+              <li><strong>PMT</strong> — Fixed monthly payment amount.</li>
+            </ul>
+
+            <p>Each month, interest is calculated on the remaining balance (r × B), and the rest of your payment (PMT − interest) reduces the principal. For the debt to shrink, your payment must exceed the monthly interest charge. At 21% APR, a $5,000 balance accrues about $87 in interest per month — any payment below this will grow the debt regardless of how much you pay.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="cc-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: Paying Off $5,000 at 21% APR</h2>
+            <p>Here is how different monthly payments affect payoff time for a <strong>$5,000 credit card balance</strong> at <strong>21% APR</strong>:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Monthly Payment</th>
+                    <th>Months</th>
+                    <th>Total Interest</th>
+                    <th>Total Paid</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>$100 (min ~)</td>
+                    <td>94 months</td>
+                    <td>$4,368</td>
+                    <td class="highlight">$9,368</td>
+                  </tr>
+                  <tr>
+                    <td>$150</td>
+                    <td>44 months</td>
+                    <td>$1,529</td>
+                    <td class="highlight">$6,529</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>$200</td>
+                    <td>30 months</td>
+                    <td>$948</td>
+                    <td class="highlight">$5,948</td>
+                  </tr>
+                  <tr>
+                    <td>$300</td>
+                    <td>19 months</td>
+                    <td>$567</td>
+                    <td class="highlight">$5,567</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>Paying just $100/month at 21% APR means you'd pay nearly <strong>$4,400 in interest</strong> — almost as much as the original balance — over nearly 8 years. Bumping that to $200/month cuts interest by over 78% and gets you debt-free in just 2.5 years. That extra $100/month saves $3,420 in interest.</p>
+            <p class="example-note">Values calculated using standard credit card amortization formula. For illustrative purposes only. Assumes no new charges.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="cc-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is a balance transfer and does it help?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A balance transfer moves your credit card debt to a new card, typically with a 0% introductory APR for 12–21 months. During this period, 100% of your payment goes to principal — dramatically accelerating payoff. Balance transfer cards often charge a fee of 3–5% of the transferred amount. If you can pay off the balance before the introductory period ends, this fee is almost always less than the interest you'd pay otherwise. This calculator can help you confirm that: compare total interest paid normally versus just the transfer fee.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How is credit card interest calculated?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Most credit cards use a Daily Periodic Rate (DPR) = APR ÷ 365. Interest is charged on your Average Daily Balance (ADB) for the billing cycle. So: Interest = ADB × DPR × days in cycle. This means interest compounds daily rather than monthly, making credit card debt slightly more expensive than this calculator models (which uses monthly compounding). The difference is small but real. Always pay in full every month to avoid any interest entirely — the "grace period" means no interest is charged if you pay your full statement balance by the due date.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What credit card APR is considered high?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">As of 2024–2025, the average credit card APR in the U.S. was approximately 21–22%, near historic highs. APRs below 15% are generally considered low for a credit card; 15–20% is average; above 24% is high. Store cards and subprime cards often reach 29.99% — the regulatory ceiling. If you carry a balance, any APR above your potential investment return (roughly 7–10% for stocks) means paying down the credit card is a guaranteed better return than investing. Always prioritize high-interest debt elimination before discretionary investing.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I close the credit card after paying it off?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Closing a credit card after paying it off can actually hurt your credit score in two ways: it reduces your total available credit (increasing your utilization ratio) and shortens your average account age. Financial experts generally recommend keeping the card open but not using it for purchases, or making one small recurring charge and paying it off monthly to keep it active. If the card has a high annual fee, however, closing it after payoff makes sense. Just be aware of the short-term credit score impact and time any closure accordingly — especially if you plan to apply for a mortgage or major loan soon.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="debt-payoff-calculator.html" class="related-card">
+          <span class="related-name">Debt Payoff Calculator</span>
+          <span class="related-desc">Calculate payoff time for any fixed-rate debt or loan</span>
+        </a>
+        <a href="apr-calculator.html" class="related-card">
+          <span class="related-name">APR Calculator</span>
+          <span class="related-desc">Calculate the true annual cost of borrowing including fees</span>
+        </a>
+        <a href="loan-calculator.html" class="related-card">
+          <span class="related-name">Loan Calculator</span>
+          <span class="related-desc">Find monthly payments and total cost for any loan</span>
+        </a>
+        <a href="budget-calculator.html" class="related-card">
+          <span class="related-name">Budget Calculator</span>
+          <span class="related-desc">Find extra cash in your budget to pay down credit card debt</span>
+        </a>
+        <a href="net-worth-calculator.html" class="related-card">
+          <span class="related-name">Net Worth Calculator</span>
+          <span class="related-desc">See your total financial picture including all debts</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Calculations assume a fixed APR and no new charges to the card. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const B   = parseFloat(document.getElementById('ccBalance').value);
+      const rPct= parseFloat(document.getElementById('ccAPR').value);
+      const PMT = parseFloat(document.getElementById('ccPayment').value);
+
+      if (isNaN(B) || isNaN(rPct) || isNaN(PMT) || B <= 0 || PMT <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const r = rPct / 100 / 12;
+
+      if (r > 0 && PMT <= r * B) {
+        document.getElementById('ccTimeToPayoff').textContent  = 'Never';
+        document.getElementById('ccTotalInterest').textContent = '∞';
+        document.getElementById('ccTotalPaid').textContent     = '∞';
+        document.getElementById('placeholder').style.display = 'none';
+        document.getElementById('resultsGrid').hidden = false;
+        document.getElementById('breakdown').hidden   = true;
+        document.querySelectorAll('.result-card').forEach((el, i) => {
+          el.style.animation = 'none';
+          el.offsetHeight;
+          el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+        });
+        return;
+      }
+
+      let months;
+      if (r === 0) {
+        months = Math.ceil(B / PMT);
+      } else {
+        months = Math.ceil(-Math.log(1 - r * B / PMT) / Math.log(1 + r));
+      }
+
+      const totalPaid     = PMT * months;
+      const totalInterest = totalPaid - B;
+
+      const yrs = Math.floor(months / 12);
+      const mos = months % 12;
+      let timeStr = '';
+      if (yrs > 0) timeStr += yrs + ' yr' + (yrs > 1 ? 's' : '');
+      if (mos > 0) timeStr += (timeStr ? ' ' : '') + mos + ' mo' + (mos > 1 ? 's' : '');
+
+      document.getElementById('ccTimeToPayoff').textContent  = timeStr;
+      document.getElementById('ccTotalInterest').textContent = fmt(Math.max(0, totalInterest));
+      document.getElementById('ccTotalPaid').textContent     = fmt(totalPaid);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const total = totalPaid > 0 ? totalPaid : 1;
+      const pctPrincipal = Math.max(0, Math.min(100, (B / total) * 100));
+      const pctInterest  = Math.max(0, 100 - pctPrincipal);
+
+      setTimeout(() => {
+        document.getElementById('segPrincipal').style.width = pctPrincipal.toFixed(1) + '%';
+        document.getElementById('segInterest').style.width  = pctInterest.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>

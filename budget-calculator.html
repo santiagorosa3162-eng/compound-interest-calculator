@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free budget calculator. Enter your monthly income and expenses to instantly see your total spending, remaining balance, and savings rate. Take control of your finances." />
+  <title>Budget Calculator – Plan Your Monthly Budget and Spending</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/budget-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html" class="active">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Budget <em>Calculator</em></h1>
+      <p class="subtitle">Enter your monthly income and expenses to instantly see your total spending, remaining money, and savings rate. The first step to financial freedom is knowing your numbers.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Monthly Income &amp; Expenses</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="monthlyIncome">Monthly Take-Home Income</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="monthlyIncome" placeholder="5,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="housingCost">Housing (Rent / Mortgage)</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="housingCost" placeholder="1,500" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="foodCost">Food &amp; Groceries</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="foodCost" placeholder="600" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="transportCost">Transportation</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="transportCost" placeholder="400" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="utilitiesCost">Utilities &amp; Bills</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="utilitiesCost" placeholder="200" min="0" step="25" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="healthcareCost">Healthcare &amp; Insurance</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="healthcareCost" placeholder="150" min="0" step="25" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="entertainmentCost">Entertainment &amp; Dining Out</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="entertainmentCost" placeholder="300" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="debtPayments">Debt Payments</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="debtPayments" placeholder="200" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="savingsContrib">Savings &amp; Investments</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="savingsContrib" placeholder="500" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="otherExpenses">Other Expenses</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="otherExpenses" placeholder="150" min="0" step="50" />
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate Budget</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate Budget</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card">
+            <span class="result-label">Total Expenses</span>
+            <span class="result-value" id="totalExpenses">—</span>
+          </div>
+          <div class="result-card featured">
+            <span class="result-label">Remaining Balance</span>
+            <span class="result-value" id="remainingBalance">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Savings Rate</span>
+            <span class="result-value" id="savingsRate">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segExpenses" style="width:0%"></div>
+              <div class="bar-segment seg-contributions" id="segSavings" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segRemaining" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Expenses</span>
+              <span><i class="dot dot-contributions"></i>Savings</span>
+              <span><i class="dot dot-interest"></i>Remaining</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-budgeting">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 7H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="9" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Why Budgeting Is the Foundation of Financial Health</h2>
+            <p>A budget is simply a plan for your money — a written or calculated intention for where each dollar will go before you spend it. Without a budget, money tends to disappear on unplanned expenses while financial goals go unfunded. With one, you gain visibility and control over the most important resource in your financial life.</p>
+            <p>Budgeting doesn't mean deprivation. It means deliberately allocating money to the things that matter most to you while ensuring obligations are met and savings goals are funded. Many people discover that budgeting actually gives them more freedom — because they can spend without guilt on planned categories, knowing the rest is covered.</p>
+            <p>The budget calculator gives you an instant snapshot of your financial situation: how much you earn, how much you spend, whether your spending exceeds your income, and — critically — your <strong>savings rate</strong>. Your savings rate is one of the strongest predictors of long-term financial independence.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="budget-methods">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Popular Budgeting Methods</h2>
+            <p>Several proven budgeting frameworks can help structure your finances:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">50/30/20 Rule: Needs 50% | Wants 30% | Savings 20%</span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>50/30/20 Rule</strong> — Allocate 50% of take-home pay to needs, 30% to wants, 20% to savings and debt repayment. Simple and flexible.</li>
+              <li><strong>Zero-Based Budget</strong> — Assign every dollar a job until Income − Expenses = $0. Requires more tracking but maximizes intentionality.</li>
+              <li><strong>Pay Yourself First</strong> — Automatically transfer savings before spending anything. Treats saving as a non-negotiable bill.</li>
+              <li><strong>Envelope Method</strong> — Allocate cash to physical or digital envelopes for each category. Spending stops when the envelope is empty.</li>
+            </ul>
+
+            <p>Use this calculator to check how your current spending aligns with your chosen method. If your housing exceeds 30% of income or savings fall below 10%, those are clear signals to adjust your plan.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="budget-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: $5,000/month Take-Home Budget</h2>
+            <p>Here is how a <strong>$5,000 monthly take-home income</strong> might be allocated using the 50/30/20 framework:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Monthly Amount</th>
+                    <th>% of Income</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Housing</td>
+                    <td>$1,400</td>
+                    <td>28%</td>
+                  </tr>
+                  <tr>
+                    <td>Food &amp; Groceries</td>
+                    <td>$500</td>
+                    <td>10%</td>
+                  </tr>
+                  <tr>
+                    <td>Transportation</td>
+                    <td>$400</td>
+                    <td>8%</td>
+                  </tr>
+                  <tr>
+                    <td>Utilities &amp; Bills</td>
+                    <td>$150</td>
+                    <td>3%</td>
+                  </tr>
+                  <tr>
+                    <td>Entertainment</td>
+                    <td>$300</td>
+                    <td>6%</td>
+                  </tr>
+                  <tr>
+                    <td>Savings &amp; Investing</td>
+                    <td>$1,000</td>
+                    <td class="highlight">20%</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>Remaining Buffer</td>
+                    <td>$1,250</td>
+                    <td class="highlight">25%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>This budget leaves a $1,250 buffer for irregular expenses, additional savings, or discretionary spending — providing both security and flexibility. A 20% savings rate on $5,000/month means $12,000 saved per year, growing significantly with investment returns over time.</p>
+            <p class="example-note">Individual budgets vary widely based on location, lifestyle, and financial goals. These figures are illustrative only.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="budget-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is a good savings rate?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Financial conventional wisdom suggests saving at least 15–20% of gross income (pre-tax) for retirement. But saving rate goals depend on your situation: if you're starting late, 25–30% may be necessary. The FIRE (Financial Independence Retire Early) community often targets 40–70% savings rates. For most people, getting to 20% take-home savings is an excellent goal. Start wherever you can and increase by 1% every 6 months — even small increases compound significantly over time. Any saving is better than none.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How much should I spend on housing?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The traditional rule of thumb is to keep housing costs below 30% of gross income. Many financial experts now suggest the stricter 28% rule for mortgage principal and interest alone. In high-cost cities, this target is often impossible without very high incomes — housing at 35–40% of income is common in markets like New York, San Francisco, or Boston. If housing exceeds 40% of take-home pay, it significantly constrains your ability to save and handle financial emergencies, and you may want to explore options for increasing income or finding more affordable housing.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What should I do if my expenses exceed my income?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">If expenses exceed income, you have two levers: reduce expenses or increase income. Start by auditing subscriptions and recurring costs — these are often overlooked. Then look at discretionary categories: dining out, entertainment, and convenience spending. If cuts alone aren't enough, side income (freelancing, part-time work), negotiating a raise, or finding a higher-paying job addresses the income side. Carrying credit card debt to bridge a monthly gap is extremely costly — this situation requires urgent action. Building a 3–6 month emergency fund once balanced is the next priority.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I budget based on gross or take-home income?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Budget based on take-home (net) income — the amount that actually hits your bank account after taxes, health insurance premiums, and retirement contributions are deducted. Using gross income inflates your apparent budget and leads to overspending. However, when calculating savings rates for long-term planning purposes, financial advisors often use gross income as the reference — a 15% gross savings rate is the standard benchmark for retirement readiness. This calculator uses take-home income, so your savings rate here reflects a take-home percentage (which will be higher than the gross percentage).</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="savings-calculator.html" class="related-card">
+          <span class="related-name">Savings Calculator</span>
+          <span class="related-desc">See how your monthly savings grow with compound interest</span>
+        </a>
+        <a href="net-worth-calculator.html" class="related-card">
+          <span class="related-name">Net Worth Calculator</span>
+          <span class="related-desc">Track your overall financial progress with a net worth snapshot</span>
+        </a>
+        <a href="salary-to-hourly-calculator.html" class="related-card">
+          <span class="related-name">Salary to Hourly Calculator</span>
+          <span class="related-desc">Convert your annual salary to an hourly, daily, or monthly rate</span>
+        </a>
+        <a href="debt-payoff-calculator.html" class="related-card">
+          <span class="related-name">Debt Payoff Calculator</span>
+          <span class="related-desc">Find out how fast you can eliminate your debt</span>
+        </a>
+        <a href="retirement-calculator.html" class="related-card">
+          <span class="related-name">Retirement Calculator</span>
+          <span class="related-desc">Project whether your savings rate will fund a comfortable retirement</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Budget calculations are estimates based on your inputs. Results are not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const income        = parseFloat(document.getElementById('monthlyIncome').value)     || 0;
+      const housing       = parseFloat(document.getElementById('housingCost').value)       || 0;
+      const food          = parseFloat(document.getElementById('foodCost').value)          || 0;
+      const transport     = parseFloat(document.getElementById('transportCost').value)     || 0;
+      const utilities     = parseFloat(document.getElementById('utilitiesCost').value)     || 0;
+      const healthcare    = parseFloat(document.getElementById('healthcareCost').value)    || 0;
+      const entertainment = parseFloat(document.getElementById('entertainmentCost').value) || 0;
+      const debt          = parseFloat(document.getElementById('debtPayments').value)      || 0;
+      const savings       = parseFloat(document.getElementById('savingsContrib').value)    || 0;
+      const other         = parseFloat(document.getElementById('otherExpenses').value)     || 0;
+
+      if (income <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const totalExpenses  = housing + food + transport + utilities + healthcare + entertainment + debt + savings + other;
+      const remaining      = income - totalExpenses;
+      const savingsRate    = income > 0 ? ((savings / income) * 100) : 0;
+
+      document.getElementById('totalExpenses').textContent  = fmt(totalExpenses);
+      document.getElementById('remainingBalance').textContent = fmt(remaining);
+      document.getElementById('savingsRate').textContent    = savingsRate.toFixed(1) + '%';
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const nonSavingExpenses = totalExpenses - savings;
+      const pctExpenses  = Math.max(0, Math.min(100, (nonSavingExpenses / income) * 100));
+      const pctSavings   = Math.max(0, Math.min(100 - pctExpenses, (savings / income) * 100));
+      const pctRemaining = Math.max(0, 100 - pctExpenses - pctSavings);
+
+      setTimeout(() => {
+        document.getElementById('segExpenses').style.width  = pctExpenses.toFixed(1) + '%';
+        document.getElementById('segSavings').style.width   = pctSavings.toFixed(1) + '%';
+        document.getElementById('segRemaining').style.width = pctRemaining.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>

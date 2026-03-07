@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free debt payoff calculator. Enter your balance, interest rate, and monthly payment to see exactly when you will be debt-free and how much interest you will pay." />
+  <title>Debt Payoff Calculator – See When You'll Be Debt-Free</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/debt-payoff-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html" class="active">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Debt Payoff <em>Calculator</em></h1>
+      <p class="subtitle">Enter your debt balance, interest rate, and monthly payment to find out exactly when you will be debt-free and how much interest you will pay along the way.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Debt Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="debtBalance">Current Debt Balance</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="debtBalance" placeholder="15,000" min="1" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="debtRate">Annual Interest Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="debtRate" placeholder="8.5" min="0" max="100" step="0.1" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="monthlyPayment">Monthly Payment</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="monthlyPayment" placeholder="400" min="1" step="10" />
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Time to Pay Off</span>
+            <span class="result-value" id="timeToPayoff">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Interest Paid</span>
+            <span class="result-value" id="totalInterestPaid">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Amount Paid</span>
+            <span class="result-value" id="totalAmountPaid">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segPrincipal" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segInterest" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Principal</span>
+              <span><i class="dot dot-interest"></i>Interest</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-debt-payoff">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 13l2.5 2.5L16 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>How Does Debt Payoff Work?</h2>
+            <p>When you make a monthly payment on an interest-bearing debt, part of it covers the interest that accrued during the month, and the rest reduces your principal balance. In the early months, most of your payment goes toward interest. As the balance shrinks, the interest portion decreases and more of each payment chips away at the principal — this is called an <strong>amortizing loan</strong>.</p>
+            <p>The key insight from a debt payoff calculator is how dramatically the total interest changes based on your monthly payment. Paying even a small amount extra each month — say $50 or $100 — can eliminate months of payments and save hundreds or thousands in interest. The calculator lets you see this immediately: try different payment amounts and watch how quickly your payoff date moves.</p>
+            <p>This calculator works for any fixed-rate debt: personal loans, student loans, auto loans, medical debt, or any balance with a known interest rate. For credit card debt specifically, use the Credit Card Payoff Calculator which accounts for credit-card-specific dynamics.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="debt-payoff-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Debt Payoff Formula Explained</h2>
+            <p>The number of months to pay off a loan is calculated using this formula:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">n = <span class="formula-frac"><span class="frac-top">−log(1 − r × B / PMT)</span><span class="frac-line"></span><span class="frac-bottom">log(1 + r)</span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>n</strong> — Number of months until the debt is fully paid.</li>
+              <li><strong>B</strong> — Current balance (principal owed).</li>
+              <li><strong>r</strong> — Monthly interest rate (annual rate ÷ 12, as a decimal).</li>
+              <li><strong>PMT</strong> — Fixed monthly payment amount.</li>
+            </ul>
+
+            <p>Note: for this formula to work, your monthly payment must exceed the monthly interest charge (r × B). If your payment equals or falls below the interest, the debt can never be paid off — it will grow indefinitely. This is a critical warning sign for anyone only paying the minimum on high-interest debt.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="debt-payoff-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: Paying Off $15,000 at 8.5%</h2>
+            <p>Suppose you have a <strong>$15,000 personal loan</strong> at <strong>8.5% APR</strong>. Here is how different monthly payment amounts affect the outcome:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Monthly Payment</th>
+                    <th>Months to Pay Off</th>
+                    <th>Total Interest</th>
+                    <th>Total Paid</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>$200</td>
+                    <td>107 months</td>
+                    <td>$6,358</td>
+                    <td class="highlight">$21,358</td>
+                  </tr>
+                  <tr>
+                    <td>$300</td>
+                    <td>60 months</td>
+                    <td>$2,918</td>
+                    <td class="highlight">$17,918</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>$400</td>
+                    <td>42 months</td>
+                    <td>$1,938</td>
+                    <td class="highlight">$16,938</td>
+                  </tr>
+                  <tr>
+                    <td>$500</td>
+                    <td>32 months</td>
+                    <td>$1,416</td>
+                    <td class="highlight">$16,416</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>By paying $400 instead of $200 per month, you save over <strong>$4,400 in interest</strong> and pay off the debt nearly 5.5 years sooner. Doubling your payment doesn't just halve the time — it more than halves it, because less time for interest to accrue means each dollar goes further toward principal.</p>
+            <p class="example-note">Values calculated using standard loan amortization formula. For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="debt-payoff-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is the debt avalanche vs debt snowball method?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The debt avalanche method focuses extra payments on the highest-interest debt first, minimizing total interest paid — this is mathematically optimal. The debt snowball method focuses extra payments on the smallest balance first, giving you quick wins that can boost motivation. Research suggests the snowball method often leads to better real-world outcomes for people who struggle with motivation, even though the avalanche is technically cheaper. Use this calculator to model both approaches: calculate payoff time for each debt in your avalanche or snowball order to see the full picture.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What happens if I only pay the minimum?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Paying only the minimum on installment loans (personal loans, auto loans) means paying as much interest as possible over the longest possible time. On credit cards, minimum payments are typically 1–2% of the balance, often barely covering the monthly interest charge. At 20% APR, a $5,000 credit card balance with minimum payments could take over 20 years and cost more than $7,000 in interest. The minimum payment is designed to maximize lender profit, not minimize your debt. Always pay more than the minimum whenever possible.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Does paying extra principal reduce the loan term?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Yes — any extra payment applied directly to principal reduces your balance faster, which reduces future interest charges, which means more of every future payment goes toward principal. This compounding effect is why extra principal payments are so powerful. For some loans (especially mortgages), you must explicitly request that extra payments be applied to principal rather than future installments. Always verify this with your lender, and if possible, mark additional payments as "principal only" to maximize the benefit.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I refinance my debt?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Refinancing replaces your existing loan with a new one, ideally at a lower interest rate or better terms. It makes financial sense when you can secure a significantly lower rate, have improved your credit score since the original loan, or want to consolidate multiple debts into one payment. Calculate the break-even point: divide the total refinancing costs (fees, closing costs) by the monthly savings. If you plan to keep the loan longer than the break-even period, refinancing is beneficial. Watch out for extending the loan term significantly, which can increase total interest even at a lower rate.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="credit-card-payoff-calculator.html" class="related-card">
+          <span class="related-name">Credit Card Payoff Calculator</span>
+          <span class="related-desc">See how long to pay off credit card debt and total interest</span>
+        </a>
+        <a href="loan-calculator.html" class="related-card">
+          <span class="related-name">Loan Calculator</span>
+          <span class="related-desc">Find your monthly payment and total cost of any loan</span>
+        </a>
+        <a href="apr-calculator.html" class="related-card">
+          <span class="related-name">APR Calculator</span>
+          <span class="related-desc">Calculate the true annual cost of a loan including fees</span>
+        </a>
+        <a href="budget-calculator.html" class="related-card">
+          <span class="related-name">Budget Calculator</span>
+          <span class="related-desc">Find extra money in your budget to accelerate debt payoff</span>
+        </a>
+        <a href="net-worth-calculator.html" class="related-card">
+          <span class="related-name">Net Worth Calculator</span>
+          <span class="related-desc">Track how eliminating debt improves your overall net worth</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Calculations assume a fixed interest rate and consistent monthly payments. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const B   = parseFloat(document.getElementById('debtBalance').value);
+      const rPct= parseFloat(document.getElementById('debtRate').value);
+      const PMT = parseFloat(document.getElementById('monthlyPayment').value);
+
+      if (isNaN(B) || isNaN(rPct) || isNaN(PMT) || B <= 0 || PMT <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const r = rPct / 100 / 12; // monthly rate
+
+      // Check if payment covers interest
+      if (r > 0 && PMT <= r * B) {
+        document.getElementById('timeToPayoff').textContent      = 'Never';
+        document.getElementById('totalInterestPaid').textContent = '∞';
+        document.getElementById('totalAmountPaid').textContent   = '∞';
+        document.getElementById('placeholder').style.display = 'none';
+        document.getElementById('resultsGrid').hidden = false;
+        document.getElementById('breakdown').hidden   = true;
+        document.querySelectorAll('.result-card').forEach((el, i) => {
+          el.style.animation = 'none';
+          el.offsetHeight;
+          el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+        });
+        return;
+      }
+
+      let months;
+      if (r === 0) {
+        months = Math.ceil(B / PMT);
+      } else {
+        months = Math.ceil(-Math.log(1 - r * B / PMT) / Math.log(1 + r));
+      }
+
+      const totalPaid    = PMT * months;
+      const totalInterest = totalPaid - B;
+
+      const yrs = Math.floor(months / 12);
+      const mos = months % 12;
+      let timeStr = '';
+      if (yrs > 0) timeStr += yrs + ' yr' + (yrs > 1 ? 's' : '');
+      if (mos > 0) timeStr += (timeStr ? ' ' : '') + mos + ' mo' + (mos > 1 ? 's' : '');
+
+      document.getElementById('timeToPayoff').textContent      = timeStr;
+      document.getElementById('totalInterestPaid').textContent = fmt(Math.max(0, totalInterest));
+      document.getElementById('totalAmountPaid').textContent   = fmt(totalPaid);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const total = totalPaid > 0 ? totalPaid : 1;
+      const pctPrincipal = Math.max(0, Math.min(100, (B / total) * 100));
+      const pctInterest  = Math.max(0, 100 - pctPrincipal);
+
+      setTimeout(() => {
+        document.getElementById('segPrincipal').style.width = pctPrincipal.toFixed(1) + '%';
+        document.getElementById('segInterest').style.width  = pctInterest.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>
