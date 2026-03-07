@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free future value calculator. Calculate what any amount of money will be worth in the future given a specific interest rate and time period. Instant results." />
+  <title>Future Value Calculator – Calculate What Your Money Will Be Worth</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/future-value-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html" class="active">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Future Value <em>Calculator</em></h1>
+      <p class="subtitle">Calculate exactly what a lump sum amount will be worth in the future, given a specific rate of return and time period. Essential for investment planning and goal setting.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Investment Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="presentValue">Present Value (Today's Amount)</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="presentValue" placeholder="10,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="fvRate">Annual Interest Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="fvRate" placeholder="7" min="0" max="100" step="0.1" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="fvYears">Number of Years</label>
+            <div class="input-wrap">
+              <input type="number" id="fvYears" placeholder="20" min="1" max="100" step="1" />
+              <span class="suffix">yrs</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="compFreq">Compounding Frequency</label>
+            <div class="input-wrap">
+              <select id="compFreq" style="width:100%;background:transparent;border:none;color:inherit;font:inherit;padding:0;cursor:pointer;">
+                <option value="1">Annually</option>
+                <option value="2">Semi-annually</option>
+                <option value="4">Quarterly</option>
+                <option value="12" selected>Monthly</option>
+                <option value="365">Daily</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card">
+            <span class="result-label">Starting Amount</span>
+            <span class="result-value" id="startingAmount">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Growth</span>
+            <span class="result-value" id="totalGrowth">—</span>
+          </div>
+          <div class="result-card featured">
+            <span class="result-label">Future Value</span>
+            <span class="result-value" id="futureValue">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segPV" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segGrowth" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Principal</span>
+              <span><i class="dot dot-interest"></i>Growth</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-future-value">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is Future Value?</h2>
+            <p>Future value (FV) is the value of a current asset at a specified date in the future, based on an assumed rate of growth. It answers the question: <em>"If I invest $X today at Y% per year, how much will it be worth in Z years?"</em> This is a foundational concept in finance and time-value-of-money calculations.</p>
+            <p>Future value is essential for setting savings goals, evaluating investment opportunities, comparing different return rates, and planning for major financial milestones like retirement, college tuition, or a home down payment. It transforms abstract percentages into concrete dollar amounts, making it much easier to decide whether an investment meets your needs.</p>
+            <p>The power of future value calculations lies in illustrating the dramatic effect of <strong>compounding frequency</strong> — money compounded monthly grows slightly faster than annually, and daily compounding is fastest of all. Over decades, these differences compound into meaningful amounts.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="future-value-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Future Value Formula Explained</h2>
+            <p>The future value formula with compounding n times per year is:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">FV = PV × <span class="formula-frac"><span class="frac-top">(1 + r/n)<sup>n×t</sup></span><span class="frac-line"></span><span class="frac-bottom">1</span></span></span>
+              </div>
+              <div class="formula-line" style="margin-top:0.5rem">
+                <span class="formula-math">FV = PV × (1 + r/n)<sup>n×t</sup></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>FV</strong> — Future Value: the amount your investment will be worth.</li>
+              <li><strong>PV</strong> — Present Value: the amount you invest today.</li>
+              <li><strong>r</strong> — Annual interest rate as a decimal (e.g. 7% = 0.07).</li>
+              <li><strong>n</strong> — Number of compounding periods per year (e.g. 12 for monthly).</li>
+              <li><strong>t</strong> — Number of years invested.</li>
+            </ul>
+
+            <p>More frequent compounding leads to a higher effective annual rate (EAR). For example, 6% compounded monthly has an EAR of approximately 6.168%, while 6% compounded daily has an EAR of approximately 6.183%. The difference is small in the short term but meaningful over decades.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="future-value-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: $10,000 at Different Rates and Periods</h2>
+            <p>Here is what a <strong>$10,000 lump sum investment</strong> grows to at different interest rates over 20 years with annual compounding:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Annual Rate</th>
+                    <th>After 10 Years</th>
+                    <th>After 20 Years</th>
+                    <th>After 30 Years</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>3% (savings)</td>
+                    <td>$13,439</td>
+                    <td>$18,061</td>
+                    <td class="highlight">$24,273</td>
+                  </tr>
+                  <tr>
+                    <td>5% (bonds)</td>
+                    <td>$16,289</td>
+                    <td>$26,533</td>
+                    <td class="highlight">$43,219</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>7% (stocks)</td>
+                    <td>$19,672</td>
+                    <td>$38,697</td>
+                    <td class="highlight">$76,123</td>
+                  </tr>
+                  <tr>
+                    <td>10% (aggressive)</td>
+                    <td>$25,937</td>
+                    <td>$67,275</td>
+                    <td class="highlight">$174,494</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>The difference between 3% and 7% — just 4 percentage points — results in $10,000 growing to $24,273 versus $76,123 after 30 years. This illustrates why investment returns matter enormously and why inflation-beating returns are essential for long-term wealth building.</p>
+            <p class="example-note">Calculated using annual compounding. For illustrative purposes only. Past returns do not guarantee future performance.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="future-value-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is the difference between future value and present value?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Future value tells you what a sum of money today will be worth in the future, given a growth rate. Present value does the reverse — it tells you what a future sum of money is worth in today's dollars, given a discount rate. They are two sides of the same coin: FV = PV × (1+r)ⁿ can be rearranged to PV = FV ÷ (1+r)ⁿ. Future value is used when planning investments and savings goals. Present value is used when evaluating the worth of future cash flows, like deciding whether a lump sum today is better than an annuity paid over time.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Does compounding frequency significantly affect future value?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Yes, though the effect is smaller than most people expect. At 6% annual rate over 20 years on $10,000: annual compounding gives $32,071; monthly compounding gives $33,102 — a difference of just over $1,000. Daily compounding gives $33,198. The gap between monthly and daily is negligible. The impact of compounding frequency is most significant at very high rates or over extremely long periods. For most practical planning purposes, monthly compounding (used by most savings accounts and investments) versus annual gives results that are close enough.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What rate of return should I use for future value calculations?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Use the expected rate of return based on your investment type: high-yield savings or money market accounts currently offer 4–5%; short-term CDs offer similar rates; bond funds historically return 4–6% annually; a diversified stock index fund (like S&amp;P 500) has historically returned ~10% nominal or ~7% after inflation. For retirement planning, many advisors use 6–7% as a conservative real return assumption. Always run scenarios at multiple rates (best case, expected, worst case) to understand the range of possible outcomes rather than relying on a single projection.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How can I use future value to set savings goals?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Start with your target (e.g., $500,000 for retirement), then work backwards. Use the present value calculator to find how much you need today to reach that target given your expected return. Alternatively, use the savings calculator to model how much you need to save monthly. Future value calculations make abstract goals concrete: instead of thinking "I want to be rich," you can plan "I need $500,000 in 25 years, so at 7% I need to invest $85,000 today or save $700/month." Running these numbers is the first step toward a real financial plan.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="present-value-calculator.html" class="related-card">
+          <span class="related-name">Present Value Calculator</span>
+          <span class="related-desc">Calculate what a future amount is worth in today's dollars</span>
+        </a>
+        <a href="compound-interest-calculator.html" class="related-card">
+          <span class="related-name">Compound Interest Calculator</span>
+          <span class="related-desc">See how investments grow with monthly contributions over time</span>
+        </a>
+        <a href="savings-calculator.html" class="related-card">
+          <span class="related-name">Savings Calculator</span>
+          <span class="related-desc">Project your savings balance with regular monthly deposits</span>
+        </a>
+        <a href="inflation-calculator.html" class="related-card">
+          <span class="related-name">Inflation Calculator</span>
+          <span class="related-desc">See how inflation erodes the purchasing power of your money</span>
+        </a>
+        <a href="investment-return-calculator.html" class="related-card">
+          <span class="related-name">Investment Return Calculator</span>
+          <span class="related-desc">Calculate total return and CAGR on any investment</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Calculations use compound interest formula. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const PV   = parseFloat(document.getElementById('presentValue').value);
+      const rPct = parseFloat(document.getElementById('fvRate').value);
+      const t    = parseFloat(document.getElementById('fvYears').value);
+      const n    = parseFloat(document.getElementById('compFreq').value);
+
+      if (isNaN(PV) || isNaN(rPct) || isNaN(t) || t <= 0 || PV < 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const r  = rPct / 100;
+      let FV;
+      if (r === 0) {
+        FV = PV;
+      } else {
+        FV = PV * Math.pow(1 + r / n, n * t);
+      }
+
+      const growth = FV - PV;
+
+      document.getElementById('startingAmount').textContent = fmt(PV);
+      document.getElementById('totalGrowth').textContent    = fmt(Math.max(0, growth));
+      document.getElementById('futureValue').textContent    = fmt(FV);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const total = FV > 0 ? FV : 1;
+      const pctPV     = Math.max(0, Math.min(100, (PV / total) * 100));
+      const pctGrowth = Math.max(0, 100 - pctPV);
+
+      setTimeout(() => {
+        document.getElementById('segPV').style.width     = pctPV.toFixed(1) + '%';
+        document.getElementById('segGrowth').style.width = pctGrowth.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>

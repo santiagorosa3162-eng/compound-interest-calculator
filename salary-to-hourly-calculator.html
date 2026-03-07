@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free salary to hourly calculator. Convert any annual salary to hourly, daily, weekly, and monthly rates instantly. See your true effective hourly wage." />
+  <title>Salary to Hourly Calculator – Convert Annual Salary to Hourly Rate</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/salary-to-hourly-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html" class="active">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Salary to Hourly <em>Calculator</em></h1>
+      <p class="subtitle">Convert any annual salary to an hourly rate, daily wage, weekly pay, and monthly income in seconds. Compare job offers, evaluate freelance rates, and understand your true earnings.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Salary Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="annualSalary">Annual Salary</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="annualSalary" placeholder="75,000" min="1" step="1000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="hoursPerWeek">Hours per Week</label>
+            <div class="input-wrap">
+              <input type="number" id="hoursPerWeek" placeholder="40" min="1" max="168" step="1" />
+              <span class="suffix">hrs</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="weeksPerYear">Weeks per Year</label>
+            <div class="input-wrap">
+              <input type="number" id="weeksPerYear" placeholder="52" min="1" max="52" step="1" />
+              <span class="suffix">wks</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Hourly Rate</span>
+            <span class="result-value" id="hourlyRate">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Daily Rate</span>
+            <span class="result-value" id="dailyRate">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Monthly Salary</span>
+            <span class="result-value" id="monthlyRate">—</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="why-convert-salary">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Why Convert Salary to Hourly?</h2>
+            <p>Converting between annual salary and hourly wage helps you compare job offers that are quoted differently, evaluate whether a freelance or consulting rate is competitive, and understand your true hourly earnings so you can make informed decisions about your time and career.</p>
+            <p>Many salaried workers underestimate their effective hourly rate when they factor in unpaid overtime. If your $75,000 salary requires you to actually work 50 hours per week instead of 40, your true hourly rate is $28.85 rather than $36.06 — a significant difference that affects how you should value your time and compare with hourly alternatives.</p>
+            <p>This calculator also helps when deciding between full-time employment and freelancing. Freelance rates need to be higher than equivalent employee rates to account for self-employment taxes, lack of benefits, unpaid administrative time, and income variability. A freelancer typically needs to charge <strong>1.5–2× their equivalent employee hourly rate</strong> to match total compensation.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="salary-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Salary Conversion Formula</h2>
+            <p>The salary to hourly conversion is straightforward:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">Hourly Rate = <span class="formula-frac"><span class="frac-top">Annual Salary</span><span class="frac-line"></span><span class="frac-bottom">Hours per Week × Weeks per Year</span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>Annual Salary</strong> — Your total pre-tax annual compensation.</li>
+              <li><strong>Hours per Week</strong> — Typical hours worked per week (default: 40).</li>
+              <li><strong>Weeks per Year</strong> — Usually 52; use 50 if you take 2 weeks of unpaid leave.</li>
+              <li><strong>Daily Rate</strong> — Hourly Rate × Hours per Day (default: 8).</li>
+              <li><strong>Monthly Rate</strong> — Annual Salary ÷ 12.</li>
+            </ul>
+
+            <p>Note: this calculator uses gross (pre-tax) salary. Your take-home hourly rate after federal and state taxes will be significantly lower — typically 25–40% less depending on your bracket and location. Use a take-home pay calculator to find your net hourly rate after taxes.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="salary-examples">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Common Salary to Hourly Conversions</h2>
+            <p>Here are common annual salaries converted to hourly rates at 40 hours per week, 52 weeks per year:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Annual Salary</th>
+                    <th>Hourly Rate</th>
+                    <th>Daily Rate</th>
+                    <th>Monthly</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>$40,000</td>
+                    <td>$19.23</td>
+                    <td>$153.85</td>
+                    <td class="highlight">$3,333</td>
+                  </tr>
+                  <tr>
+                    <td>$60,000</td>
+                    <td>$28.85</td>
+                    <td>$230.77</td>
+                    <td class="highlight">$5,000</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>$80,000</td>
+                    <td>$38.46</td>
+                    <td>$307.69</td>
+                    <td class="highlight">$6,667</td>
+                  </tr>
+                  <tr>
+                    <td>$120,000</td>
+                    <td>$57.69</td>
+                    <td>$461.54</td>
+                    <td class="highlight">$10,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>A quick mental math shortcut: divide your annual salary by 2,000 (40 hours × 50 weeks) to get an approximate hourly rate. So $80,000 ÷ 2,000 = $40/hour. The exact calculation using 2,080 hours (40 × 52) gives $38.46, but the $40 estimate is close enough for quick comparisons.</p>
+            <p class="example-note">Calculations assume 40 hours/week and 52 weeks/year. Pre-tax gross figures only.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="salary-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How many working hours are in a year?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A standard full-time year is typically 2,080 hours (40 hours/week × 52 weeks). However, this doesn't account for paid time off. If you take 2 weeks of vacation, the actual hours worked drop to 2,000 (40 × 50). The U.S. Bureau of Labor Statistics uses 2,080 as the standard. Some employers define full-time as 37.5 hours per week, giving 1,950 hours annually. When calculating a salary offer, always clarify the expected weekly hours to get an accurate hourly equivalent.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How do I set freelance rates based on my salary?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Convert your target annual income to an hourly rate, then apply a freelance multiplier of at least 1.5–2×. Here's why: as a freelancer you pay self-employment tax (15.3%), must fund your own benefits (health insurance, retirement), spend unpaid time on admin, marketing, and business development, and face income gaps between clients. A common formula: (Target income ÷ billable hours) × 1.5 or higher. Many freelancers target 1,000–1,500 billable hours per year rather than 2,080, further increasing the required rate. Research market rates for your skill set to validate your calculation.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Is salary or hourly pay better?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">It depends on the role and your situation. Salary provides income stability and often comes with more benefits. Hourly pay compensates you for every hour worked, including overtime (often at 1.5×). If your salaried role regularly requires 50–60 hours per week, your effective hourly rate is much lower than nominal, while an hourly worker earns proportionally more in that situation. Salaried roles often (but not always) come with more career advancement, benefits, and job security. Non-exempt hourly workers are entitled to overtime protections under the FLSA that salary workers may not have.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is a good hourly rate or annual salary?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The U.S. median household income was approximately $74,580 in 2022, equating to about $35.86/hour for a standard full-time year. "Good" varies enormously by location, industry, experience, and education. A $50,000 salary in rural Mississippi and a $50,000 salary in San Francisco represent very different standards of living. The most useful benchmark is your local cost of living: calculate the income needed to cover housing, transportation, food, and other essentials in your area, then determine how much above that minimum you earn — that's your real financial position regardless of nominal salary.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="budget-calculator.html" class="related-card">
+          <span class="related-name">Budget Calculator</span>
+          <span class="related-desc">Plan how to allocate your monthly income across expenses and savings</span>
+        </a>
+        <a href="savings-calculator.html" class="related-card">
+          <span class="related-name">Savings Calculator</span>
+          <span class="related-desc">See how your monthly savings deposits grow over time</span>
+        </a>
+        <a href="net-worth-calculator.html" class="related-card">
+          <span class="related-name">Net Worth Calculator</span>
+          <span class="related-desc">Calculate your total assets minus liabilities for a financial snapshot</span>
+        </a>
+        <a href="retirement-calculator.html" class="related-card">
+          <span class="related-name">Retirement Calculator</span>
+          <span class="related-desc">Project your nest egg and monthly retirement income</span>
+        </a>
+        <a href="investment-return-calculator.html" class="related-card">
+          <span class="related-name">Investment Return Calculator</span>
+          <span class="related-desc">Calculate total return and CAGR on any investment</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Calculations are pre-tax gross figures. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const annual      = parseFloat(document.getElementById('annualSalary').value);
+      const hoursPerWk  = parseFloat(document.getElementById('hoursPerWeek').value) || 40;
+      const weeksPerYr  = parseFloat(document.getElementById('weeksPerYear').value) || 52;
+
+      if (isNaN(annual) || annual <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const totalHours  = hoursPerWk * weeksPerYr;
+      const hourlyRate  = annual / totalHours;
+      const hoursPerDay = hoursPerWk / 5;
+      const dailyRate   = hourlyRate * hoursPerDay;
+      const monthlyRate = annual / 12;
+
+      document.getElementById('hourlyRate').textContent  = fmtHourly(hourlyRate);
+      document.getElementById('dailyRate').textContent   = fmtHourly(dailyRate);
+      document.getElementById('monthlyRate').textContent = fmt(monthlyRate);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function fmtHourly(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 2, maximumFractionDigits: 2,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>

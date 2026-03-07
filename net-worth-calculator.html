@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free net worth calculator. Add up your assets and liabilities to find your true net worth in seconds. Track your financial progress over time." />
+  <title>Net Worth Calculator – Calculate Your Total Net Worth</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/net-worth-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html" class="active">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Net Worth <em>Calculator</em></h1>
+      <p class="subtitle">Calculate your true financial picture by adding up everything you own and subtracting everything you owe. Your net worth is the clearest measure of financial health.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Assets &amp; Liabilities</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="cashSavings">Cash &amp; Savings</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="cashSavings" placeholder="10,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="investments">Investments &amp; Retirement</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="investments" placeholder="50,000" min="0" step="1000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="realEstate">Real Estate Value</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="realEstate" placeholder="300,000" min="0" step="1000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="otherAssets">Other Assets</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="otherAssets" placeholder="5,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="mortgageDebt">Mortgage Balance</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="mortgageDebt" placeholder="220,000" min="0" step="1000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="autoLoans">Auto &amp; Personal Loans</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="autoLoans" placeholder="12,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="studentLoans">Student Loans</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="studentLoans" placeholder="20,000" min="0" step="100" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="creditCardDebt">Credit Card Debt</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="creditCardDebt" placeholder="3,000" min="0" step="100" />
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate Net Worth</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate Net Worth</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card">
+            <span class="result-label">Total Assets</span>
+            <span class="result-value" id="totalAssets">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Liabilities</span>
+            <span class="result-value" id="totalLiabilities">—</span>
+          </div>
+          <div class="result-card featured">
+            <span class="result-label">Net Worth</span>
+            <span class="result-value" id="netWorth">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segAssets" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segLiabilities" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Assets</span>
+              <span><i class="dot dot-interest"></i>Liabilities</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-net-worth">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is Net Worth?</h2>
+            <p>Net worth is the total value of everything you own minus everything you owe. It is the single most comprehensive measure of your financial health — more telling than income, because it captures wealth actually accumulated rather than money flowing through your hands.</p>
+            <p>Assets include everything with financial value: your bank accounts, investments, retirement accounts, real estate equity, vehicles, and valuable personal property. Liabilities include all debts: your mortgage balance, auto loans, student loans, credit card balances, and any other money owed.</p>
+            <p>A positive net worth means your assets exceed your debts — you own more than you owe. A negative net worth is common early in life, especially with student loans or a new mortgage. What matters most is the <strong>direction of travel</strong>: is your net worth growing each year? Tracking it annually is one of the most powerful ways to stay motivated and make smarter financial decisions.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="net-worth-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Net Worth Formula</h2>
+            <p>The net worth formula is beautifully simple:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">Net Worth = Total Assets − Total Liabilities</span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>Total Assets</strong> — Cash, savings, investments, retirement accounts, real estate value, vehicles, other valuables.</li>
+              <li><strong>Total Liabilities</strong> — Mortgage balance, auto loans, student loans, credit card debt, personal loans, any other money owed.</li>
+            </ul>
+
+            <p>Note that for real estate, you enter the <em>market value</em> of the property (as an asset) and the <em>remaining mortgage balance</em> (as a liability). The difference — your home equity — is the net contribution to your worth. Similarly, a car worth $15,000 with a $10,000 auto loan contributes $5,000 net to your net worth.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="net-worth-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: Calculating Net Worth by Age</h2>
+            <p>Here is what a typical net worth snapshot might look like for different life stages:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Age</th>
+                    <th>Total Assets</th>
+                    <th>Total Liabilities</th>
+                    <th>Net Worth</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>25</td>
+                    <td>$12,000</td>
+                    <td>$28,000</td>
+                    <td class="highlight">−$16,000</td>
+                  </tr>
+                  <tr>
+                    <td>35</td>
+                    <td>$165,000</td>
+                    <td>$120,000</td>
+                    <td class="highlight">$45,000</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>45</td>
+                    <td>$480,000</td>
+                    <td>$180,000</td>
+                    <td class="highlight">$300,000</td>
+                  </tr>
+                  <tr>
+                    <td>55</td>
+                    <td>$820,000</td>
+                    <td>$80,000</td>
+                    <td class="highlight">$740,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>These are illustrative examples. According to Federal Reserve data, the median net worth for U.S. families in 2022 was approximately $192,700, while the average was significantly higher ($1,063,700) due to the ultra-wealthy skewing averages. The median is a more useful benchmark for most people.</p>
+            <p class="example-note">For illustrative purposes only. Individual circumstances vary widely.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="net-worth-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is a good net worth by age?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A popular rule of thumb from financial experts is: net worth = age × annual salary / 10. So a 40-year-old earning $80,000/year should aim for a net worth of roughly $320,000. However, this rule is just a guideline — net worth varies enormously by location, career, and life circumstances. A more practical target is to ensure your net worth grows consistently each year, regardless of where it stands today. Tracking the trend over time matters more than hitting a specific number by a specific age.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I include my home in my net worth?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Yes — your home's market value goes in the assets column, and your remaining mortgage balance goes in liabilities. The difference is your home equity, which is real wealth. However, it is worth tracking your liquid net worth separately (excluding home equity and other illiquid assets), since you can't easily spend home equity without selling or taking on more debt. Many financial planners use liquid net worth — cash, investments, retirement accounts — as the key planning figure for retirement readiness.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How often should I calculate my net worth?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Most financial advisors recommend calculating net worth at least once per year — ideally at the same time each year (like January 1st or your birthday) so you have consistent comparisons. Some people track it quarterly or even monthly, especially when actively paying off debt or building wealth. The key insight is the year-over-year change: is your net worth growing? By how much? Setting an annual net worth goal is a powerful motivator for financial progress.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Is a negative net worth bad?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A negative net worth is extremely common, especially for people under 35 who carry student loans, mortgages, or other debt without yet having had time to accumulate significant assets. What matters is context and trajectory. If you have $50,000 in student loan debt and a medical degree, a negative net worth is a temporary condition on the path to high earnings and wealth. The concern is negative net worth combined with stagnant or declining trend — that suggests spending is exceeding wealth-building capacity. Focus on whether the number is improving, not just whether it is positive.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="budget-calculator.html" class="related-card">
+          <span class="related-name">Budget Calculator</span>
+          <span class="related-desc">Plan your monthly income and expenses to grow your net worth</span>
+        </a>
+        <a href="debt-payoff-calculator.html" class="related-card">
+          <span class="related-name">Debt Payoff Calculator</span>
+          <span class="related-desc">See how fast you can eliminate debt to boost your net worth</span>
+        </a>
+        <a href="mortgage-calculator.html" class="related-card">
+          <span class="related-name">Mortgage Calculator</span>
+          <span class="related-desc">Estimate your monthly mortgage payment and total interest</span>
+        </a>
+        <a href="investment-return-calculator.html" class="related-card">
+          <span class="related-name">Investment Return Calculator</span>
+          <span class="related-desc">Calculate total return and CAGR on any investment</span>
+        </a>
+        <a href="savings-calculator.html" class="related-card">
+          <span class="related-name">Savings Calculator</span>
+          <span class="related-desc">See how regular deposits build your savings over time</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Net worth calculations are estimates. Results are not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const cashSavings    = parseFloat(document.getElementById('cashSavings').value)    || 0;
+      const investments    = parseFloat(document.getElementById('investments').value)    || 0;
+      const realEstate     = parseFloat(document.getElementById('realEstate').value)     || 0;
+      const otherAssets    = parseFloat(document.getElementById('otherAssets').value)    || 0;
+      const mortgageDebt   = parseFloat(document.getElementById('mortgageDebt').value)   || 0;
+      const autoLoans      = parseFloat(document.getElementById('autoLoans').value)      || 0;
+      const studentLoans   = parseFloat(document.getElementById('studentLoans').value)   || 0;
+      const creditCardDebt = parseFloat(document.getElementById('creditCardDebt').value) || 0;
+
+      const totalAssets      = cashSavings + investments + realEstate + otherAssets;
+      const totalLiabilities = mortgageDebt + autoLoans + studentLoans + creditCardDebt;
+      const netWorth         = totalAssets - totalLiabilities;
+
+      document.getElementById('totalAssets').textContent      = fmt(totalAssets);
+      document.getElementById('totalLiabilities').textContent = fmt(totalLiabilities);
+      document.getElementById('netWorth').textContent         = fmt(netWorth);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const total = totalAssets + totalLiabilities > 0 ? totalAssets + totalLiabilities : 1;
+      const pctAssets      = Math.max(0, Math.min(100, (totalAssets / total) * 100));
+      const pctLiabilities = Math.max(0, 100 - pctAssets);
+
+      setTimeout(() => {
+        document.getElementById('segAssets').style.width      = pctAssets.toFixed(1) + '%';
+        document.getElementById('segLiabilities').style.width = pctLiabilities.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>

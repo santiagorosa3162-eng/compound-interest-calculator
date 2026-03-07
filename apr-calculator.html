@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free APR calculator. Calculate the true annual percentage rate of a loan including fees and closing costs. Compare the real cost of borrowing across different offers." />
+  <title>APR Calculator – Calculate the True Annual Cost of a Loan</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/apr-calculator.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html">All Calculators</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+        <li><a href="savings-calculator.html">Savings</a></li>
+        <li><a href="net-worth-calculator.html">Net Worth</a></li>
+        <li><a href="debt-payoff-calculator.html">Debt Payoff</a></li>
+        <li><a href="credit-card-payoff-calculator.html">Credit Card</a></li>
+        <li><a href="future-value-calculator.html">Future Value</a></li>
+        <li><a href="present-value-calculator.html">Present Value</a></li>
+        <li><a href="apr-calculator.html" class="active">APR</a></li>
+        <li><a href="budget-calculator.html">Budget</a></li>
+        <li><a href="salary-to-hourly-calculator.html">Salary/Hourly</a></li>
+        <li><a href="investment-return-calculator.html">Inv. Return</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>APR <em>Calculator</em></h1>
+      <p class="subtitle">Calculate the true annual percentage rate of any loan, including fees and closing costs. APR gives you the real cost of borrowing so you can compare offers accurately.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Loan Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="loanAmount">Loan Amount</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="loanAmount" placeholder="200,000" min="1" step="1000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="nominalRate">Nominal Interest Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="nominalRate" placeholder="6.5" min="0" max="100" step="0.01" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="loanTermMonths">Loan Term</label>
+            <div class="input-wrap">
+              <input type="number" id="loanTermMonths" placeholder="360" min="1" step="12" />
+              <span class="suffix">mos</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="loanFees">Total Fees &amp; Closing Costs</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="loanFees" placeholder="4,000" min="0" step="100" />
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate APR</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate APR</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card">
+            <span class="result-label">Nominal Rate</span>
+            <span class="result-value" id="nominalDisplay">—</span>
+          </div>
+          <div class="result-card featured">
+            <span class="result-label">True APR</span>
+            <span class="result-value" id="aprDisplay">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Monthly Payment</span>
+            <span class="result-value" id="monthlyPaymentDisplay">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segPrincipal" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segInterestFees" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Principal Repaid</span>
+              <span><i class="dot dot-interest"></i>Interest &amp; Fees</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="seo-sections">
+
+      <article class="seo-card" id="what-is-apr">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 13l2.5 2.5L16 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is APR and Why Does It Matter?</h2>
+            <p>APR — Annual Percentage Rate — is the true annual cost of a loan expressed as a percentage. Unlike the nominal interest rate, which only covers interest charges, APR includes the interest rate <em>plus</em> all required fees and costs (origination fees, mortgage points, closing costs, etc.) spread over the loan term. This makes APR the standardized, legally required measure for comparing loan costs in the United States.</p>
+            <p>The difference between a nominal rate and APR can be significant. A mortgage advertised at 6.5% might have an APR of 6.85% after accounting for $4,000 in closing costs on a $200,000 loan. When comparing two loan offers, always compare APRs — a lower nominal rate with high fees can cost more than a slightly higher nominal rate with minimal fees.</p>
+            <p>Federal law (the Truth in Lending Act) requires lenders to disclose APR on all loan offers. This means you're entitled to this number — always ask for it and use it for comparison shopping before accepting any loan.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="apr-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>How APR is Calculated</h2>
+            <p>APR is calculated by finding the interest rate that equates the loan proceeds (loan amount minus upfront fees) to the present value of all future monthly payments. In practice, this is solved iteratively:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">APR = monthly rate × 12</span>
+              </div>
+            </div>
+
+            <p>Where the monthly rate is found by solving:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">(Loan − Fees) = PMT × <span class="formula-frac"><span class="frac-top">1 − (1 + r)<sup>−n</sup></span><span class="frac-line"></span><span class="frac-bottom">r</span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>PMT</strong> — Monthly payment (based on nominal rate).</li>
+              <li><strong>r</strong> — Monthly APR rate (what we solve for).</li>
+              <li><strong>n</strong> — Number of monthly payments.</li>
+              <li><strong>Loan − Fees</strong> — Net loan proceeds after deducting upfront fees.</li>
+            </ul>
+
+            <p>The key insight is that fees effectively reduce the amount you receive but not the amount you repay. This means you're paying the same monthly payments on less money, which equates to a higher effective rate.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="apr-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: Comparing Two Mortgage Offers</h2>
+            <p>You're shopping for a <strong>$300,000 mortgage</strong> with a 30-year term and receive two offers:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Lender</th>
+                    <th>Nominal Rate</th>
+                    <th>Fees</th>
+                    <th>APR</th>
+                    <th>Monthly Payment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Lender A</td>
+                    <td>6.75%</td>
+                    <td>$1,500</td>
+                    <td>6.80%</td>
+                    <td class="highlight">$1,946</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>Lender B</td>
+                    <td>6.50%</td>
+                    <td>$8,000</td>
+                    <td>6.79%</td>
+                    <td class="highlight">$1,896</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>Lender A has a higher nominal rate but much lower fees, resulting in almost the same APR as Lender B. However, Lender B's lower monthly payment saves $50/month. The break-even point for Lender B's higher upfront fees is about 130 months (nearly 11 years). If you plan to stay in the home longer, Lender B wins. If you'll move or refinance sooner, Lender A is better despite the higher rate — the APR tells you this when you consider your time horizon.</p>
+            <p class="example-note">For illustrative purposes only. Actual rates and fees vary by lender and market conditions.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="apr-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is the difference between APR and interest rate?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The interest rate is the base cost of borrowing expressed as a percentage. APR includes the interest rate plus additional costs like origination fees, broker fees, mortgage points, and other lender charges, expressed as an annualized rate. APR is always equal to or higher than the interest rate (unless there are no fees at all). Use the interest rate to calculate your monthly payment; use APR to compare the total cost of different loan offers on an apples-to-apples basis.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What fees are included in APR?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">For mortgages, APR typically includes: origination fees, mortgage broker fees, mortgage points (discount points), private mortgage insurance (PMI) if required, and certain closing costs. It does NOT include: title insurance, appraisal fees, home inspection fees, recording fees, or prepaid items like homeowner's insurance and property tax escrow. For personal loans, APR typically includes all upfront origination or processing fees. Always ask lenders exactly what fees are included in their stated APR for an accurate comparison.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Is a lower APR always better?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Not always — it depends on how long you hold the loan. APR assumes you keep the loan for its full term. If you refinance, sell the home, or pay off the loan early, you won't benefit from the lower interest rate long enough to recoup higher upfront fees. In those cases, a higher-APR loan with lower fees might cost you less total. The break-even analysis is simple: divide the fee difference between two offers by the monthly payment difference to find how many months it takes to break even.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What APR is good for a personal loan or mortgage?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Mortgage APRs vary with market conditions and your credit score. As of 2025, 30-year mortgage APRs ranged from about 6.5–7.5% for well-qualified borrowers. For personal loans, a good APR for borrowers with excellent credit (750+) is typically 7–12%; average credit (650–750) typically qualifies for 12–20%; below that, rates can reach 20–36%. For credit cards, below 15% APR is considered good; 15–20% is average; above 24% is high. Always compare to the best available rate for your credit profile, not just market averages.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="loan-calculator.html" class="related-card">
+          <span class="related-name">Loan Calculator</span>
+          <span class="related-desc">Find your monthly payment and total cost of any loan</span>
+        </a>
+        <a href="mortgage-calculator.html" class="related-card">
+          <span class="related-name">Mortgage Calculator</span>
+          <span class="related-desc">Estimate your monthly mortgage payment and total interest</span>
+        </a>
+        <a href="debt-payoff-calculator.html" class="related-card">
+          <span class="related-name">Debt Payoff Calculator</span>
+          <span class="related-desc">See how fast you can eliminate any debt with extra payments</span>
+        </a>
+        <a href="credit-card-payoff-calculator.html" class="related-card">
+          <span class="related-name">Credit Card Payoff Calculator</span>
+          <span class="related-desc">Calculate payoff time and interest for credit card debt</span>
+        </a>
+        <a href="present-value-calculator.html" class="related-card">
+          <span class="related-name">Present Value Calculator</span>
+          <span class="related-desc">Calculate what future payments are worth in today's dollars</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>APR calculations use an iterative numerical method. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const loan  = parseFloat(document.getElementById('loanAmount').value);
+      const rPct  = parseFloat(document.getElementById('nominalRate').value);
+      const n     = parseFloat(document.getElementById('loanTermMonths').value);
+      const fees  = parseFloat(document.getElementById('loanFees').value) || 0;
+
+      if (isNaN(loan) || isNaN(rPct) || isNaN(n) || loan <= 0 || n <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const r = rPct / 100 / 12;
+
+      // Monthly payment based on nominal rate
+      let PMT;
+      if (r === 0) {
+        PMT = loan / n;
+      } else {
+        PMT = loan * r / (1 - Math.pow(1 + r, -n));
+      }
+
+      // APR: find monthly rate such that (loan - fees) = PV of payments
+      const netLoan = loan - fees;
+      let aprMonthly = r; // start with nominal monthly rate
+
+      if (fees > 0 && netLoan > 0) {
+        // Newton-Raphson iteration
+        for (let i = 0; i < 100; i++) {
+          const pv = aprMonthly === 0
+            ? PMT * n
+            : PMT * (1 - Math.pow(1 + aprMonthly, -n)) / aprMonthly;
+          const diff = pv - netLoan;
+          if (Math.abs(diff) < 0.01) break;
+          // Derivative: d(PV)/d(r)
+          const dpv = aprMonthly === 0
+            ? -PMT * n * n / 2
+            : PMT * (-(1 - Math.pow(1 + aprMonthly, -n)) / (aprMonthly * aprMonthly) + n * Math.pow(1 + aprMonthly, -n - 1) / aprMonthly);
+          aprMonthly = aprMonthly - diff / dpv;
+          if (aprMonthly <= 0) { aprMonthly = 0.0001; break; }
+        }
+      }
+
+      const APR      = aprMonthly * 12 * 100;
+      const totalPaid = PMT * n;
+      const totalInterestFees = totalPaid - loan;
+
+      document.getElementById('nominalDisplay').textContent        = rPct.toFixed(2) + '%';
+      document.getElementById('aprDisplay').textContent            = APR.toFixed(2) + '%';
+      document.getElementById('monthlyPaymentDisplay').textContent = fmt(PMT);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const total = totalPaid > 0 ? totalPaid : 1;
+      const pctPrincipal = Math.max(0, Math.min(100, (loan / total) * 100));
+      const pctIF        = Math.max(0, 100 - pctPrincipal);
+
+      setTimeout(() => {
+        document.getElementById('segPrincipal').style.width   = pctPrincipal.toFixed(1) + '%';
+        document.getElementById('segInterestFees').style.width = pctIF.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency', currency: 'USD',
+        minimumFractionDigits: 0, maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+    });
+  </script>
+</body>
+</html>
