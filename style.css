@@ -377,6 +377,270 @@ input::placeholder { color: var(--ink-dim); }
 .dot-interest      { background: var(--gold); }
 
 /* ===========================
+   SEO SECTIONS
+=========================== */
+.seo-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.seo-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.5);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  animation: fadeUp 0.6s ease both;
+}
+
+.seo-card-inner {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 0;
+}
+
+.seo-icon {
+  padding: 2.2rem 0 2rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.seo-icon svg {
+  width: 26px;
+  height: 26px;
+  color: var(--gold);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.seo-card-body {
+  padding: 2rem 2.2rem 2rem 1.2rem;
+}
+
+.seo-card-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.seo-card-body p {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.75;
+  margin-bottom: 0.9rem;
+}
+.seo-card-body p:last-child { margin-bottom: 0; }
+.seo-card-body strong { color: var(--ink); font-weight: 500; }
+
+/* --- Formula block --- */
+.formula-block {
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 1.2rem 1.4rem;
+  margin: 1.2rem 0;
+  overflow-x: auto;
+}
+
+.formula-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.formula-math {
+  font-family: 'Georgia', serif;
+  font-size: 1.05rem;
+  color: var(--gold-light);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.formula-frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  gap: 2px;
+  margin: 0 0.15em;
+}
+
+.frac-top, .frac-bottom {
+  font-size: 0.78em;
+  line-height: 1.2;
+  color: var(--gold-light);
+}
+
+.frac-line {
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.formula-key {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 1.1rem 0;
+  padding: 0;
+}
+
+.formula-key li {
+  font-size: 0.86rem;
+  color: var(--ink-muted);
+  font-weight: 300;
+  line-height: 1.5;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.formula-key li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ink-dim);
+  font-size: 0.8rem;
+}
+
+.formula-key li strong { color: var(--gold); font-weight: 600; }
+
+/* --- Example table --- */
+.example-table-wrap {
+  margin: 1.2rem 0;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-2);
+}
+
+.example-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.example-table thead {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-2);
+}
+
+.example-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+
+.example-table td {
+  padding: 0.8rem 1rem;
+  color: var(--ink-muted);
+  font-weight: 300;
+  border-top: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.example-table td.highlight {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.example-table tr.featured-row td {
+  background: rgba(232,201,122,0.05);
+  border-top-color: rgba(232,201,122,0.15);
+}
+
+.example-table tr.featured-row td.highlight {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.example-note {
+  font-size: 0.75rem !important;
+  color: var(--ink-dim) !important;
+  font-style: italic;
+  margin-top: 1rem !important;
+}
+
+/* --- FAQ --- */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  transition: background 0.2s;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-item[open] { background: rgba(232,201,122,0.03); }
+
+.faq-item summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.45;
+  user-select: none;
+  transition: color 0.2s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item[open] summary { color: var(--gold); }
+
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.2rem;
+  color: var(--ink-dim);
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.25s, color 0.2s;
+}
+.faq-item[open] summary::after {
+  content: '−';
+  color: var(--gold);
+}
+
+.faq-answer {
+  padding: 0 1.2rem 1.1rem;
+  animation: fadeUp 0.25s ease both;
+}
+
+.faq-answer p {
+  font-size: 0.86rem;
+  color: var(--ink-muted);
+  line-height: 1.75;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ===========================
    FOOTER
 =========================== */
 .site-footer {
@@ -417,4 +681,17 @@ input::placeholder { color: var(--ink-dim); }
     grid-column: 1 / -1;
   }
   .result-value { font-size: 1.3rem; }
+
+  /* SEO section mobile adjustments */
+  .seo-card-inner {
+    grid-template-columns: 1fr;
+  }
+  .seo-icon {
+    padding: 1.5rem 1.25rem 0;
+    justify-content: flex-start;
+  }
+  .seo-card-body {
+    padding: 0.9rem 1.25rem 1.5rem;
+  }
+  .seo-card-body h2 { font-size: 1.2rem; }
 }
