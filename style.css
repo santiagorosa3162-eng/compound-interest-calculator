@@ -1003,6 +1003,33 @@ input::placeholder { color: var(--ink-dim); }
   animation: fadeUp 0.7s 0.3s ease both;
 }
 
+.footer-popular {
+  margin-bottom: 1rem;
+}
+.footer-popular-heading {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.footer-popular ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1rem;
+}
+.footer-popular ul a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+.footer-popular ul a:hover {
+  color: var(--gold);
+}
+
 /* ===========================
    ANIMATION
 =========================== */
