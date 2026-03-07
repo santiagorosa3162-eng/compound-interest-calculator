@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="title" content="Mortgage Calculator – Estimate Your Monthly Payment" />
+  <meta name="description" content="Free mortgage calculator. Enter your home price, down payment, interest rate, and loan term to instantly see your monthly payment, total interest, and full cost of your mortgage." />
+  <title>Mortgage Calculator – Estimate Your Monthly Payment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html" class="active">Mortgage</a></li>
+        <li><a href="retirement-calculator.html">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Mortgage <em>Calculator</em></h1>
+      <p class="subtitle">Know your monthly payment and true cost before you buy — principal, interest, and a full breakdown of every dollar over the life of your loan.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Mortgage Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="homePrice">Home Price</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="homePrice" placeholder="400,000" min="0" step="1000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="downPayment">Down Payment</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="downPayment" placeholder="80,000" min="0" step="1000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="interestRate">Annual Interest Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="interestRate" placeholder="6.8" min="0" max="30" step="0.05" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="loanTerm">Loan Term</label>
+            <div class="input-wrap">
+              <input type="number" id="loanTerm" placeholder="30" min="1" max="50" step="1" />
+              <span class="suffix">yrs</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Monthly Payment</span>
+            <span class="result-value" id="monthlyPayment">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Interest Paid</span>
+            <span class="result-value" id="totalInterest">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Cost</span>
+            <span class="result-value" id="totalCost">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segPrincipal" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segInterest" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Loan Amount</span>
+              <span><i class="dot dot-interest"></i>Total Interest</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =============================================
+         SEO CONTENT SECTIONS
+    ============================================= -->
+    <div class="seo-sections">
+
+      <!-- Section 1: What is a Mortgage Calculator? -->
+      <article class="seo-card" id="what-is-a-mortgage-calculator">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M9 21V12h6v9" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is a Mortgage Calculator?</h2>
+            <p>A mortgage calculator is a tool that estimates your monthly mortgage payment based on the home price, down payment, interest rate, and loan term you provide. It uses the same amortization formula that lenders apply when structuring your loan, giving you an accurate picture of your monthly obligation before you commit to a purchase.</p>
+            <p>The most important number a mortgage calculator produces is your <strong>monthly payment</strong> — the fixed amount you will owe each month for the life of the loan. But the total cost is equally important: a 30-year mortgage at 6.8% on a $400,000 home does not cost $400,000. It costs significantly more once interest is factored in, and understanding that gap is essential for making a confident homebuying decision.</p>
+            <p>Mortgage calculators are also invaluable for comparison shopping. By adjusting the interest rate, down payment, or loan term, you can immediately see how each variable affects your payment and total cost — helping you evaluate different loan offers and understand the long-term trade-offs of each option.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 2: Mortgage Payment Formula -->
+      <article class="seo-card" id="mortgage-payment-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Mortgage Payment Formula Explained</h2>
+            <p>Mortgages use the standard loan amortization formula, which calculates a fixed monthly payment that covers both principal and interest over the life of the loan:</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">M = L × <span class="formula-frac"><span class="frac-top">r(1 + r)<sup>n</sup></span><span class="frac-line"></span><span class="frac-bottom">(1 + r)<sup>n</sup> − 1</span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>M</strong> — Monthly payment: the fixed amount you pay each month.</li>
+              <li><strong>L</strong> — Loan amount: home price minus your down payment.</li>
+              <li><strong>r</strong> — Monthly interest rate: annual rate ÷ 12 (e.g. 6.8% ÷ 12 = 0.5667% per month).</li>
+              <li><strong>n</strong> — Total number of payments: loan term in years × 12.</li>
+            </ul>
+
+            <p>The loan amount is the home price minus the down payment. If you buy a $400,000 home with an $80,000 down payment, your loan amount is $320,000. The formula ensures that every monthly payment is the same, but the proportion going toward interest versus principal shifts over time — early payments are mostly interest, while payments near the end are mostly principal.</p>
+            <p><strong>Note:</strong> This calculator covers principal and interest only. Your actual monthly payment to a lender will typically also include property taxes, homeowner's insurance, and possibly private mortgage insurance (PMI) if your down payment is less than 20%.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 3: Example Mortgage Calculation -->
+      <article class="seo-card" id="mortgage-calculation-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: A $400,000 Home Purchase</h2>
+            <p>Suppose you are buying a <strong>$400,000 home</strong> with a <strong>$80,000 down payment (20%)</strong>, leaving a loan amount of $320,000. Here is how your payment and total cost vary by interest rate and term:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Rate</th>
+                    <th>Term</th>
+                    <th>Monthly Payment</th>
+                    <th>Total Interest</th>
+                    <th>Total Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>5.0%</td>
+                    <td>30 yrs</td>
+                    <td>$1,718</td>
+                    <td>$298,374</td>
+                    <td class="highlight">$618,374</td>
+                  </tr>
+                  <tr>
+                    <td>6.0%</td>
+                    <td>30 yrs</td>
+                    <td>$1,919</td>
+                    <td>$370,893</td>
+                    <td class="highlight">$690,893</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>6.8%</td>
+                    <td>30 yrs</td>
+                    <td>$2,093</td>
+                    <td>$433,511</td>
+                    <td class="highlight">$753,511</td>
+                  </tr>
+                  <tr>
+                    <td>6.8%</td>
+                    <td>15 yrs</td>
+                    <td>$2,840</td>
+                    <td>$191,153</td>
+                    <td class="highlight">$511,153</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>The highlighted row shows a typical scenario at today's rates. Notice how the 15-year mortgage at 6.8% has a higher monthly payment ($2,840 vs $2,093), but saves over <strong>$242,000 in total interest</strong> compared to the 30-year option at the same rate. Choosing between a 15-year and 30-year mortgage is one of the most impactful financial decisions a homebuyer can make.</p>
+            <p class="example-note">Values calculated using standard amortization on a $320,000 loan (principal + interest only). Actual payments will include taxes, insurance, and possible PMI. For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 4: FAQ -->
+      <article class="seo-card seo-faq" id="mortgage-calculator-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How much house can I afford?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A widely used rule of thumb is that your total housing payment (principal, interest, taxes, and insurance) should not exceed 28% of your gross monthly income. Some lenders extend this to 31%. Separately, your total monthly debt payments — including your mortgage, car loans, student loans, and credit cards — should ideally stay below 36–43% of your gross income (your debt-to-income ratio). Use this calculator to find a monthly payment you can afford, then work backwards to determine the maximum home price and loan amount that fits your budget.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is the difference between a 15-year and 30-year mortgage?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A 15-year mortgage has a higher monthly payment but builds equity faster and saves a substantial amount in total interest — often hundreds of thousands of dollars on a large loan. A 30-year mortgage spreads payments over twice as long, making monthly payments lower and more manageable, but at the cost of paying far more interest over time. The right choice depends on your income stability, cash flow needs, and financial goals. Many homeowners choose the 30-year for flexibility and invest the monthly payment difference in the market, potentially coming out ahead if investment returns exceed the mortgage rate.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How does the down payment affect my mortgage?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A larger down payment reduces your loan amount, which directly lowers your monthly payment and the total interest you pay over the life of the loan. Putting down 20% or more also eliminates the need for private mortgage insurance (PMI), which can add 0.5–1.5% of the loan amount per year to your costs. Additionally, a larger down payment can help you qualify for a better interest rate, as lenders view lower loan-to-value (LTV) ratios as less risky. Even increasing a down payment from 10% to 20% on a $400,000 home saves $40,000 in loan principal plus avoids years of PMI payments.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I choose a fixed-rate or adjustable-rate mortgage?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A fixed-rate mortgage locks in your interest rate for the entire loan term, giving you a predictable payment regardless of market conditions — ideal if you plan to stay in the home long-term or value payment stability. An adjustable-rate mortgage (ARM) starts with a lower fixed rate for an initial period (typically 5, 7, or 10 years), then adjusts periodically based on a market index. ARMs can save money if you sell or refinance before the adjustment period, but carry the risk of payment increases if rates rise. This calculator models a fixed-rate mortgage. For ARMs, calculations would need to factor in rate caps and adjustment schedules.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Does this calculator include property taxes and insurance?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">No — this calculator covers principal and interest only, which is the portion of your mortgage payment that your lender determines based on loan amount, rate, and term. Your actual monthly housing cost will also include property taxes (typically 0.5–2.5% of home value per year, divided into 12 monthly payments), homeowner's insurance (roughly $100–$300/month for a $400,000 home), and potentially PMI if your down payment is below 20%. These additional costs can add $500–$1,500 or more per month, so factor them in when assessing total affordability.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <!-- /seo-sections -->
+
+    <footer class="site-footer">
+      <p>Calculations cover principal and interest only and do not include taxes, insurance, or PMI. Results are estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const homePrice   = parseFloat(document.getElementById('homePrice').value)   || 0;
+      const downPayment = parseFloat(document.getElementById('downPayment').value)  || 0;
+      const rate        = parseFloat(document.getElementById('interestRate').value);
+      const years       = parseFloat(document.getElementById('loanTerm').value);
+
+      if (isNaN(rate) || isNaN(years) || years <= 0 || homePrice <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const L = homePrice - downPayment;
+      if (L <= 0) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const r = rate / 100 / 12;
+      const n = years * 12;
+
+      let monthly;
+      if (r === 0) {
+        monthly = L / n;
+      } else {
+        const factor = Math.pow(1 + r, n);
+        monthly = L * (r * factor) / (factor - 1);
+      }
+
+      const totalCost     = monthly * n;
+      const totalInterest = totalCost - L;
+
+      document.getElementById('monthlyPayment').textContent = fmt(monthly);
+      document.getElementById('totalInterest').textContent  = fmt(totalInterest);
+      document.getElementById('totalCost').textContent      = fmt(totalCost);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      const pctPrincipal = Math.max(0, Math.min(100, (L / totalCost) * 100));
+      const pctInterest  = Math.max(0, 100 - pctPrincipal);
+
+      setTimeout(() => {
+        document.getElementById('segPrincipal').style.width = pctPrincipal.toFixed(1) + '%';
+        document.getElementById('segInterest').style.width  = pctInterest.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') calculate();
+      });
+    });
+  </script>
+</body>
+</html>

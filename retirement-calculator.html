@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="title" content="Retirement Calculator – Plan Your Retirement Savings" />
+  <meta name="description" content="Free retirement calculator. Enter your age, savings, monthly contributions, and expected return to see your projected nest egg and estimated monthly income in retirement." />
+  <title>Retirement Calculator – Plan Your Retirement Savings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="has-nav">
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="compound-interest-calculator.html">Compound Interest</a></li>
+        <li><a href="roi-calculator.html">ROI</a></li>
+        <li><a href="loan-calculator.html">Loan</a></li>
+        <li><a href="mortgage-calculator.html">Mortgage</a></li>
+        <li><a href="retirement-calculator.html" class="active">Retirement</a></li>
+        <li><a href="inflation-calculator.html">Inflation</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Retirement <em>Calculator</em></h1>
+      <p class="subtitle">Project your retirement nest egg and see how much monthly income your savings can sustain — so you can plan with confidence today.</p>
+    </header>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Retirement Details</h2>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="currentAge">Current Age</label>
+            <div class="input-wrap">
+              <input type="number" id="currentAge" placeholder="30" min="16" max="90" step="1" />
+              <span class="suffix">yrs</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="retirementAge">Retirement Age</label>
+            <div class="input-wrap">
+              <input type="number" id="retirementAge" placeholder="65" min="17" max="100" step="1" />
+              <span class="suffix">yrs</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="currentSavings">Current Savings</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="currentSavings" placeholder="25,000" min="0" step="500" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="monthlyContrib">Monthly Contribution</label>
+            <div class="input-wrap">
+              <span class="prefix">$</span>
+              <input type="number" id="monthlyContrib" placeholder="500" min="0" step="50" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="annualReturn">Annual Return Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="annualReturn" placeholder="7" min="0" max="50" step="0.1" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="withdrawalRate">Annual Withdrawal Rate</label>
+            <div class="input-wrap">
+              <input type="number" id="withdrawalRate" placeholder="4" min="0.1" max="20" step="0.1" />
+              <span class="suffix">%</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="calcBtn" class="calc-btn" onclick="calculate()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+            <path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="25" r="2" fill="currentColor"/>
+            <circle cx="38" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Retirement Nest Egg</span>
+            <span class="result-value" id="nestEgg">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Monthly Income</span>
+            <span class="result-value" id="monthlyIncome">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Contributed</span>
+            <span class="result-value" id="totalContrib">—</span>
+          </div>
+        </div>
+
+        <div class="breakdown" id="breakdown" hidden>
+          <div class="breakdown-bar-wrap">
+            <div class="breakdown-bar">
+              <div class="bar-segment seg-principal" id="segSavings" style="width:0%"></div>
+              <div class="bar-segment seg-contributions" id="segContribs" style="width:0%"></div>
+              <div class="bar-segment seg-interest" id="segGrowth" style="width:0%"></div>
+            </div>
+            <div class="bar-legend">
+              <span><i class="dot dot-principal"></i>Starting Savings</span>
+              <span><i class="dot dot-contributions"></i>Contributions</span>
+              <span><i class="dot dot-interest"></i>Investment Growth</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =============================================
+         SEO CONTENT SECTIONS
+    ============================================= -->
+    <div class="seo-sections">
+
+      <!-- Section 1: What is a Retirement Calculator? -->
+      <article class="seo-card" id="what-is-a-retirement-calculator">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>What is a Retirement Calculator?</h2>
+            <p>A retirement calculator helps you project how much money you will have saved by the time you retire, and how much monthly income that savings can realistically support. By combining your current savings, ongoing contributions, expected investment returns, and time horizon, it applies compound growth mathematics to give you a clear picture of where you are headed financially.</p>
+            <p>The calculator also uses a <strong>withdrawal rate</strong> — the percentage of your retirement portfolio you draw down each year — to estimate your monthly income in retirement. The widely-cited <strong>4% rule</strong> suggests that withdrawing 4% of your portfolio in the first year of retirement (adjusted for inflation annually) gives a high probability of your savings lasting 30 years or more.</p>
+            <p>Retirement planning is time-sensitive: the earlier you start, the more compound growth works in your favor. Even small differences in how early you begin — or how much you contribute each month — can translate into hundreds of thousands of dollars by retirement age.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 2: Retirement Savings Formula -->
+      <article class="seo-card" id="retirement-savings-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 12h3m0 0l-2-3m2 3l-2 3M13 9l3 6M13 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Retirement Savings Formula Explained</h2>
+            <p>The calculator uses two components to project your retirement balance: the future value of your existing savings and the future value of your ongoing monthly contributions, both compounded at your expected annual return.</p>
+
+            <div class="formula-block">
+              <div class="formula-line">
+                <span class="formula-math">FV = P(1 + r)<sup>n</sup> + C × <span class="formula-frac"><span class="frac-top">(1 + r)<sup>n</sup> − 1</span><span class="frac-line"></span><span class="frac-bottom">r</span></span></span>
+              </div>
+            </div>
+
+            <ul class="formula-key">
+              <li><strong>FV</strong> — Future value: your projected retirement nest egg.</li>
+              <li><strong>P</strong> — Present value: your current savings balance.</li>
+              <li><strong>C</strong> — Annual contribution: monthly contribution × 12.</li>
+              <li><strong>r</strong> — Annual return rate (e.g. 7% entered as 0.07).</li>
+              <li><strong>n</strong> — Years until retirement: retirement age minus current age.</li>
+            </ul>
+
+            <p>Monthly income in retirement is calculated from your nest egg and your chosen withdrawal rate. At a <strong>4% annual withdrawal rate</strong>, your monthly income is simply: <strong>Nest Egg × 0.04 ÷ 12</strong>. This figure represents sustainable income that, according to historical research, has a high probability of lasting 30+ years when invested in a balanced portfolio.</p>
+            <p>Your actual returns will vary based on your asset allocation, market conditions, and fees. The return rates used in this calculator are nominal (before inflation). Adjusting for 2–3% average inflation gives a more conservative view of your purchasing power in retirement.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 3: Example Retirement Scenario -->
+      <article class="seo-card" id="retirement-calculation-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Example: Starting at Age 30</h2>
+            <p>Suppose you are <strong>30 years old</strong>, plan to retire at <strong>65</strong>, have <strong>$25,000</strong> in current savings, and are contributing <strong>$500/month</strong>. Here is how different return rates affect your outcome:</p>
+
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead>
+                  <tr>
+                    <th>Annual Return</th>
+                    <th>Nest Egg at 65</th>
+                    <th>Monthly Income (4%)</th>
+                    <th>Total Contributed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>4%</td>
+                    <td>$557,396</td>
+                    <td>$1,858</td>
+                    <td class="highlight">$235,000</td>
+                  </tr>
+                  <tr>
+                    <td>6%</td>
+                    <td>$923,550</td>
+                    <td>$3,078</td>
+                    <td class="highlight">$235,000</td>
+                  </tr>
+                  <tr class="featured-row">
+                    <td>7%</td>
+                    <td>$1,280,543</td>
+                    <td>$4,268</td>
+                    <td class="highlight">$235,000</td>
+                  </tr>
+                  <tr>
+                    <td>10%</td>
+                    <td>$3,043,982</td>
+                    <td>$10,147</td>
+                    <td class="highlight">$235,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>The highlighted row uses a 7% annual return — often cited as a reasonable long-term estimate for a diversified stock portfolio (before inflation). Notice that the <strong>same $235,000 in total contributions</strong> produces vastly different outcomes depending on return rate. At 7%, the $235,000 contributed grows to over $1.28 million — more than five times the amount invested — demonstrating the extraordinary power of long-term compound growth.</p>
+            <p class="example-note">Starting savings: $25,000. Monthly contribution: $500. Retirement age: 65. Current age: 30. Withdrawal rate: 4%. Figures are nominal (not inflation-adjusted). For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 4: FAQ -->
+      <article class="seo-card seo-faq" id="retirement-calculator-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.8" fill="currentColor"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How much do I need to retire?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">A common starting point is the "25x rule": multiply your expected annual retirement expenses by 25 to get a target nest egg. This is derived from the 4% withdrawal rule — if you withdraw 4% of your savings each year, you need 25x your annual expenses saved. For example, if you expect to spend $60,000 per year in retirement, your target is $1,500,000. This rule is a guideline, not a guarantee. Your actual target depends on your retirement age, lifestyle, Social Security benefits, healthcare costs, and the length of your retirement. Retiring early (before 65) or expecting a 30+ year retirement may require a larger nest egg or lower withdrawal rate.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What is the 4% rule?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The 4% rule is a retirement income guideline developed from the "Trinity Study," which analyzed historical portfolio returns across various stock and bond allocations. It suggests that retirees can withdraw 4% of their portfolio in the first year of retirement, then adjust that amount for inflation each year, with a high probability (historically ~95%) that the portfolio lasts at least 30 years. The rule assumes a diversified portfolio of roughly 50–75% stocks and 25–50% bonds. In a low-return environment, or for retirements longer than 30 years, a more conservative withdrawal rate of 3–3.5% is often recommended.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">What annual return should I use in retirement projections?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">The U.S. stock market (S&amp;P 500) has historically returned approximately 10% per year on average in nominal terms, or roughly 7% after inflation. A balanced portfolio of stocks and bonds typically returns 6–8% nominally. For conservative projections, many financial planners use 5–6%. For aggressive, stock-heavy portfolios, 8–10% is sometimes used. The most important thing is to run scenarios with different return rates so you understand the range of outcomes. Also remember that investment fees (expense ratios) reduce your actual return, so subtract 0.1–1% from your expected return depending on your fund choices.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">How does starting early affect retirement savings?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Starting early is the single most powerful factor in retirement savings, due to compound growth. Consider two investors both contributing $500/month at 7% annual return: the first starts at age 25 and stops at 65 (40 years), accumulating approximately $1.3 million from $240,000 in contributions. The second starts at 35 and stops at 65 (30 years), accumulating approximately $567,000 from $180,000 in contributions. The 10-year head start more than doubles the final balance, even though the first investor only contributed $60,000 more. Time in the market is irreplaceable — starting even a few years earlier can mean hundreds of thousands of dollars in additional savings.</p>
+                </div>
+              </details>
+
+              <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <summary itemprop="name">Should I include Social Security in my retirement plan?</summary>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                  <p itemprop="text">Yes — Social Security can be a meaningful supplement to personal savings, but it should generally not be your primary retirement income source. As of 2024, the average monthly Social Security benefit is approximately $1,900 for retired workers. Your personal benefit depends on your earnings history and the age at which you claim (claiming at 62 permanently reduces benefits; claiming at 70 maximizes them). To estimate your Social Security benefit, visit the Social Security Administration's website at ssa.gov. When planning your retirement, use this calculator to determine how much personal savings you need to cover the gap between your Social Security income and your total expected expenses.</p>
+                </div>
+              </details>
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <!-- /seo-sections -->
+
+    <footer class="site-footer">
+      <p>Projections use compound interest with annual compounding. Results are nominal (not inflation-adjusted) estimates and not financial advice.</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function calculate() {
+      const currentAge    = parseFloat(document.getElementById('currentAge').value);
+      const retirementAge = parseFloat(document.getElementById('retirementAge').value);
+      const P             = parseFloat(document.getElementById('currentSavings').value) || 0;
+      const monthly       = parseFloat(document.getElementById('monthlyContrib').value) || 0;
+      const returnRate    = parseFloat(document.getElementById('annualReturn').value);
+      const withdrawalPct = parseFloat(document.getElementById('withdrawalRate').value);
+
+      if (
+        isNaN(currentAge) || isNaN(retirementAge) ||
+        isNaN(returnRate) || isNaN(withdrawalPct) ||
+        retirementAge <= currentAge
+      ) {
+        shake(document.getElementById('calcBtn'));
+        return;
+      }
+
+      const n = retirementAge - currentAge;  // years until retirement
+      const r = returnRate / 100;
+      const C = monthly * 12;                // annual contribution
+
+      // Future value of current savings
+      const fvSavings = P * Math.pow(1 + r, n);
+
+      // Future value of ongoing contributions (annuity)
+      let fvContribs;
+      if (r === 0) {
+        fvContribs = C * n;
+      } else {
+        fvContribs = C * (Math.pow(1 + r, n) - 1) / r;
+      }
+
+      const nestEgg      = fvSavings + fvContribs;
+      const totalContrib = P + (C * n);
+      const annualIncome = nestEgg * (withdrawalPct / 100);
+      const monthlyIncome = annualIncome / 12;
+
+      document.getElementById('nestEgg').textContent      = fmt(nestEgg);
+      document.getElementById('monthlyIncome').textContent = fmt(monthlyIncome);
+      document.getElementById('totalContrib').textContent  = fmt(totalContrib);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.getElementById('breakdown').hidden   = false;
+
+      document.querySelectorAll('.result-card').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = `fadeUp 0.5s ${i * 0.07}s ease both`;
+      });
+
+      // Breakdown bar: starting savings / contributions / growth
+      const totalGrowth    = nestEgg - totalContrib;
+      const pctSavings     = Math.max(0, (P / nestEgg) * 100);
+      const pctContribs    = Math.max(0, ((C * n) / nestEgg) * 100);
+      const pctGrowth      = Math.max(0, 100 - pctSavings - pctContribs);
+
+      setTimeout(() => {
+        document.getElementById('segSavings').style.width  = pctSavings.toFixed(1) + '%';
+        document.getElementById('segContribs').style.width = pctContribs.toFixed(1) + '%';
+        document.getElementById('segGrowth').style.width   = pctGrowth.toFixed(1) + '%';
+      }, 50);
+    }
+
+    function fmt(value) {
+      if (isNaN(value)) return '—';
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(value);
+    }
+
+    function shake(el) {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'shake 0.4s ease';
+    }
+
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%       { transform: translateX(-6px); }
+        40%       { transform: translateX(6px); }
+        60%       { transform: translateX(-4px); }
+        80%       { transform: translateX(4px); }
+      }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') calculate();
+      });
+    });
+  </script>
+</body>
+</html>
