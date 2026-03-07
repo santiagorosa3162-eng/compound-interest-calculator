@@ -158,6 +158,134 @@ body.has-nav { padding-top: calc(56px + 3rem); }
 }
 
 /* ===========================
+   HOMEPAGE LANDING SECTIONS
+=========================== */
+.homepage-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* "View All Calculators" link */
+.view-all-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: -0.5rem;
+}
+
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(232,201,122,0.35);
+  background: rgba(232,201,122,0.05);
+  padding: 0.55rem 1.4rem;
+  border-radius: 99px;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.view-all-link:hover {
+  background: rgba(232,201,122,0.1);
+  border-color: rgba(232,201,122,0.55);
+}
+
+/* Popular tools grid — reuses .related-card styles, 3 col on desktop */
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Planning Basics — nav cards */
+.planning-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.planning-nav-card {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1.35;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.planning-nav-card svg { flex-shrink: 0; opacity: 0.7; }
+
+.planning-nav-card:hover {
+  border-color: rgba(232,201,122,0.35);
+  background: rgba(232,201,122,0.04);
+}
+
+/* Planning Basics — content articles */
+.planning-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.planning-article {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.5);
+  padding: 2rem 2.2rem;
+  scroll-margin-top: 72px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+}
+
+.planning-article h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.planning-article p {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 0.85rem;
+}
+
+.planning-article p:last-child { margin-bottom: 0; }
+
+.planning-article strong { color: var(--ink); font-weight: 500; }
+
+.planning-article a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(232,201,122,0.4);
+  transition: text-decoration-color 0.2s;
+}
+
+.planning-article a:hover { text-decoration-color: var(--gold); }
+
+@media (max-width: 640px) {
+  .tools-grid { grid-template-columns: 1fr 1fr; }
+  .planning-nav { grid-template-columns: 1fr; }
+  .planning-article { padding: 1.5rem 1.25rem; }
+  .planning-article h2 { font-size: 1.15rem; }
+}
+
+/* ===========================
    TOKENS & RESET
 =========================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
