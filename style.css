@@ -1030,6 +1030,27 @@ input::placeholder { color: var(--ink-dim); }
   color: var(--gold);
 }
 
+.footer-legal {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.footer-legal ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+}
+.footer-legal ul a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 0.75rem;
+  transition: color 0.2s;
+}
+.footer-legal ul a:hover {
+  color: var(--gold);
+}
+
 /* ===========================
    ANIMATION
 =========================== */
