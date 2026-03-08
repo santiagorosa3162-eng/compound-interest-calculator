@@ -55,8 +55,70 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Debt Payoff Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/debt-payoff-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the debt avalanche vs debt snowball method?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The debt avalanche method focuses extra payments on the highest-interest debt first, minimizing total interest paid \u2014 this is mathematically optimal. The debt snowball method focuses extra payments on the smallest balance first, giving you quick wins that can boost motivation. Research suggests the snowball method often leads to better real-world outcomes for people who struggle with motivation, even though the avalanche is technically cheaper. Use this calculator to model both approaches: calculate payoff time for each debt in your avalanche or snowball order to see the full picture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I only pay the minimum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paying only the minimum on installment loans (personal loans, auto loans) means paying as much interest as possible over the longest possible time. On credit cards, minimum payments are typically 1\u20132% of the balance, often barely covering the monthly interest charge. At 20% APR, a $5,000 credit card balance with minimum payments could take over 20 years and cost more than $7,000 in interest. The minimum payment is designed to maximize lender profit, not minimize your debt. Always pay more than the minimum whenever possible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does paying extra principal reduce the loan term?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 any extra payment applied directly to principal reduces your balance faster, which reduces future interest charges, which means more of every future payment goes toward principal. This compounding effect is why extra principal payments are so powerful. For some loans (especially mortgages), you must explicitly request that extra payments be applied to principal rather than future installments. Always verify this with your lender, and if possible, mark additional payments as \"principal only\" to maximize the benefit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I refinance my debt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Refinancing replaces your existing loan with a new one, ideally at a lower interest rate or better terms. It makes financial sense when you can secure a significantly lower rate, have improved your credit score since the original loan, or want to consolidate multiple debts into one payment. Calculate the break-even point: divide the total refinancing costs (fees, closing costs) by the monthly savings. If you plan to keep the loan longer than the break-even period, refinancing is beneficial. Watch out for extending the loan term significantly, which can increase total interest even at a lower rate."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +158,17 @@
       <p class="subtitle">Enter your debt balance, interest rate, and monthly payment to find out exactly when you will be debt-free and how much interest you will pay along the way.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-debt-payoff">Overview</a></li>
+      <li><a href="#debt-payoff-formula">Formula</a></li>
+      <li><a href="#debt-payoff-example">Example</a></li>
+      <li><a href="#debt-payoff-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Debt Details</h2>
@@ -331,7 +404,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="credit-card-payoff-calculator.html" class="related-card">

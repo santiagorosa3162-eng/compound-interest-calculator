@@ -55,8 +55,78 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Inflation Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/inflation-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What inflation rate should I use for planning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The U.S. Federal Reserve targets 2% annual inflation as their long-term goal. Historically, U.S. inflation has averaged around 3% per year over the past century. For conservative financial planning \u2014 especially for retirement \u2014 many advisors use 3% as a baseline assumption. If you want to stress-test your plan, running scenarios at 4\u20135% is prudent. Note that inflation rates vary significantly by category: healthcare and education have consistently inflated faster than general CPI, while technology tends to deflate over time. If your retirement spending skews toward healthcare, using a higher inflation rate for those specific expenses makes sense."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is inflation measured?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the United States, inflation is primarily measured by the Consumer Price Index (CPI), published monthly by the Bureau of Labor Statistics (BLS). The CPI tracks the price changes of a representative \"basket\" of goods and services that typical households purchase, including food, housing, transportation, medical care, and recreation. The Personal Consumption Expenditures (PCE) price index, preferred by the Federal Reserve, uses a different methodology that accounts for consumer substitution (switching to cheaper alternatives when prices rise). Core inflation excludes volatile food and energy prices to give a clearer picture of underlying price trends."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I protect my money from inflation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Several strategies can help protect purchasing power against inflation: (1) Invest in equities \u2014 stocks have historically outpaced inflation over long periods, with the S&amp;P 500 averaging ~10% annually versus ~3% inflation. (2) TIPS (Treasury Inflation-Protected Securities) are U.S. government bonds whose principal adjusts with CPI, providing a guaranteed real return. (3) Real estate tends to appreciate with inflation and rental income can rise over time. (4) I Bonds (Series I savings bonds) pay a rate tied directly to CPI. (5) Diversified index funds with low fees are a practical, accessible way for most investors to grow wealth ahead of inflation over the long term. Holding too much cash in a low-yield savings account is the main thing to avoid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between inflation and deflation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inflation is a general rise in prices over time, reducing the purchasing power of each currency unit. Deflation is the opposite \u2014 a general fall in prices. While lower prices sound beneficial, deflation is typically associated with economic contraction: consumers delay purchases expecting prices to fall further, businesses earn less revenue, wages fall, and debt burdens increase in real terms (you owe the same dollars, but those dollars buy more). Mild, stable inflation around 2% is generally considered healthy for a growing economy. Hyperinflation (extremely rapid price increases) and deflation are both considered economically damaging. Central banks work to maintain inflation near their target rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is \"real\" vs \"nominal\" value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nominal value is the face value of money \u2014 the number of dollars on your bank statement \u2014 without adjusting for inflation. Real value is the purchasing power of that money, adjusted for inflation. For example, if your salary grows from $50,000 to $52,000 (a 4% nominal increase) but inflation is 3%, your real raise is only about 1% \u2014 you can only buy 1% more goods and services. When evaluating investments, financial projections, or retirement income, real values are more meaningful because they tell you what your money can actually buy. This calculator shows both the nominal future cost (what you will pay) and the real value (purchasing power in today's dollars)."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +166,17 @@
       <p class="subtitle">Discover what your money will actually be worth in the future — and how much purchasing power inflation silently takes away over time.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-inflation">Overview</a></li>
+      <li><a href="#inflation-formula">Formula</a></li>
+      <li><a href="#inflation-calculation-example">Example</a></li>
+      <li><a href="#inflation-calculator-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Inflation Details</h2>
@@ -355,7 +436,7 @@
     <!-- /seo-sections -->
 
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="present-value-calculator.html" class="related-card">

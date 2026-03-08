@@ -55,8 +55,70 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Budget Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/budget-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good savings rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Financial conventional wisdom suggests saving at least 15\u201320% of gross income (pre-tax) for retirement. But saving rate goals depend on your situation: if you're starting late, 25\u201330% may be necessary. The FIRE (Financial Independence Retire Early) community often targets 40\u201370% savings rates. For most people, getting to 20% take-home savings is an excellent goal. Start wherever you can and increase by 1% every 6 months \u2014 even small increases compound significantly over time. Any saving is better than none."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should I spend on housing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The traditional rule of thumb is to keep housing costs below 30% of gross income. Many financial experts now suggest the stricter 28% rule for mortgage principal and interest alone. In high-cost cities, this target is often impossible without very high incomes \u2014 housing at 35\u201340% of income is common in markets like New York, San Francisco, or Boston. If housing exceeds 40% of take-home pay, it significantly constrains your ability to save and handle financial emergencies, and you may want to explore options for increasing income or finding more affordable housing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if my expenses exceed my income?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If expenses exceed income, you have two levers: reduce expenses or increase income. Start by auditing subscriptions and recurring costs \u2014 these are often overlooked. Then look at discretionary categories: dining out, entertainment, and convenience spending. If cuts alone aren't enough, side income (freelancing, part-time work), negotiating a raise, or finding a higher-paying job addresses the income side. Carrying credit card debt to bridge a monthly gap is extremely costly \u2014 this situation requires urgent action. Building a 3\u20136 month emergency fund once balanced is the next priority."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I budget based on gross or take-home income?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Budget based on take-home (net) income \u2014 the amount that actually hits your bank account after taxes, health insurance premiums, and retirement contributions are deducted. Using gross income inflates your apparent budget and leads to overspending. However, when calculating savings rates for long-term planning purposes, financial advisors often use gross income as the reference \u2014 a 15% gross savings rate is the standard benchmark for retirement readiness. This calculator uses take-home income, so your savings rate here reflects a take-home percentage (which will be higher than the gross percentage)."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +158,17 @@
       <p class="subtitle">Enter your monthly income and expenses to instantly see your total spending, remaining money, and savings rate. The first step to financial freedom is knowing your numbers.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-budgeting">Overview</a></li>
+      <li><a href="#budget-methods">Formula</a></li>
+      <li><a href="#budget-example">Example</a></li>
+      <li><a href="#budget-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Monthly Income &amp; Expenses</h2>
@@ -400,7 +473,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="savings-calculator.html" class="related-card">

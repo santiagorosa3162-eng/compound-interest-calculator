@@ -55,8 +55,78 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Retirement Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/retirement-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much do I need to retire?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A common starting point is the \"25x rule\": multiply your expected annual retirement expenses by 25 to get a target nest egg. This is derived from the 4% withdrawal rule \u2014 if you withdraw 4% of your savings each year, you need 25x your annual expenses saved. For example, if you expect to spend $60,000 per year in retirement, your target is $1,500,000. This rule is a guideline, not a guarantee. Your actual target depends on your retirement age, lifestyle, Social Security benefits, healthcare costs, and the length of your retirement. Retiring early (before 65) or expecting a 30+ year retirement may require a larger nest egg or lower withdrawal rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 4% rule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 4% rule is a retirement income guideline developed from the \"Trinity Study,\" which analyzed historical portfolio returns across various stock and bond allocations. It suggests that retirees can withdraw 4% of their portfolio in the first year of retirement, then adjust that amount for inflation each year, with a high probability (historically ~95%) that the portfolio lasts at least 30 years. The rule assumes a diversified portfolio of roughly 50\u201375% stocks and 25\u201350% bonds. In a low-return environment, or for retirements longer than 30 years, a more conservative withdrawal rate of 3\u20133.5% is often recommended."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What annual return should I use in retirement projections?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The U.S. stock market (S&amp;P 500) has historically returned approximately 10% per year on average in nominal terms, or roughly 7% after inflation. A balanced portfolio of stocks and bonds typically returns 6\u20138% nominally. For conservative projections, many financial planners use 5\u20136%. For aggressive, stock-heavy portfolios, 8\u201310% is sometimes used. The most important thing is to run scenarios with different return rates so you understand the range of outcomes. Also remember that investment fees (expense ratios) reduce your actual return, so subtract 0.1\u20131% from your expected return depending on your fund choices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does starting early affect retirement savings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Starting early is the single most powerful factor in retirement savings, due to compound growth. Consider two investors both contributing $500/month at 7% annual return: the first starts at age 25 and stops at 65 (40 years), accumulating approximately $1.3 million from $240,000 in contributions. The second starts at 35 and stops at 65 (30 years), accumulating approximately $567,000 from $180,000 in contributions. The 10-year head start more than doubles the final balance, even though the first investor only contributed $60,000 more. Time in the market is irreplaceable \u2014 starting even a few years earlier can mean hundreds of thousands of dollars in additional savings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include Social Security in my retirement plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 Social Security can be a meaningful supplement to personal savings, but it should generally not be your primary retirement income source. As of 2024, the average monthly Social Security benefit is approximately $1,900 for retired workers. Your personal benefit depends on your earnings history and the age at which you claim (claiming at 62 permanently reduces benefits; claiming at 70 maximizes them). To estimate your Social Security benefit, visit the Social Security Administration's website at ssa.gov. When planning your retirement, use this calculator to determine how much personal savings you need to cover the gap between your Social Security income and your total expected expenses."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +166,17 @@
       <p class="subtitle">Project your retirement nest egg and see how much monthly income your savings can sustain — so you can plan with confidence today.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-a-retirement-calculator">Overview</a></li>
+      <li><a href="#retirement-savings-formula">Formula</a></li>
+      <li><a href="#retirement-calculation-example">Example</a></li>
+      <li><a href="#retirement-calculator-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Retirement Details</h2>
@@ -375,7 +456,7 @@
     <!-- /seo-sections -->
 
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="savings-calculator.html" class="related-card">

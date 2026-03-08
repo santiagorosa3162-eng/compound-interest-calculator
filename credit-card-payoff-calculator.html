@@ -55,8 +55,70 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Credit Card Payoff Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/credit-card-payoff-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a balance transfer and does it help?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A balance transfer moves your credit card debt to a new card, typically with a 0% introductory APR for 12\u201321 months. During this period, 100% of your payment goes to principal \u2014 dramatically accelerating payoff. Balance transfer cards often charge a fee of 3\u20135% of the transferred amount. If you can pay off the balance before the introductory period ends, this fee is almost always less than the interest you'd pay otherwise. This calculator can help you confirm that: compare total interest paid normally versus just the transfer fee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is credit card interest calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most credit cards use a Daily Periodic Rate (DPR) = APR \u00f7 365. Interest is charged on your Average Daily Balance (ADB) for the billing cycle. So: Interest = ADB \u00d7 DPR \u00d7 days in cycle. This means interest compounds daily rather than monthly, making credit card debt slightly more expensive than this calculator models (which uses monthly compounding). The difference is small but real. Always pay in full every month to avoid any interest entirely \u2014 the \"grace period\" means no interest is charged if you pay your full statement balance by the due date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What credit card APR is considered high?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As of 2024\u20132025, the average credit card APR in the U.S. was approximately 21\u201322%, near historic highs. APRs below 15% are generally considered low for a credit card; 15\u201320% is average; above 24% is high. Store cards and subprime cards often reach 29.99% \u2014 the regulatory ceiling. If you carry a balance, any APR above your potential investment return (roughly 7\u201310% for stocks) means paying down the credit card is a guaranteed better return than investing. Always prioritize high-interest debt elimination before discretionary investing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I close the credit card after paying it off?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Closing a credit card after paying it off can actually hurt your credit score in two ways: it reduces your total available credit (increasing your utilization ratio) and shortens your average account age. Financial experts generally recommend keeping the card open but not using it for purchases, or making one small recurring charge and paying it off monthly to keep it active. If the card has a high annual fee, however, closing it after payoff makes sense. Just be aware of the short-term credit score impact and time any closure accordingly \u2014 especially if you plan to apply for a mortgage or major loan soon."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +158,17 @@
       <p class="subtitle">See exactly how long it will take to pay off your credit card balance and how much interest you'll pay — then discover how much you save by paying a little extra each month.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-cc-payoff">Overview</a></li>
+      <li><a href="#cc-formula">Formula</a></li>
+      <li><a href="#cc-example">Example</a></li>
+      <li><a href="#cc-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Credit Card Details</h2>
@@ -332,7 +405,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="debt-payoff-calculator.html" class="related-card">

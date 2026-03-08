@@ -864,8 +864,78 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ROI Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/roi-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good ROI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A \"good\" ROI depends entirely on the type of investment and the time involved. For long-term stock market investing, a 7\u201310% annualized return is generally considered solid. For a short-term business project or marketing campaign, many professionals look for an ROI of at least 100\u2013200% to justify the risk and resources. Real estate often targets 8\u201312% annually including rental income. There is no universal benchmark \u2014 the right question is whether your ROI exceeds the opportunity cost of putting that money somewhere else, such as a savings account or index fund."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between ROI and CAGR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ROI measures total return as a percentage, regardless of how long the investment took. CAGR (Compound Annual Growth Rate) expresses that return as a consistent annual rate, accounting for the time period. For example, a 100% ROI over 10 years sounds impressive, but that works out to just 7.2% per year \u2014 modest by most standards. CAGR is the better tool for comparing investments held for different lengths of time, while ROI is more useful for quick, at-a-glance profitability checks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can ROI be negative?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A negative ROI simply means your final value is less than what you originally invested \u2014 you lost money. For example, if you invested $10,000 and it is now worth $7,000, your ROI is \u221230%. Negative ROI is common in higher-risk investments like startups, volatile stocks, or business ventures that did not work out. Calculating ROI on failed investments is still useful because it quantifies the loss clearly and helps inform better decisions in the future."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does ROI account for inflation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard ROI does not account for inflation. It is a nominal figure \u2014 it measures raw dollar growth, not purchasing power. To find your real (inflation-adjusted) ROI, subtract the average annual inflation rate from your annualized return. For instance, if your CAGR is 7% and inflation averaged 3%, your real return is roughly 4% per year. For long-term investments spanning 10 or more years, accounting for inflation gives you a much more accurate picture of how much wealthier you actually became."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is ROI different from profit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Profit is an absolute dollar figure \u2014 it tells you how much money you made in total. ROI is a relative percentage \u2014 it tells you how much you made compared to what you put in. A $10,000 profit sounds great, but if you invested $1,000,000 to get it, the ROI is only 1%, which is quite poor. On the other hand, a $500 profit on a $200 investment is an ROI of 150%, which is excellent. Both metrics matter: profit tells you the scale of your gain, while ROI tells you the efficiency of your capital."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -910,6 +980,17 @@
       <h1>ROI <em>Calculator</em></h1>
       <p class="subtitle">Enter your investment figures to instantly calculate your return on investment, total profit, and annualized growth rate.</p>
     </header>
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+        <li><a href="#what-is-roi">Overview</a></li>
+        <li><a href="#roi-formula">Formula</a></li>
+        <li><a href="#roi-example">Example</a></li>
+        <li><a href="#roi-faq">FAQ</a></li>
+        <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
 
     <!-- ========== CALCULATOR CARD ========== -->
     <div class="card">
@@ -1214,7 +1295,7 @@
     </div><!-- /seo-sections -->
 
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="investment-return-calculator.html" class="related-card">

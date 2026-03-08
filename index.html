@@ -259,30 +259,108 @@
 
   </main>
 
-  <script>
-    (function () {
-      const input  = document.getElementById('calcSearch');
-      const grid   = document.getElementById('calcGrid');
-      const empty  = document.getElementById('searchEmpty');
 
-      if (!input || !grid) return;
+  <script>
+    /* global-search */
+    (function () {
+      var CALCULATORS = [
+        { name: 'Compound Interest Calculator', url: 'compound-interest-calculator.html', keywords: 'invest savings growth compound interest' },
+        { name: 'Loan Calculator',               url: 'loan-calculator.html',               keywords: 'loan borrow payment amortization' },
+        { name: 'Mortgage Calculator',           url: 'mortgage-calculator.html',           keywords: 'mortgage home house payment interest' },
+        { name: 'Retirement Calculator',         url: 'retirement-calculator.html',         keywords: 'retire nest egg savings 401k pension' },
+        { name: 'ROI Calculator',                url: 'roi-calculator.html',                keywords: 'roi return investment profit gain' },
+        { name: 'Savings Calculator',            url: 'savings-calculator.html',            keywords: 'savings deposit account grow interest' },
+        { name: 'Investment Return Calculator',  url: 'investment-return-calculator.html',  keywords: 'investment return cagr profit gain' },
+        { name: 'Inflation Calculator',          url: 'inflation-calculator.html',          keywords: 'inflation purchasing power cpi price' },
+        { name: 'Net Worth Calculator',          url: 'net-worth-calculator.html',          keywords: 'net worth assets liabilities wealth' },
+        { name: 'Debt Payoff Calculator',        url: 'debt-payoff-calculator.html',        keywords: 'debt payoff loan free interest extra' },
+        { name: 'Credit Card Payoff Calculator', url: 'credit-card-payoff-calculator.html', keywords: 'credit card payoff apr interest balance' },
+        { name: 'Future Value Calculator',       url: 'future-value-calculator.html',       keywords: 'future value fv lump sum invest grow' },
+        { name: 'Present Value Calculator',      url: 'present-value-calculator.html',      keywords: 'present value pv discount rate today' },
+        { name: 'APR Calculator',                url: 'apr-calculator.html',                keywords: 'apr annual percentage rate fees cost' },
+        { name: 'Budget Calculator',             url: 'budget-calculator.html',             keywords: 'budget income expenses savings rate' },
+        { name: 'Salary to Hourly Calculator',   url: 'salary-to-hourly-calculator.html',   keywords: 'salary hourly wage annual daily rate' },
+      ];
+
+      var input    = document.getElementById('calcSearch');
+      var grid     = document.getElementById('calcGrid');
+      var empty    = document.getElementById('searchEmpty');
+      var dropdown = document.getElementById('searchDropdown');
+
+      if (!input) return;
+
+      function score(calc, q) {
+        var name = calc.name.toLowerCase();
+        var kw   = calc.keywords;
+        if (name === q)           return 100;
+        if (name.startsWith(q))   return 80;
+        if (name.includes(q))     return 60;
+        if (kw.includes(q))       return 40;
+        var words   = q.split(' ');
+        var matched = words.filter(function(w){ return w && (name.includes(w) || kw.includes(w)); });
+        return matched.length * 10;
+      }
+
+      function runSearch(q) {
+        if (!q) return [];
+        return CALCULATORS
+          .map(function(c){ return { calc: c, s: score(c, q) }; })
+          .filter(function(x){ return x.s > 0; })
+          .sort(function(a, b){ return b.s - a.s; })
+          .map(function(x){ return x.calc; });
+      }
+
+      function renderDropdown(results) {
+        if (!dropdown) return;
+        dropdown.innerHTML = '';
+        if (!results.length) { dropdown.hidden = true; return; }
+        results.forEach(function(calc) {
+          var li = document.createElement('li');
+          var a  = document.createElement('a');
+          a.href        = calc.url;
+          a.textContent = calc.name;
+          a.className   = 'search-result-link';
+          li.appendChild(a);
+          dropdown.appendChild(li);
+        });
+        dropdown.hidden = false;
+      }
+
+      function filterCards(q) {
+        if (!grid) return;
+        var cards = grid.querySelectorAll('.calc-card');
+        var vis   = 0;
+        cards.forEach(function(card) {
+          var n    = (card.querySelector('h2') || card).textContent.toLowerCase();
+          var show = !q || n.includes(q);
+          card.style.display = show ? '' : 'none';
+          if (show) vis++;
+        });
+        if (empty) empty.hidden = vis > 0;
+      }
 
       input.addEventListener('input', function () {
-        const q = this.value.trim().toLowerCase();
-        const cards = grid.querySelectorAll('.calc-card');
-        let visible = 0;
+        var q = this.value.trim().toLowerCase();
+        filterCards(q);
+        renderDropdown(q ? runSearch(q) : []);
+      });
 
-        cards.forEach(function (card) {
-          const name = (card.querySelector('h2') || card).textContent.toLowerCase();
-          const show = !q || name.includes(q);
-          card.style.display = show ? '' : 'none';
-          if (show) visible++;
-        });
+      input.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        var q       = this.value.trim().toLowerCase();
+        var results = q ? runSearch(q) : [];
+        if (results.length) window.location.href = results[0].url;
+      });
 
-        empty.hidden = visible > 0;
+      document.addEventListener('click', function(e) {
+        if (!dropdown) return;
+        if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.hidden = true;
+        }
       });
     })();
   </script>
+
 
 </body>
 </html>

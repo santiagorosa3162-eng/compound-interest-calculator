@@ -55,8 +55,70 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "APR Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/apr-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between APR and interest rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The interest rate is the base cost of borrowing expressed as a percentage. APR includes the interest rate plus additional costs like origination fees, broker fees, mortgage points, and other lender charges, expressed as an annualized rate. APR is always equal to or higher than the interest rate (unless there are no fees at all). Use the interest rate to calculate your monthly payment; use APR to compare the total cost of different loan offers on an apples-to-apples basis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What fees are included in APR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For mortgages, APR typically includes: origination fees, mortgage broker fees, mortgage points (discount points), private mortgage insurance (PMI) if required, and certain closing costs. It does NOT include: title insurance, appraisal fees, home inspection fees, recording fees, or prepaid items like homeowner's insurance and property tax escrow. For personal loans, APR typically includes all upfront origination or processing fees. Always ask lenders exactly what fees are included in their stated APR for an accurate comparison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a lower APR always better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always \u2014 it depends on how long you hold the loan. APR assumes you keep the loan for its full term. If you refinance, sell the home, or pay off the loan early, you won't benefit from the lower interest rate long enough to recoup higher upfront fees. In those cases, a higher-APR loan with lower fees might cost you less total. The break-even analysis is simple: divide the fee difference between two offers by the monthly payment difference to find how many months it takes to break even."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What APR is good for a personal loan or mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mortgage APRs vary with market conditions and your credit score. As of 2025, 30-year mortgage APRs ranged from about 6.5\u20137.5% for well-qualified borrowers. For personal loans, a good APR for borrowers with excellent credit (750+) is typically 7\u201312%; average credit (650\u2013750) typically qualifies for 12\u201320%; below that, rates can reach 20\u201336%. For credit cards, below 15% APR is considered good; 15\u201320% is average; above 24% is high. Always compare to the best available rate for your credit profile, not just market averages."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +158,17 @@
       <p class="subtitle">Calculate the true annual percentage rate of any loan, including fees and closing costs. APR gives you the real cost of borrowing so you can compare offers accurately.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-apr">Overview</a></li>
+      <li><a href="#apr-formula">Formula</a></li>
+      <li><a href="#apr-example">Example</a></li>
+      <li><a href="#apr-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Loan Details</h2>
@@ -338,7 +411,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="loan-calculator.html" class="related-card">
