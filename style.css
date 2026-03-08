@@ -602,6 +602,34 @@ input::placeholder { color: var(--ink-dim); }
 }
 .calc-btn:hover .btn-arrow { transform: translateX(3px); }
 
+.reset-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.5rem;
+  background: transparent;
+  color: var(--ink-muted);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.reset-btn:hover {
+  color: var(--ink);
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.04);
+}
+
+.reset-btn:active { opacity: 0.7; }
+
 /* ===========================
    RESULTS — PLACEHOLDER
 =========================== */
