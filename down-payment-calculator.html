@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free down payment calculator. Find out how long it will take to save your home or car down payment based on your monthly savings rate and target amount." />
+  <title>Down Payment Calculator – How Long to Save for a Down Payment?</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/down-payment-calculator.html" />
+  <meta property="og:title" content="Down Payment Calculator – How Long to Save for a Down Payment?" />
+  <meta property="og:description" content="Free down payment calculator. Find out how long it will take to save your down payment based on your monthly savings and interest rate." />
+  <meta property="og:type" content="website" /><meta property="og:site_name" content="Financial Calculators" />
+  <meta property="og:url" content="https://compound-interest-calculator-c3q.pages.dev/down-payment-calculator.html" />
+  <meta property="og:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Down Payment Calculator" />
+  <meta name="twitter:description" content="Calculate how long to save your down payment." />
+  <meta name="twitter:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QG3V0SW1J"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QG3V0SW1J');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://compound-interest-calculator-c3q.pages.dev/"},{"@type":"ListItem","position":2,"name":"Financial Calculators","item":"https://compound-interest-calculator-c3q.pages.dev/financial-calculators.html"},{"@type":"ListItem","position":3,"name":"Down Payment Calculator","item":"https://compound-interest-calculator-c3q.pages.dev/down-payment-calculator.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Down Payment Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://compound-interest-calculator-c3q.pages.dev/down-payment-calculator.html","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body class="has-nav">
+  <script>(function(){if(new URLSearchParams(window.location.search).get('embed')==='true'){document.documentElement.classList.add('embed-mode');}})();</script>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="logo.svg" alt="" class="nav-logo" width="20" height="20">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html" class="active">All Calculators</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="bg-orb orb-1"></div><div class="bg-orb orb-2"></div><div class="bg-orb orb-3"></div>
+  <main class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="financial-calculators.html">Financial Calculators</a><span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Down Payment Calculator</span>
+    </nav>
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Down Payment <em>Calculator</em></h1>
+      <p class="subtitle">Find out exactly how long it takes to save your down payment and how much interest you'll earn along the way.</p>
+    </header>
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+        <li><a href="#what-is-down-payment">Overview</a></li>
+        <li><a href="#down-payment-formula">Formula</a></li>
+        <li><a href="#down-payment-example">Example</a></li>
+        <li><a href="#down-payment-faq">FAQ</a></li>
+        <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Your Goal</h2>
+        <div class="field-grid">
+          <div class="field"><label for="targetPrice">Target Purchase Price</label><div class="input-wrap"><span class="prefix">$</span><input type="number" id="targetPrice" placeholder="400,000" min="0" step="1000" /></div></div>
+          <div class="field"><label for="downPct">Down Payment %</label><div class="input-wrap"><input type="number" id="downPct" placeholder="20" min="1" max="100" step="1" /><span class="suffix">%</span></div></div>
+          <div class="field"><label for="currentSavings">Current Savings</label><div class="input-wrap"><span class="prefix">$</span><input type="number" id="currentSavings" placeholder="10,000" min="0" step="500" /></div></div>
+          <div class="field"><label for="monthlySavings">Monthly Savings</label><div class="input-wrap"><span class="prefix">$</span><input type="number" id="monthlySavings" placeholder="1,000" min="1" step="100" /></div></div>
+          <div class="field"><label for="savingsRate">Savings Interest Rate</label><div class="input-wrap"><input type="number" id="savingsRate" placeholder="4.5" min="0" max="20" step="0.1" /><span class="suffix">%</span></div></div>
+        </div>
+        <button class="calc-btn" onclick="calcDownPayment()"><span class="btn-text">Calculate</span><svg class="btn-arrow" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </section>
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/><path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="26" cy="25" r="2" fill="currentColor"/><circle cx="38" cy="25" r="2" fill="currentColor"/></svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured"><span class="result-label">Down Payment Needed</span><span class="result-value" id="downPaymentAmt">—</span></div>
+          <div class="result-card"><span class="result-label">Months to Goal</span><span class="result-value" id="monthsToSave">—</span></div>
+          <div class="result-card"><span class="result-label">Years to Goal</span><span class="result-value" id="yearsToSave">—</span></div>
+          <div class="result-card"><span class="result-label">Interest Earned</span><span class="result-value" id="interestEarned">—</span></div>
+        </div>
+      </section>
+      <div class="share-tools" aria-label="Share this calculator">
+        <span class="share-label">Share:</span>
+        <button class="share-btn" id="copyLinkBtn" onclick="(function(){navigator.clipboard.writeText(window.location.href);var b=document.getElementById('copyLinkBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Link'},2000)})()">Copy Link</button>
+        <a class="share-btn share-x" href="" target="_blank" rel="noopener noreferrer" id="shareXBtn">Share on X</a>
+        <a class="share-btn share-reddit" href="" target="_blank" rel="noopener noreferrer" id="shareRedditBtn">Share on Reddit</a>
+      </div>
+      <script>(function(){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title),x=document.getElementById('shareXBtn'),r=document.getElementById('shareRedditBtn');if(x)x.href='https://twitter.com/intent/tweet?url='+u+'&text='+t;if(r)r.href='https://www.reddit.com/submit?url='+u+'&title='+t;})();</script>
+    </div>
+    <div class="seo-sections">
+      <article class="seo-card" id="what-is-down-payment">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="seo-card-body">
+            <h2>What is a Down Payment?</h2>
+            <p>A down payment is the upfront cash you pay toward the purchase of a home or vehicle, reducing the amount you need to borrow. For a $400,000 home with a 20% down payment, you would pay $80,000 upfront and finance the remaining $320,000 with a mortgage.</p>
+            <p>The down payment percentage matters significantly. A 20% down payment on a home eliminates the need for Private Mortgage Insurance (PMI), which typically costs 0.5–1.5% of the loan amount annually. With less than 20% down, most conventional lenders require PMI until you reach 20% equity. FHA loans allow as little as 3.5% down but carry their own mortgage insurance premiums.</p>
+            <p>For a vehicle, a larger down payment (10–20%) reduces the loan amount, lowers monthly payments, and helps you avoid being "underwater" — owing more than the car is worth. Regardless of what you're buying, saving a meaningful down payment signals financial readiness and saves thousands in long-term interest costs.</p>
+          </div>
+        </div>
+      </article>
+      <article class="seo-card" id="down-payment-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Down Payment Savings Formula</h2>
+            <p>This calculator uses the future value of an annuity formula to determine how long your savings will take to reach your goal:</p>
+            <div class="formula-block">
+              <div class="formula-line"><span class="formula-math">Goal = Purchase Price × (Down Payment % ÷ 100)</span></div>
+              <div class="formula-line" style="margin-top:0.75rem"><span class="formula-math">Balance<sub>n+1</sub> = Balance<sub>n</sub> × (1 + r) + Monthly Savings</span></div>
+            </div>
+            <ul class="formula-key">
+              <li><strong>r</strong> — Monthly interest rate (Annual Rate ÷ 12 ÷ 100).</li>
+              <li><strong>Balance<sub>0</sub></strong> — Your current savings balance.</li>
+              <li><strong>Monthly Savings</strong> — Amount added each month.</li>
+              <li>The calculator iterates month by month until the balance reaches the goal.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+      <article class="seo-card" id="down-payment-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Example: Saving $80,000 at 4.5% Interest</h2>
+            <p>You need an $80,000 down payment (20% of a $400,000 home). Here's how long it takes with different monthly savings amounts at 4.5% annual interest:</p>
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead><tr><th>Monthly Savings</th><th>Starting Balance</th><th>Time to Goal</th><th>Interest Earned</th></tr></thead>
+                <tbody>
+                  <tr><td>$500</td><td>$0</td><td>11.2 years</td><td>$4,180</td></tr>
+                  <tr><td>$1,000</td><td>$10,000</td><td>5.4 years</td><td>$5,960</td></tr>
+                  <tr class="featured-row"><td>$1,500</td><td>$20,000</td><td class="highlight">3.1 years</td><td>$4,420</td></tr>
+                  <tr><td>$2,000</td><td>$30,000</td><td>1.9 years</td><td>$3,170</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Notice that a higher starting balance dramatically reduces the time needed. Depositing your down payment savings into a high-yield savings account (HYSA) at 4–5% APY earns meaningful interest — thousands of dollars over a multi-year savings journey.</p>
+            <p class="example-note">At 4.5% annual interest compounded monthly. For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+      <article class="seo-card seo-faq" id="down-payment-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <details class="faq-item"><summary>What is the minimum down payment for a home?</summary><div class="faq-answer"><p>For conventional loans, the minimum is typically 3–5%. FHA loans allow 3.5% with a credit score of 580 or higher. VA and USDA loans offer 0% down for eligible borrowers. However, putting less than 20% down on a conventional loan requires PMI, which adds to your monthly cost.</p></div></details>
+              <details class="faq-item"><summary>What is PMI and how can I avoid it?</summary><div class="faq-answer"><p>Private Mortgage Insurance (PMI) is required by most lenders when your down payment is less than 20% of the home's value. PMI typically costs 0.5–1.5% of the loan amount per year. You avoid PMI with a 20% down payment, a piggyback loan structure, or lender-paid PMI at a higher interest rate.</p></div></details>
+              <details class="faq-item"><summary>Should you always put 20% down?</summary><div class="faq-answer"><p>Not necessarily. If putting 20% down depletes your emergency fund, it may be wiser to put 10% down and keep cash reserves. First-time buyer programs with low down payments can help you enter the market sooner, potentially capturing appreciation. Run the numbers on PMI cost versus the opportunity cost of waiting.</p></div></details>
+              <details class="faq-item"><summary>Can you use a gift for a down payment?</summary><div class="faq-answer"><p>Yes, most loan programs allow gift funds from a family member for your down payment. Lenders typically require a signed gift letter stating the funds are a gift, not a loan. Different programs have different rules about how much of the down payment can be a gift — confirm with your lender.</p></div></details>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <section class="related-calculators" id="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="mortgage-calculator.html" class="related-card"><span class="related-name">Mortgage Calculator</span><span class="related-desc">Calculate your monthly mortgage payment and total interest</span></a>
+        <a href="savings-calculator.html" class="related-card"><span class="related-name">Savings Calculator</span><span class="related-desc">See how your savings grow with regular deposits</span></a>
+        <a href="savings-goal-calculator.html" class="related-card"><span class="related-name">Savings Goal Calculator</span><span class="related-desc">Plan monthly savings to reach any financial target</span></a>
+        <a href="loan-affordability-calculator.html" class="related-card"><span class="related-name">Loan Affordability Calculator</span><span class="related-desc">Find out the maximum you can afford to borrow</span></a>
+        <a href="rent-vs-buy-calculator.html" class="related-card"><span class="related-name">Rent vs Buy Calculator</span><span class="related-desc">Compare the true cost of renting vs buying a home</span></a>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <nav class="footer-popular" aria-label="Popular Calculators">
+        <p class="footer-popular-heading">Popular Calculators</p>
+        <ul>
+          <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+          <li><a href="loan-calculator.html">Loan Calculator</a></li>
+          <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
+          <li><a href="roi-calculator.html">ROI Calculator</a></li>
+          <li><a href="savings-calculator.html">Savings Calculator</a></li>
+          <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-legal" aria-label="Legal"><ul><li><a href="about.html">About</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul></nav>
+      <p>Calculations are estimates only and do not constitute financial advice.</p>
+    </footer>
+  </main>
+  <script>
+    function calcDownPayment() {
+      var price = parseFloat(document.getElementById('targetPrice').value) || 0;
+      var pct = parseFloat(document.getElementById('downPct').value) || 20;
+      var current = parseFloat(document.getElementById('currentSavings').value) || 0;
+      var monthly = parseFloat(document.getElementById('monthlySavings').value) || 0;
+      var rate = parseFloat(document.getElementById('savingsRate').value) || 0;
+      if (price <= 0 || monthly <= 0) return;
+      var goal = price * (pct / 100);
+      var r = rate / 100 / 12;
+      var months = 0, balance = current, totalContrib = current;
+      while (balance < goal && months < 600) {
+        balance = balance * (1 + r) + monthly;
+        totalContrib += monthly;
+        months++;
+      }
+      var intEarned = balance - totalContrib;
+      document.getElementById('downPaymentAmt').textContent = fmt(goal);
+      document.getElementById('monthsToSave').textContent = months >= 600 ? '50+ yrs' : months + ' mo';
+      document.getElementById('yearsToSave').textContent = months >= 600 ? '50+ yrs' : (months / 12).toFixed(1) + ' yrs';
+      document.getElementById('interestEarned').textContent = fmt(Math.max(0, intEarned));
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+      document.querySelectorAll('.result-card').forEach(function(el, i) { el.style.animation = 'none'; el.offsetHeight; el.style.animation = 'fadeUp 0.5s ' + (i * 0.07) + 's ease both'; });
+    }
+    function fmt(v) { return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(v); }
+    document.querySelectorAll('input').forEach(function(el) { el.addEventListener('keydown', function(e) { if (e.key === 'Enter') calcDownPayment(); }); });
+  </script>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <script>(function(){var b=document.getElementById('backToTop');window.addEventListener('scroll',function(){b.classList.toggle('visible',window.scrollY>400);},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
+</body>
+</html>

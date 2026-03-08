@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free dividend yield calculator. Calculate stock dividend yield, annual income, and yield on cost instantly. Plan your dividend investing strategy." />
+  <title>Dividend Yield Calculator – Calculate Stock Dividend Income</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/dividend-yield-calculator.html" />
+  <meta property="og:title" content="Dividend Yield Calculator – Calculate Stock Dividend Income" />
+  <meta property="og:description" content="Free dividend yield calculator. Calculate stock dividend yield, annual income, and yield on cost instantly. Plan your dividend investing strategy." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Financial Calculators" />
+  <meta property="og:url" content="https://compound-interest-calculator-c3q.pages.dev/dividend-yield-calculator.html" />
+  <meta property="og:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dividend Yield Calculator – Calculate Stock Dividend Income" />
+  <meta name="twitter:description" content="Free dividend yield calculator. Calculate stock dividend yield, annual income, and yield on cost instantly." />
+  <meta name="twitter:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QG3V0SW1J"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QG3V0SW1J');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://compound-interest-calculator-c3q.pages.dev/"},{"@type":"ListItem","position":2,"name":"Financial Calculators","item":"https://compound-interest-calculator-c3q.pages.dev/financial-calculators.html"},{"@type":"ListItem","position":3,"name":"Dividend Yield Calculator","item":"https://compound-interest-calculator-c3q.pages.dev/dividend-yield-calculator.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Dividend Yield Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://compound-interest-calculator-c3q.pages.dev/dividend-yield-calculator.html","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body class="has-nav">
+  <script>(function(){if(new URLSearchParams(window.location.search).get('embed')==='true'){document.documentElement.classList.add('embed-mode');}})();</script>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="logo.svg" alt="" class="nav-logo" width="20" height="20">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html" class="active">All Calculators</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="financial-calculators.html">Financial Calculators</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Dividend Yield Calculator</span>
+    </nav>
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Dividend Yield <em>Calculator</em></h1>
+      <p class="subtitle">Calculate your stock's dividend yield, projected annual income, and yield on cost in seconds.</p>
+    </header>
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+        <li><a href="#what-is-dividend-yield">Overview</a></li>
+        <li><a href="#dividend-yield-formula">Formula</a></li>
+        <li><a href="#dividend-yield-example">Example</a></li>
+        <li><a href="#dividend-yield-faq">FAQ</a></li>
+        <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Stock Details</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="stockPrice">Current Stock Price</label>
+            <div class="input-wrap"><span class="prefix">$</span><input type="number" id="stockPrice" placeholder="50.00" min="0.01" step="0.01" /></div>
+          </div>
+          <div class="field">
+            <label for="annualDividend">Annual Dividend Per Share</label>
+            <div class="input-wrap"><span class="prefix">$</span><input type="number" id="annualDividend" placeholder="2.00" min="0" step="0.01" /></div>
+          </div>
+          <div class="field">
+            <label for="sharesOwned">Shares Owned</label>
+            <div class="input-wrap"><input type="number" id="sharesOwned" placeholder="100" min="1" step="1" /></div>
+          </div>
+          <div class="field">
+            <label for="costBasis">Your Cost Basis Per Share</label>
+            <div class="input-wrap"><span class="prefix">$</span><input type="number" id="costBasis" placeholder="40.00" min="0.01" step="0.01" /></div>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcDividend()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/><path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="26" cy="25" r="2" fill="currentColor"/><circle cx="38" cy="25" r="2" fill="currentColor"/></svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Dividend Yield</span>
+            <span class="result-value" id="divYield">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Annual Income</span>
+            <span class="result-value" id="annualIncome">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Monthly Income</span>
+            <span class="result-value" id="monthlyIncome">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Yield on Cost</span>
+            <span class="result-value" id="yieldOnCost">—</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="share-tools" aria-label="Share this calculator">
+        <span class="share-label">Share:</span>
+        <button class="share-btn" id="copyLinkBtn" onclick="(function(){navigator.clipboard.writeText(window.location.href);var b=document.getElementById('copyLinkBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Link'},2000)})()">Copy Link</button>
+        <a class="share-btn share-x" href="" target="_blank" rel="noopener noreferrer" id="shareXBtn">Share on X</a>
+        <a class="share-btn share-reddit" href="" target="_blank" rel="noopener noreferrer" id="shareRedditBtn">Share on Reddit</a>
+      </div>
+      <script>(function(){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title),x=document.getElementById('shareXBtn'),r=document.getElementById('shareRedditBtn');if(x)x.href='https://twitter.com/intent/tweet?url='+u+'&text='+t;if(r)r.href='https://www.reddit.com/submit?url='+u+'&title='+t;})();</script>
+    </div>
+
+    <div class="seo-sections">
+      <article class="seo-card" id="what-is-dividend-yield">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="seo-card-body">
+            <h2>What is Dividend Yield?</h2>
+            <p>Dividend yield is a financial ratio that tells you how much cash income a company pays out relative to its stock price. Expressed as a percentage, it shows how much you earn in dividends for every dollar invested in the stock. A stock priced at $50 that pays $2 per share annually has a dividend yield of 4%.</p>
+            <p>Dividend yield is a key metric for income investors — those who want their portfolio to generate regular cash flow without selling shares. High-dividend stocks like REITs, utilities, and established blue-chip companies often attract retirees and conservative investors seeking steady income.</p>
+            <p>Yield on cost is a related metric that compares your annual dividend income to your original purchase price rather than the current price. If a stock you bought for $40 now pays $2 per share, your yield on cost is 5% even if the current yield is only 4%. This shows the true income power of long-term dividend growth investing.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="dividend-yield-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Dividend Yield Formula</h2>
+            <p>The dividend yield and yield on cost formulas are straightforward:</p>
+            <div class="formula-block">
+              <div class="formula-line"><span class="formula-math">Dividend Yield = <span class="formula-frac"><span class="frac-top">Annual Dividend Per Share</span><span class="frac-line"></span><span class="frac-bottom">Current Stock Price</span></span> × 100</span></div>
+              <div class="formula-line" style="margin-top:1rem"><span class="formula-math">Yield on Cost = <span class="formula-frac"><span class="frac-top">Annual Dividend Per Share</span><span class="frac-line"></span><span class="frac-bottom">Your Cost Basis</span></span> × 100</span></div>
+            </div>
+            <ul class="formula-key">
+              <li><strong>Annual Dividend Per Share</strong> — Total dividends paid per share over one year (quarterly × 4, or as declared).</li>
+              <li><strong>Current Stock Price</strong> — The market price of one share today.</li>
+              <li><strong>Your Cost Basis</strong> — The price you originally paid per share.</li>
+              <li><strong>Annual Income</strong> — Annual Dividend Per Share × Number of Shares Owned.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="dividend-yield-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Example: Dividend Income from 100 Shares</h2>
+            <p>Suppose you own 100 shares of a stock currently trading at <strong>$50 per share</strong> that pays an annual dividend of <strong>$2.00 per share</strong>. You bought the shares at <strong>$40 each</strong>.</p>
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+                <tbody>
+                  <tr><td>Current Dividend Yield</td><td class="highlight">4.00%</td></tr>
+                  <tr><td>Yield on Cost</td><td class="highlight">5.00%</td></tr>
+                  <tr><td>Annual Dividend Income</td><td class="highlight">$200</td></tr>
+                  <tr><td>Monthly Dividend Income</td><td class="highlight">$16.67</td></tr>
+                  <tr class="featured-row"><td>Position Value</td><td class="highlight">$5,000</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Notice that yield on cost (5%) is higher than current yield (4%) because you bought at a lower price. As companies grow their dividends over time, your yield on cost increases even if the current yield stays the same — a powerful benefit of holding dividend-growth stocks long term.</p>
+            <p class="example-note">For illustrative purposes only. Dividends are not guaranteed and may vary.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="dividend-yield-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>What is a good dividend yield?</summary>
+                <div class="faq-answer"><p>A "good" dividend yield depends on the market environment and your goals. Historically, yields between 2–5% are considered reasonable for established companies. Yields above 6–7% can be attractive but may signal that the stock price has fallen sharply or that the dividend is at risk of being cut. Always examine the payout ratio — if a company is paying out more than 80–90% of earnings as dividends, sustainability may be an issue.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>How often are dividends paid?</summary>
+                <div class="faq-answer"><p>Most U.S. stocks pay dividends quarterly (four times per year). Some companies pay monthly, semi-annually, or annually. REITs (Real Estate Investment Trusts) commonly pay monthly dividends. To calculate an annual dividend from quarterly payments, simply multiply the quarterly dividend by 4.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>What is the difference between dividend yield and yield on cost?</summary>
+                <div class="faq-answer"><p>Dividend yield is calculated using the current market price. Yield on cost uses your original purchase price. If you bought a stock at $20 and it now trades at $40 but still pays the same dividend, your yield on cost is double the current yield. Yield on cost shows you the real income return on your original investment and is favored by long-term dividend investors.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>Can dividend yield change over time?</summary>
+                <div class="faq-answer"><p>Yes — dividend yield changes whenever the stock price or the dividend amount changes. If a stock price rises and the dividend stays the same, yield falls. If a company raises its dividend, yield increases. This dynamic is why many investors focus on dividend growth stocks — companies that consistently increase their dividend over time.</p></div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="related-calculators" id="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="investment-return-calculator.html" class="related-card"><span class="related-name">Investment Return Calculator</span><span class="related-desc">Calculate total return and annualized CAGR on any investment</span></a>
+        <a href="compound-interest-calculator.html" class="related-card"><span class="related-name">Compound Interest Calculator</span><span class="related-desc">See how investments grow with regular contributions over time</span></a>
+        <a href="savings-calculator.html" class="related-card"><span class="related-name">Savings Calculator</span><span class="related-desc">Project your savings balance with regular monthly deposits</span></a>
+        <a href="roi-calculator.html" class="related-card"><span class="related-name">ROI Calculator</span><span class="related-desc">Calculate return on investment, profit, and annualized CAGR</span></a>
+        <a href="investment-growth-calculator.html" class="related-card"><span class="related-name">Investment Growth Calculator</span><span class="related-desc">Project portfolio growth with contributions and returns</span></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <nav class="footer-popular" aria-label="Popular Calculators">
+        <p class="footer-popular-heading">Popular Calculators</p>
+        <ul>
+          <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+          <li><a href="loan-calculator.html">Loan Calculator</a></li>
+          <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
+          <li><a href="roi-calculator.html">ROI Calculator</a></li>
+          <li><a href="savings-calculator.html">Savings Calculator</a></li>
+          <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-legal" aria-label="Legal">
+        <ul><li><a href="about.html">About</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul>
+      </nav>
+      <p>Calculations are estimates only and do not constitute financial advice.</p>
+    </footer>
+  </main>
+
+  <script>
+    function calcDividend() {
+      var price = parseFloat(document.getElementById('stockPrice').value);
+      var div   = parseFloat(document.getElementById('annualDividend').value);
+      var shares= parseFloat(document.getElementById('sharesOwned').value);
+      var cost  = parseFloat(document.getElementById('costBasis').value);
+
+      if (isNaN(price) || price <= 0 || isNaN(div) || isNaN(shares) || shares <= 0) {
+        return;
+      }
+
+      var yield_ = (div / price) * 100;
+      var income  = div * shares;
+      var monthly = income / 12;
+      var yoc     = (!isNaN(cost) && cost > 0) ? (div / cost) * 100 : yield_;
+
+      document.getElementById('divYield').textContent    = yield_.toFixed(2) + '%';
+      document.getElementById('annualIncome').textContent = fmtCur(income);
+      document.getElementById('monthlyIncome').textContent= fmtCur(monthly);
+      document.getElementById('yieldOnCost').textContent  = yoc.toFixed(2) + '%';
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+
+      document.querySelectorAll('.result-card').forEach(function(el, i) {
+        el.style.animation = 'none'; el.offsetHeight;
+        el.style.animation = 'fadeUp 0.5s ' + (i * 0.07) + 's ease both';
+      });
+    }
+
+    function fmtCur(v) {
+      return new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:2, maximumFractionDigits:2 }).format(v);
+    }
+
+    document.querySelectorAll('input').forEach(function(el) {
+      el.addEventListener('keydown', function(e) { if (e.key === 'Enter') calcDividend(); });
+    });
+  </script>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('backToTop');window.addEventListener('scroll',function(){b.classList.toggle('visible',window.scrollY>400);},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free investment growth calculator. Project your portfolio value with a lump sum, monthly contributions, and annual return rate. See principal, contributions, and gains split." />
+  <title>Investment Growth Calculator – Project Your Portfolio Value</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/investment-growth-calculator.html" />
+  <meta property="og:title" content="Investment Growth Calculator – Project Your Portfolio Value" />
+  <meta property="og:description" content="Free investment growth calculator. Project your portfolio value with lump sum, monthly contributions, and annual return rate." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Financial Calculators" />
+  <meta property="og:url" content="https://compound-interest-calculator-c3q.pages.dev/investment-growth-calculator.html" />
+  <meta property="og:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Investment Growth Calculator – Project Your Portfolio Value" />
+  <meta name="twitter:description" content="Free investment growth calculator. Project your portfolio with monthly contributions and compound returns." />
+  <meta name="twitter:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QG3V0SW1J"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QG3V0SW1J');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://compound-interest-calculator-c3q.pages.dev/"},{"@type":"ListItem","position":2,"name":"Financial Calculators","item":"https://compound-interest-calculator-c3q.pages.dev/financial-calculators.html"},{"@type":"ListItem","position":3,"name":"Investment Growth Calculator","item":"https://compound-interest-calculator-c3q.pages.dev/investment-growth-calculator.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Investment Growth Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://compound-interest-calculator-c3q.pages.dev/investment-growth-calculator.html","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body class="has-nav">
+  <script>(function(){if(new URLSearchParams(window.location.search).get('embed')==='true'){document.documentElement.classList.add('embed-mode');}})();</script>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="logo.svg" alt="" class="nav-logo" width="20" height="20">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html" class="active">All Calculators</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="financial-calculators.html">Financial Calculators</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Investment Growth Calculator</span>
+    </nav>
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Investment Growth <em>Calculator</em></h1>
+      <p class="subtitle">Project your portfolio's future value with a lump sum investment, regular monthly contributions, and compound annual returns.</p>
+    </header>
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+        <li><a href="#what-is-investment-growth">Overview</a></li>
+        <li><a href="#investment-growth-formula">Formula</a></li>
+        <li><a href="#investment-growth-example">Example</a></li>
+        <li><a href="#investment-growth-faq">FAQ</a></li>
+        <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Investment Details</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="igPrincipal">Starting Amount</label>
+            <div class="input-wrap"><span class="prefix">$</span><input type="number" id="igPrincipal" placeholder="10,000" min="0" step="500" /></div>
+          </div>
+          <div class="field">
+            <label for="igMonthly">Monthly Contribution</label>
+            <div class="input-wrap"><span class="prefix">$</span><input type="number" id="igMonthly" placeholder="500" min="0" step="50" /></div>
+          </div>
+          <div class="field">
+            <label for="igRate">Annual Return Rate</label>
+            <div class="input-wrap"><input type="number" id="igRate" placeholder="7" min="0" max="100" step="0.1" /><span class="suffix">%</span></div>
+          </div>
+          <div class="field">
+            <label for="igYears">Investment Period</label>
+            <div class="input-wrap"><input type="number" id="igYears" placeholder="20" min="1" max="60" step="1" /><span class="suffix">yrs</span></div>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcInvestmentGrowth()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/><path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="26" cy="25" r="2" fill="currentColor"/><circle cx="38" cy="25" r="2" fill="currentColor"/></svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Future Value</span>
+            <span class="result-value" id="igFutureValue">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Invested</span>
+            <span class="result-value" id="igTotalInvested">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Investment Gains</span>
+            <span class="result-value" id="igGains">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Return Multiple</span>
+            <span class="result-value" id="igMultiple">—</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="share-tools" aria-label="Share this calculator">
+        <span class="share-label">Share:</span>
+        <button class="share-btn" id="copyLinkBtn" onclick="(function(){navigator.clipboard.writeText(window.location.href);var b=document.getElementById('copyLinkBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Link'},2000)})()">Copy Link</button>
+        <a class="share-btn share-x" href="" target="_blank" rel="noopener noreferrer" id="shareXBtn">Share on X</a>
+        <a class="share-btn share-reddit" href="" target="_blank" rel="noopener noreferrer" id="shareRedditBtn">Share on Reddit</a>
+      </div>
+      <script>(function(){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title),x=document.getElementById('shareXBtn'),r=document.getElementById('shareRedditBtn');if(x)x.href='https://twitter.com/intent/tweet?url='+u+'&text='+t;if(r)r.href='https://www.reddit.com/submit?url='+u+'&title='+t;})();</script>
+    </div>
+
+    <div class="seo-sections">
+      <article class="seo-card" id="what-is-investment-growth">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>What is Investment Growth?</h2>
+            <p>Investment growth refers to the increase in the value of a portfolio over time through compound returns. When your investments earn returns, those returns are reinvested to generate their own returns — creating an exponential growth curve that accelerates significantly over long time horizons.</p>
+            <p>The two key drivers of investment growth are your annual return rate and time. A $10,000 investment earning 7% annually becomes $19,672 after 10 years, $38,697 after 20 years, and $76,123 after 30 years — without adding a single dollar. Adding regular monthly contributions dramatically accelerates this process through dollar-cost averaging.</p>
+            <p>Most long-term investors target returns of 6–10% annually, based on the historical performance of diversified stock market indices like the S&P 500, which has averaged about 10% annually (7% after inflation) over the past century. This calculator helps you visualize what consistent investing can achieve over your specific timeline.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="investment-growth-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Investment Growth Formula</h2>
+            <p>This calculator combines lump-sum compound growth with an annuity formula for monthly contributions:</p>
+            <div class="formula-block">
+              <div class="formula-line"><span class="formula-math">FV = P(1 + r)<sup>n</sup> + PMT × <span class="formula-frac"><span class="frac-top">(1 + r)<sup>n</sup> − 1</span><span class="frac-line"></span><span class="frac-bottom">r</span></span></span></div>
+            </div>
+            <ul class="formula-key">
+              <li><strong>FV</strong> — Future value of the investment.</li>
+              <li><strong>P</strong> — Starting (principal) amount.</li>
+              <li><strong>r</strong> — Monthly return rate (Annual Rate ÷ 12 ÷ 100).</li>
+              <li><strong>n</strong> — Total months (years × 12).</li>
+              <li><strong>PMT</strong> — Monthly contribution amount.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="investment-growth-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Example: $10,000 with $500/Month at 7%</h2>
+            <p>Starting with <strong>$10,000</strong> and contributing <strong>$500 per month</strong> at a <strong>7% annual return</strong> — here's how the portfolio grows:</p>
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead><tr><th>Years</th><th>Total Invested</th><th>Investment Gains</th><th>Future Value</th></tr></thead>
+                <tbody>
+                  <tr><td>5 years</td><td>$40,000</td><td>$9,130</td><td>$49,130</td></tr>
+                  <tr><td>10 years</td><td>$70,000</td><td>$36,359</td><td>$106,359</td></tr>
+                  <tr class="featured-row"><td>20 years</td><td>$130,000</td><td class="highlight">$161,151</td><td>$291,151</td></tr>
+                  <tr><td>30 years</td><td>$190,000</td><td>$422,459</td><td>$612,459</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>After 30 years, investment gains ($422,459) far exceed the total amount invested ($190,000) — meaning compound growth contributes more than 2× what you put in. This illustrates why starting early is the most powerful decision an investor can make.</p>
+            <p class="example-note">Based on $10,000 starting balance, $500/month contributions, 7% annual return compounded monthly. For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="investment-growth-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>What is a realistic annual return for investments?</summary>
+                <div class="faq-answer"><p>The U.S. stock market (S&P 500) has historically returned about 10% annually before inflation, or roughly 7% after inflation. Bonds typically return 3–5% annually. A diversified 60/40 stock-bond portfolio has historically returned about 7–8% before inflation. Most financial planners use 6–7% as a conservative estimate for long-term planning, accounting for a mix of asset classes and inflation.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>How does monthly contribution frequency affect returns?</summary>
+                <div class="faq-answer"><p>Contributing monthly rather than annually means your money starts compounding sooner. For a $500/month contribution, investing $6,000 in 12 monthly installments vs. one annual lump sum makes a meaningful difference over decades. Consistent monthly investing also smooths out market volatility through dollar-cost averaging — you buy more shares when prices are low and fewer when prices are high.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>What happens if I start investing 10 years later?</summary>
+                <div class="faq-answer"><p>Delaying investing by 10 years can cut your final portfolio value roughly in half, depending on your return rate. Starting at age 25 vs. age 35 with the same monthly contributions and 7% return can mean hundreds of thousands of dollars less at retirement. The "cost of waiting" compounds just as powerfully as investing itself — every year you delay, you lose not just that year's growth but all future compounding on it.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>Should I account for taxes and fees?</summary>
+                <div class="faq-answer"><p>Yes. In taxable accounts, investment returns are reduced by capital gains taxes. Expense ratios on funds also drag down returns — a 1% annual fee vs. 0.05% can cost tens of thousands over a 30-year period. For tax-advantaged accounts like 401(k)s and IRAs, taxes are deferred or eliminated, so the full return compounds. Use a net-of-fees return estimate (e.g., 6.9% instead of 7% to account for a 0.1% fund expense ratio) for more realistic projections.</p></div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="related-calculators" id="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="compound-interest-calculator.html" class="related-card"><span class="related-name">Compound Interest Calculator</span><span class="related-desc">See how savings grow with regular contributions over time</span></a>
+        <a href="investment-return-calculator.html" class="related-card"><span class="related-name">Investment Return Calculator</span><span class="related-desc">Calculate total return and CAGR on any investment</span></a>
+        <a href="retirement-calculator.html" class="related-card"><span class="related-name">Retirement Calculator</span><span class="related-desc">Project your retirement nest egg and monthly income</span></a>
+        <a href="savings-goal-calculator.html" class="related-card"><span class="related-name">Savings Goal Calculator</span><span class="related-desc">Find out how much to save monthly to reach any goal</span></a>
+        <a href="roi-calculator.html" class="related-card"><span class="related-name">ROI Calculator</span><span class="related-desc">Calculate return on investment and annualized CAGR</span></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <nav class="footer-popular" aria-label="Popular Calculators">
+        <p class="footer-popular-heading">Popular Calculators</p>
+        <ul>
+          <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+          <li><a href="loan-calculator.html">Loan Calculator</a></li>
+          <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+          <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
+          <li><a href="roi-calculator.html">ROI Calculator</a></li>
+          <li><a href="savings-calculator.html">Savings Calculator</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-legal" aria-label="Legal">
+        <ul><li><a href="about.html">About</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul>
+      </nav>
+      <p>Calculations are estimates only and do not constitute financial advice.</p>
+    </footer>
+  </main>
+
+  <script>
+    function calcInvestmentGrowth() {
+      var P   = parseFloat(document.getElementById('igPrincipal').value) || 0;
+      var pmt = parseFloat(document.getElementById('igMonthly').value)   || 0;
+      var apr = parseFloat(document.getElementById('igRate').value);
+      var yrs = parseFloat(document.getElementById('igYears').value);
+
+      if (isNaN(apr) || isNaN(yrs) || yrs <= 0) return;
+
+      var r = apr / 100 / 12;
+      var n = yrs * 12;
+      var FV;
+
+      if (r === 0) {
+        FV = P + pmt * n;
+      } else {
+        FV = P * Math.pow(1 + r, n) + pmt * (Math.pow(1 + r, n) - 1) / r;
+      }
+
+      var totalInvested = P + pmt * n;
+      var gains = FV - totalInvested;
+      var multiple = totalInvested > 0 ? (FV / totalInvested).toFixed(2) + '\xd7' : '—';
+
+      document.getElementById('igFutureValue').textContent   = fmtCur(FV);
+      document.getElementById('igTotalInvested').textContent = fmtCur(totalInvested);
+      document.getElementById('igGains').textContent         = fmtCur(Math.max(0, gains));
+      document.getElementById('igMultiple').textContent      = multiple;
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+
+      document.querySelectorAll('.result-card').forEach(function(el, i) {
+        el.style.animation = 'none'; el.offsetHeight;
+        el.style.animation = 'fadeUp 0.5s ' + (i * 0.07) + 's ease both';
+      });
+    }
+
+    function fmtCur(v) {
+      return new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:0, maximumFractionDigits:0 }).format(v);
+    }
+
+    document.querySelectorAll('input').forEach(function(el) {
+      el.addEventListener('keydown', function(e) { if (e.key === 'Enter') calcInvestmentGrowth(); });
+    });
+  </script>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('backToTop');window.addEventListener('scroll',function(){b.classList.toggle('visible',window.scrollY>400);},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
+</body>
+</html>
