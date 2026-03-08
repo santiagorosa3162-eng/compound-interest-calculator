@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free car loan calculator. Calculate your monthly auto loan payment, total interest, and true cost of financing a vehicle. Compare loan terms instantly." />
+  <title>Car Loan Calculator – Monthly Auto Payment & Total Cost</title>
+  <link rel="canonical" href="https://compound-interest-calculator-c3q.pages.dev/car-loan-calculator.html" />
+  <meta property="og:title" content="Car Loan Calculator – Monthly Auto Payment & Total Cost" />
+  <meta property="og:description" content="Free car loan calculator. Calculate your monthly auto loan payment, total interest, and true cost of financing a vehicle." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Financial Calculators" />
+  <meta property="og:url" content="https://compound-interest-calculator-c3q.pages.dev/car-loan-calculator.html" />
+  <meta property="og:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Car Loan Calculator – Monthly Auto Payment & Total Cost" />
+  <meta name="twitter:description" content="Free car loan calculator. Calculate your monthly auto loan payment, total interest, and true cost of financing." />
+  <meta name="twitter:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QG3V0SW1J"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8QG3V0SW1J');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://compound-interest-calculator-c3q.pages.dev/"},{"@type":"ListItem","position":2,"name":"Financial Calculators","item":"https://compound-interest-calculator-c3q.pages.dev/financial-calculators.html"},{"@type":"ListItem","position":3,"name":"Car Loan Calculator","item":"https://compound-interest-calculator-c3q.pages.dev/car-loan-calculator.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Car Loan Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://compound-interest-calculator-c3q.pages.dev/car-loan-calculator.html","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body class="has-nav">
+  <script>(function(){if(new URLSearchParams(window.location.search).get('embed')==='true'){document.documentElement.classList.add('embed-mode');}})();</script>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="logo.svg" alt="" class="nav-logo" width="20" height="20">Financial Calculators</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="financial-calculators.html" class="active">All Calculators</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <main class="page-wrap">
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <a href="financial-calculators.html">Financial Calculators</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">Car Loan Calculator</span>
+    </nav>
+
+    <header class="site-header">
+      <span class="badge">Free Tool</span>
+      <h1>Car Loan <em>Calculator</em></h1>
+      <p class="subtitle">Find your exact monthly auto payment, total interest, and full cost of financing before you sign anything.</p>
+    </header>
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+        <li><a href="#what-is-car-loan">Overview</a></li>
+        <li><a href="#car-loan-formula">Formula</a></li>
+        <li><a href="#car-loan-example">Example</a></li>
+        <li><a href="#car-loan-faq">FAQ</a></li>
+        <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
+
+    <div class="card">
+      <section class="inputs-section">
+        <h2 class="section-label">Loan Details</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="carPrice">Vehicle Price</label>
+            <div class="input-wrap"><span class="prefix">$</span><input type="number" id="carPrice" placeholder="30,000" min="0" step="100" /></div>
+          </div>
+          <div class="field">
+            <label for="carDown">Down Payment</label>
+            <div class="input-wrap"><span class="prefix">$</span><input type="number" id="carDown" placeholder="5,000" min="0" step="100" /></div>
+          </div>
+          <div class="field">
+            <label for="carRate">Annual Interest Rate (APR)</label>
+            <div class="input-wrap"><input type="number" id="carRate" placeholder="6.5" min="0" max="100" step="0.1" /><span class="suffix">%</span></div>
+          </div>
+          <div class="field">
+            <label for="carTerm">Loan Term</label>
+            <div class="input-wrap"><input type="number" id="carTerm" placeholder="60" min="12" max="120" step="12" /><span class="suffix">mo</span></div>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcCarLoan()">
+          <span class="btn-text">Calculate</span>
+          <svg class="btn-arrow" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </section>
+
+      <section class="results-section" id="results" aria-live="polite">
+        <h2 class="section-label">Results</h2>
+        <div class="results-placeholder" id="placeholder">
+          <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/><path d="M22 38c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="26" cy="25" r="2" fill="currentColor"/><circle cx="38" cy="25" r="2" fill="currentColor"/></svg>
+          <p>Enter your details and hit <strong>Calculate</strong></p>
+        </div>
+        <div class="results-grid" id="resultsGrid" hidden>
+          <div class="result-card featured">
+            <span class="result-label">Monthly Payment</span>
+            <span class="result-value" id="monthlyPayment">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Interest</span>
+            <span class="result-value" id="totalInterest">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Total Cost</span>
+            <span class="result-value" id="totalCost">—</span>
+          </div>
+          <div class="result-card">
+            <span class="result-label">Loan Amount</span>
+            <span class="result-value" id="loanAmount">—</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="share-tools" aria-label="Share this calculator">
+        <span class="share-label">Share:</span>
+        <button class="share-btn" id="copyLinkBtn" onclick="(function(){navigator.clipboard.writeText(window.location.href);var b=document.getElementById('copyLinkBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Link'},2000)})()">Copy Link</button>
+        <a class="share-btn share-x" href="" target="_blank" rel="noopener noreferrer" id="shareXBtn">Share on X</a>
+        <a class="share-btn share-reddit" href="" target="_blank" rel="noopener noreferrer" id="shareRedditBtn">Share on Reddit</a>
+      </div>
+      <script>(function(){var u=encodeURIComponent(window.location.href),t=encodeURIComponent(document.title),x=document.getElementById('shareXBtn'),r=document.getElementById('shareRedditBtn');if(x)x.href='https://twitter.com/intent/tweet?url='+u+'&text='+t;if(r)r.href='https://www.reddit.com/submit?url='+u+'&title='+t;})();</script>
+    </div>
+
+    <div class="seo-sections">
+      <article class="seo-card" id="what-is-car-loan">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2 10h20" stroke="currentColor" stroke-width="1.6"/><path d="M6 15h4M14 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="seo-card-body">
+            <h2>What is a Car Loan?</h2>
+            <p>A car loan (also called an auto loan) is a secured installment loan that finances the purchase of a vehicle. The lender provides the full purchase amount upfront, and you repay it in equal monthly payments over a set term — typically 36, 48, 60, or 72 months — with interest.</p>
+            <p>Your monthly payment depends on three things: the loan amount (vehicle price minus down payment), the annual percentage rate (APR), and the loan term. A larger down payment reduces the loan amount and therefore your monthly payment and total interest paid. A shorter loan term means higher monthly payments but significantly less interest over the life of the loan.</p>
+            <p>Understanding the full cost of an auto loan before you visit a dealership puts you in a much stronger negotiating position. Many buyers focus only on the monthly payment, which lets dealers inflate the total cost with extended terms or hidden fees.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="car-loan-formula">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Car Loan Payment Formula</h2>
+            <p>Monthly car loan payments are calculated using the standard amortization formula:</p>
+            <div class="formula-block">
+              <div class="formula-line"><span class="formula-math">M = P × <span class="formula-frac"><span class="frac-top">r(1 + r)<sup>n</sup></span><span class="frac-line"></span><span class="frac-bottom">(1 + r)<sup>n</sup> − 1</span></span></span></div>
+            </div>
+            <ul class="formula-key">
+              <li><strong>M</strong> — Monthly payment amount.</li>
+              <li><strong>P</strong> — Principal (vehicle price minus down payment).</li>
+              <li><strong>r</strong> — Monthly interest rate (annual APR ÷ 12 ÷ 100).</li>
+              <li><strong>n</strong> — Total number of monthly payments (loan term in months).</li>
+              <li><strong>Total Cost</strong> — M × n + down payment.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card" id="car-loan-example">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l4-8 4 5 3-3 4 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Example: $30,000 Car with $5,000 Down</h2>
+            <p>You're buying a $30,000 vehicle with a $5,000 down payment, leaving a loan amount of $25,000. Here's how different terms and rates compare at <strong>6.5% APR</strong>:</p>
+            <div class="example-table-wrap">
+              <table class="example-table">
+                <thead><tr><th>Term</th><th>Monthly Payment</th><th>Total Interest</th><th>Total Cost</th></tr></thead>
+                <tbody>
+                  <tr><td>36 months</td><td>$766</td><td>$2,577</td><td>$27,577</td></tr>
+                  <tr><td>48 months</td><td>$593</td><td>$3,460</td><td>$28,460</td></tr>
+                  <tr class="featured-row"><td>60 months</td><td>$489</td><td>$4,332</td><td class="highlight">$29,332</td></tr>
+                  <tr><td>72 months</td><td>$421</td><td>$5,281</td><td>$30,281</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>A 36-month loan saves over $2,700 in interest compared to a 72-month loan, but costs $345 more per month. The right choice depends on your cash flow — but always avoid extending the term just to lower the payment if you can manage the higher amount.</p>
+            <p class="example-note">Calculations based on $25,000 loan amount at 6.5% APR. For illustrative purposes only.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="seo-card seo-faq" id="car-loan-faq">
+        <div class="seo-card-inner">
+          <div class="seo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <div class="seo-card-body">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>What is a good car loan interest rate?</summary>
+                <div class="faq-answer"><p>Car loan rates vary by credit score, lender, loan term, and whether the vehicle is new or used. In 2024–2025, average new car loan rates ranged from about 5–8% for borrowers with good credit (700+). Used car rates tend to be 1–3% higher. Credit unions often offer lower rates than dealership financing. Always get pre-approved from a bank or credit union before visiting a dealership.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>How much should I put down on a car?</summary>
+                <div class="faq-answer"><p>Financial experts typically recommend a down payment of at least 10–20% of the vehicle's purchase price. A larger down payment reduces your loan balance, lowers monthly payments, reduces total interest paid, and helps you avoid being "underwater" on the loan (owing more than the car is worth). For new cars, 20% down is a common benchmark.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>Is it better to finance or pay cash for a car?</summary>
+                <div class="faq-answer"><p>Paying cash eliminates interest entirely and simplifies ownership. However, if you can invest the cash at a return higher than your loan APR, financing can make mathematical sense. For example, if you can get a 3% auto loan and your investments return 7%, keeping the cash invested and financing the car earns you 4% on that money. In practice, most people benefit from paying as large a down payment as practical while keeping an emergency fund.</p></div>
+              </details>
+              <details class="faq-item">
+                <summary>What is included in the total cost of a car loan?</summary>
+                <div class="faq-answer"><p>This calculator shows principal plus interest. In reality, the true cost of vehicle ownership also includes sales tax, registration fees, insurance, fuel, and maintenance. When budgeting for a car purchase, plan for total transportation costs — not just the loan payment.</p></div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="related-calculators" id="related-calculators">
+      <h2 class="related-heading">Related Calculators</h2>
+      <div class="related-grid">
+        <a href="loan-calculator.html" class="related-card"><span class="related-name">Loan Calculator</span><span class="related-desc">Calculate monthly payments for any type of loan</span></a>
+        <a href="down-payment-calculator.html" class="related-card"><span class="related-name">Down Payment Calculator</span><span class="related-desc">Plan your down payment savings timeline</span></a>
+        <a href="loan-affordability-calculator.html" class="related-card"><span class="related-name">Loan Affordability Calculator</span><span class="related-desc">Find out how much you can afford to borrow</span></a>
+        <a href="interest-rate-calculator.html" class="related-card"><span class="related-name">Interest Rate Calculator</span><span class="related-desc">Calculate the implied interest rate on any loan</span></a>
+        <a href="debt-payoff-calculator.html" class="related-card"><span class="related-name">Debt Payoff Calculator</span><span class="related-desc">See how extra payments speed up debt freedom</span></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <nav class="footer-popular" aria-label="Popular Calculators">
+        <p class="footer-popular-heading">Popular Calculators</p>
+        <ul>
+          <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+          <li><a href="loan-calculator.html">Loan Calculator</a></li>
+          <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
+          <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
+          <li><a href="roi-calculator.html">ROI Calculator</a></li>
+          <li><a href="savings-calculator.html">Savings Calculator</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-legal" aria-label="Legal">
+        <ul><li><a href="about.html">About</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li></ul>
+      </nav>
+      <p>Calculations are estimates only and do not constitute financial advice.</p>
+    </footer>
+  </main>
+
+  <script>
+    function calcCarLoan() {
+      var price = parseFloat(document.getElementById('carPrice').value) || 0;
+      var down  = parseFloat(document.getElementById('carDown').value)  || 0;
+      var apr   = parseFloat(document.getElementById('carRate').value);
+      var n     = parseFloat(document.getElementById('carTerm').value);
+
+      if (isNaN(apr) || isNaN(n) || n <= 0) return;
+
+      var P = price - down;
+      if (P <= 0) return;
+
+      var r = apr / 100 / 12;
+      var M;
+      if (r === 0) {
+        M = P / n;
+      } else {
+        M = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      }
+
+      var totalPaid = M * n + down;
+      var totalInt  = M * n - P;
+
+      document.getElementById('monthlyPayment').textContent = fmtCur(M);
+      document.getElementById('totalInterest').textContent  = fmtCur(Math.max(0, totalInt));
+      document.getElementById('totalCost').textContent      = fmtCur(totalPaid);
+      document.getElementById('loanAmount').textContent     = fmtCur(P);
+
+      document.getElementById('placeholder').style.display = 'none';
+      document.getElementById('resultsGrid').hidden = false;
+
+      document.querySelectorAll('.result-card').forEach(function(el, i) {
+        el.style.animation = 'none'; el.offsetHeight;
+        el.style.animation = 'fadeUp 0.5s ' + (i * 0.07) + 's ease both';
+      });
+    }
+
+    function fmtCur(v) {
+      return new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:0, maximumFractionDigits:0 }).format(v);
+    }
+
+    document.querySelectorAll('input').forEach(function(el) {
+      el.addEventListener('keydown', function(e) { if (e.key === 'Enter') calcCarLoan(); });
+    });
+  </script>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <script>(function(){var b=document.getElementById('backToTop');window.addEventListener('scroll',function(){b.classList.toggle('visible',window.scrollY>400);},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
+</body>
+</html>
