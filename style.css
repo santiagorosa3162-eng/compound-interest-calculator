@@ -35,6 +35,13 @@
 
 .nav-brand:hover { color: var(--gold-light); }
 
+.nav-logo {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.45rem;
+  flex-shrink: 0;
+}
+
 .nav-links {
   list-style: none;
   display: flex;
@@ -155,6 +162,61 @@ body.has-nav { padding-top: calc(56px + 3rem); }
 @media (max-width: 560px) {
   .calculator-grid { grid-template-columns: 1fr; }
   .calc-card { padding: 1.5rem 1.25rem; }
+}
+
+/* ===========================
+   CALCULATOR SEARCH
+=========================== */
+.search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  width: 18px;
+  height: 18px;
+  color: var(--ink-dim);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-input::placeholder { color: var(--ink-dim); }
+
+.search-input:focus {
+  border-color: rgba(232,201,122,0.45);
+  box-shadow: 0 0 0 3px rgba(232,201,122,0.08);
+}
+
+/* Hide browser's native clear button — we keep it clean */
+.search-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+.search-empty {
+  text-align: center;
+  color: var(--ink-dim);
+  font-size: 0.88rem;
+  font-weight: 300;
+  padding: 1.5rem 0;
+  margin-top: -0.75rem;
 }
 
 /* ===========================

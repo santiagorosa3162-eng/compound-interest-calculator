@@ -10,8 +10,13 @@
   <meta property="og:title" content="Financial Calculators – Free Tools for Smarter Money Decisions" />
   <meta property="og:description" content="Free financial calculators for compound interest, loans, mortgages, retirement, ROI, and inflation. Make smarter money decisions with instant, accurate results." />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Financial Calculators" />
   <meta property="og:url" content="https://compound-interest-calculator-c3q.pages.dev/" />
-  <meta property="og:image" content="https://compound-interest-calculator-c3q.pages.dev/preview.png" />
+  <meta property="og:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Financial Calculators – Free Tools for Smarter Money Decisions" />
+  <meta name="twitter:description" content="Free financial calculators for compound interest, loans, mortgages, retirement, ROI, and inflation. Make smarter money decisions with instant, accurate results." />
+  <meta name="twitter:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -32,12 +37,13 @@
     gtag('js', new Date());
     gtag('config', 'G-8QG3V0SW1J');
   </script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 </head>
 <body class="has-nav homepage">
 
   <nav class="site-nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-brand">Financial Calculators</a>
+      <a href="index.html" class="nav-brand"><img src="logo.svg" alt="" class="nav-logo" width="20" height="20">Financial Calculators</a>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="financial-calculators.html">All Calculators</a></li>
@@ -77,9 +83,21 @@
     </header>
 
     <!-- ========================
+         CALCULATOR SEARCH
+    ========================= -->
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <input type="search" id="calcSearch" class="search-input" placeholder="Search calculators…" aria-label="Search calculators" autocomplete="off" />
+    </div>
+    <p class="search-empty" id="searchEmpty" hidden>No calculators match your search.</p>
+
+    <!-- ========================
          FEATURED CALCULATORS (3)
     ========================= -->
-    <div class="calculator-grid">
+    <div class="calculator-grid" id="calcGrid">
 
       <a href="compound-interest-calculator.html" class="calc-card">
         <div class="calc-card-icon">
@@ -240,6 +258,31 @@
     </footer>
 
   </main>
+
+  <script>
+    (function () {
+      const input  = document.getElementById('calcSearch');
+      const grid   = document.getElementById('calcGrid');
+      const empty  = document.getElementById('searchEmpty');
+
+      if (!input || !grid) return;
+
+      input.addEventListener('input', function () {
+        const q = this.value.trim().toLowerCase();
+        const cards = grid.querySelectorAll('.calc-card');
+        let visible = 0;
+
+        cards.forEach(function (card) {
+          const name = (card.querySelector('h2') || card).textContent.toLowerCase();
+          const show = !q || name.includes(q);
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+
+        empty.hidden = visible > 0;
+      });
+    })();
+  </script>
 
 </body>
 </html>
