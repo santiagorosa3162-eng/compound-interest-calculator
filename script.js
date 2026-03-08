@@ -112,6 +112,22 @@ shakeStyle.textContent = `
 `;
 document.head.appendChild(shakeStyle);
 
+/** Reset the calculator: clear inputs and hide results */
+function resetCalc() {
+  document.querySelectorAll('.field-grid input, .field-grid select').forEach(el => { el.value = ''; });
+  const placeholder = document.getElementById('placeholder');
+  const resultsGrid = document.getElementById('resultsGrid');
+  const breakdown   = document.getElementById('breakdown');
+  if (placeholder) placeholder.style.display = '';
+  if (resultsGrid) resultsGrid.hidden = true;
+  if (breakdown)   breakdown.hidden   = true;
+  document.querySelectorAll('.result-value').forEach(el => { el.textContent = '—'; });
+  ['segPrincipal','segContributions','segInterest'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.width = '0%';
+  });
+}
+
 // Allow pressing Enter in any input to trigger calculation
 document.querySelectorAll('input').forEach(input => {
   input.addEventListener('keydown', e => {

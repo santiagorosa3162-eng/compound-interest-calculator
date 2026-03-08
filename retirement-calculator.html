@@ -119,6 +119,7 @@
     ]
   }
   </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
 <body class="has-nav">
   <script>
@@ -231,6 +232,7 @@
             <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
+        <button class="reset-btn" onclick="resetCalc()">&#8635; Reset</button>
       </section>
 
       <section class="results-section" id="results" aria-live="polite">
@@ -517,6 +519,15 @@
     </footer>
 
   </main>
+
+    function resetCalc() {
+    document.querySelectorAll('.field-grid input, .field-grid select').forEach(function(el) { el.value = ''; });
+    var p = document.getElementById('placeholder');
+    var g = document.getElementById('resultsGrid');
+    if (p) p.style.display = '';
+    if (g) g.hidden = true;
+    document.querySelectorAll('.result-value').forEach(function(el) { el.textContent = '—'; });
+  }
 
   <script>
     function calculate() {
