@@ -1282,3 +1282,96 @@ html.embed-mode .card {
   box-shadow: none;
   border-radius: var(--radius-sm);
 }
+
+/* ===========================
+   BREADCRUMBS
+=========================== */
+.breadcrumbs {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--ink-muted);
+  padding: 0.6rem 1.5rem;
+  max-width: var(--max-w, 900px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.breadcrumbs a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.breadcrumbs a:hover {
+  color: var(--gold);
+}
+
+.breadcrumb-sep {
+  color: var(--ink-muted);
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
+
+.breadcrumbs span[aria-current="page"] {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+html.embed-mode .breadcrumbs {
+  display: none !important;
+}
+
+/* ===========================
+   SHARE TOOLS
+=========================== */
+.share-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1.5rem 0.25rem;
+  max-width: var(--max-w, 900px);
+  margin: 0 auto;
+}
+
+.share-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 0.25rem;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: var(--ink-muted);
+}
+
+.share-btn:hover {
+  background: rgba(232,201,122,0.1);
+  border-color: rgba(232,201,122,0.3);
+  color: var(--gold);
+}
+
+.share-x { }
+.share-reddit { }
+
+html.embed-mode .share-tools {
+  display: none !important;
+}

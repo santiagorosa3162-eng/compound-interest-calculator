@@ -19,6 +19,7 @@
   <meta name="twitter:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script type="application/ld+json">
@@ -27,6 +28,22 @@
     "@type": "WebSite",
     "name": "Financial Calculators",
     "url": "https://compound-interest-calculator-c3q.pages.dev/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Financial Calculators",
+    "description": "Collection of 16 free financial calculators for compound interest, loans, mortgages, retirement, ROI, inflation, savings, budgeting, and more.",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/",
+    "creator": {
+      "@type": "Organization",
+      "name": "Financial Calculators",
+      "url": "https://compound-interest-calculator-c3q.pages.dev/"
+    },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "keywords": ["compound interest", "loan calculator", "mortgage calculator", "retirement calculator", "ROI calculator", "financial planning"]
   }
   </script>
   <!-- Google Analytics -->
@@ -91,6 +108,7 @@
         <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
       <input type="search" id="calcSearch" class="search-input" placeholder="Search calculators…" aria-label="Search calculators" autocomplete="off" />
+      <ul class="search-dropdown" id="searchDropdown" hidden role="listbox" aria-label="Calculator suggestions"></ul>
     </div>
     <p class="search-empty" id="searchEmpty" hidden>No calculators match your search.</p>
 
@@ -261,58 +279,67 @@
 
 
   <script>
-    /* global-search */
+    /* global-search v2 */
     (function () {
       var CALCULATORS = [
-        { name: 'Compound Interest Calculator', url: 'compound-interest-calculator.html', keywords: 'invest savings growth compound interest' },
-        { name: 'Loan Calculator',               url: 'loan-calculator.html',               keywords: 'loan borrow payment amortization' },
-        { name: 'Mortgage Calculator',           url: 'mortgage-calculator.html',           keywords: 'mortgage home house payment interest' },
-        { name: 'Retirement Calculator',         url: 'retirement-calculator.html',         keywords: 'retire nest egg savings 401k pension' },
-        { name: 'ROI Calculator',                url: 'roi-calculator.html',                keywords: 'roi return investment profit gain' },
-        { name: 'Savings Calculator',            url: 'savings-calculator.html',            keywords: 'savings deposit account grow interest' },
-        { name: 'Investment Return Calculator',  url: 'investment-return-calculator.html',  keywords: 'investment return cagr profit gain' },
-        { name: 'Inflation Calculator',          url: 'inflation-calculator.html',          keywords: 'inflation purchasing power cpi price' },
-        { name: 'Net Worth Calculator',          url: 'net-worth-calculator.html',          keywords: 'net worth assets liabilities wealth' },
-        { name: 'Debt Payoff Calculator',        url: 'debt-payoff-calculator.html',        keywords: 'debt payoff loan free interest extra' },
-        { name: 'Credit Card Payoff Calculator', url: 'credit-card-payoff-calculator.html', keywords: 'credit card payoff apr interest balance' },
-        { name: 'Future Value Calculator',       url: 'future-value-calculator.html',       keywords: 'future value fv lump sum invest grow' },
-        { name: 'Present Value Calculator',      url: 'present-value-calculator.html',      keywords: 'present value pv discount rate today' },
-        { name: 'APR Calculator',                url: 'apr-calculator.html',                keywords: 'apr annual percentage rate fees cost' },
-        { name: 'Budget Calculator',             url: 'budget-calculator.html',             keywords: 'budget income expenses savings rate' },
-        { name: 'Salary to Hourly Calculator',   url: 'salary-to-hourly-calculator.html',   keywords: 'salary hourly wage annual daily rate' },
+        { name: 'Compound Interest Calculator', url: 'compound-interest-calculator.html', kw: 'invest savings growth compound interest' },
+        { name: 'Loan Calculator',               url: 'loan-calculator.html',               kw: 'loan borrow payment amortization monthly' },
+        { name: 'Mortgage Calculator',           url: 'mortgage-calculator.html',           kw: 'mortgage home house payment interest' },
+        { name: 'Retirement Calculator',         url: 'retirement-calculator.html',         kw: 'retire nest egg savings 401k pension' },
+        { name: 'ROI Calculator',                url: 'roi-calculator.html',                kw: 'roi return investment profit gain' },
+        { name: 'Inflation Calculator',          url: 'inflation-calculator.html',          kw: 'inflation purchasing power cpi price' },
+        { name: 'Savings Calculator',            url: 'savings-calculator.html',            kw: 'savings deposit account grow interest' },
+        { name: 'Net Worth Calculator',          url: 'net-worth-calculator.html',          kw: 'net worth assets liabilities wealth' },
+        { name: 'Debt Payoff Calculator',        url: 'debt-payoff-calculator.html',        kw: 'debt payoff loan free interest extra' },
+        { name: 'Credit Card Payoff Calculator', url: 'credit-card-payoff-calculator.html', kw: 'credit card payoff apr interest balance' },
+        { name: 'Future Value Calculator',       url: 'future-value-calculator.html',       kw: 'future value fv lump sum invest grow' },
+        { name: 'Present Value Calculator',      url: 'present-value-calculator.html',      kw: 'present value pv discount rate today' },
+        { name: 'Investment Return Calculator',  url: 'investment-return-calculator.html',  kw: 'investment return cagr profit gain' },
+        { name: 'APR Calculator',                url: 'apr-calculator.html',                kw: 'apr annual percentage rate fees cost' },
+        { name: 'Budget Calculator',             url: 'budget-calculator.html',             kw: 'budget income expenses savings rate' },
+        { name: 'Salary to Hourly Calculator',   url: 'salary-to-hourly-calculator.html',   kw: 'salary hourly wage annual daily rate' },
       ];
 
       var input    = document.getElementById('calcSearch');
       var grid     = document.getElementById('calcGrid');
-      var empty    = document.getElementById('searchEmpty');
+      var emptyMsg = document.getElementById('searchEmpty');
       var dropdown = document.getElementById('searchDropdown');
 
       if (!input) return;
 
-      function score(calc, q) {
-        var name = calc.name.toLowerCase();
-        var kw   = calc.keywords;
-        if (name === q)           return 100;
-        if (name.startsWith(q))   return 80;
-        if (name.includes(q))     return 60;
-        if (kw.includes(q))       return 40;
-        var words   = q.split(' ');
-        var matched = words.filter(function(w){ return w && (name.includes(w) || kw.includes(w)); });
-        return matched.length * 10;
+      var activeIdx = -1;
+
+      function score(c, q) {
+        var n = c.name.toLowerCase();
+        if (n === q)           return 100;
+        if (n.startsWith(q))   return 80;
+        if (n.includes(q))     return 60;
+        if (c.kw.includes(q))  return 40;
+        var hit = q.split(' ').filter(function(w){ return w && (n.includes(w) || c.kw.includes(w)); });
+        return hit.length * 10;
       }
 
       function runSearch(q) {
         if (!q) return [];
         return CALCULATORS
-          .map(function(c){ return { calc: c, s: score(c, q) }; })
+          .map(function(c){ return { c: c, s: score(c, q) }; })
           .filter(function(x){ return x.s > 0; })
           .sort(function(a, b){ return b.s - a.s; })
-          .map(function(x){ return x.calc; });
+          .map(function(x){ return x.c; });
+      }
+
+      function setActive(idx, items) {
+        items.forEach(function(li, i) {
+          li.classList.toggle('search-result-active', i === idx);
+          if (i === idx) li.scrollIntoView({ block: 'nearest' });
+        });
+        activeIdx = idx;
       }
 
       function renderDropdown(results) {
         if (!dropdown) return;
         dropdown.innerHTML = '';
+        activeIdx = -1;
         if (!results.length) { dropdown.hidden = true; return; }
         results.forEach(function(calc) {
           var li = document.createElement('li');
@@ -320,6 +347,7 @@
           a.href        = calc.url;
           a.textContent = calc.name;
           a.className   = 'search-result-link';
+          a.setAttribute('role', 'option');
           li.appendChild(a);
           dropdown.appendChild(li);
         });
@@ -336,7 +364,7 @@
           card.style.display = show ? '' : 'none';
           if (show) vis++;
         });
-        if (empty) empty.hidden = vis > 0;
+        if (emptyMsg) emptyMsg.hidden = vis > 0;
       }
 
       input.addEventListener('input', function () {
@@ -346,16 +374,34 @@
       });
 
       input.addEventListener('keydown', function (e) {
-        if (e.key !== 'Enter') return;
-        var q       = this.value.trim().toLowerCase();
-        var results = q ? runSearch(q) : [];
-        if (results.length) window.location.href = results[0].url;
+        var items = dropdown ? Array.from(dropdown.querySelectorAll('li')) : [];
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          setActive(Math.min(activeIdx + 1, items.length - 1), items);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          setActive(Math.max(activeIdx - 1, 0), items);
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (activeIdx >= 0 && items[activeIdx]) {
+            window.location.href = items[activeIdx].querySelector('a').href;
+          } else {
+            var q = this.value.trim().toLowerCase();
+            var r = q ? runSearch(q) : [];
+            if (r.length) window.location.href = r[0].url;
+          }
+        } else if (e.key === 'Escape') {
+          if (dropdown) dropdown.hidden = true;
+          activeIdx = -1;
+        }
       });
 
       document.addEventListener('click', function(e) {
         if (!dropdown) return;
         if (!input.contains(e.target) && !dropdown.contains(e.target)) {
           dropdown.hidden = true;
+          activeIdx = -1;
         }
       });
     })();

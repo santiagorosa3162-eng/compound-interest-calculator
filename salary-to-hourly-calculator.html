@@ -18,6 +18,7 @@
   <meta name="twitter:image" content="https://compound-interest-calculator-c3q.pages.dev/og-image.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <!-- Google Analytics -->
@@ -146,6 +147,13 @@
     </div>
   </nav>
 
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <a href="financial-calculators.html">Financial Calculators</a>
+    <span class="breadcrumb-sep" aria-hidden="true">›</span>
+    <span aria-current="page">Salary to Hourly Calculator</span>
+  </nav>
   <div class="bg-orb orb-1"></div>
   <div class="bg-orb orb-2"></div>
   <div class="bg-orb orb-3"></div>
@@ -234,6 +242,24 @@
           </div>
         </div>
       </section>
+
+    <div class="share-tools" aria-label="Share this calculator">
+      <span class="share-label">Share:</span>
+      <button class="share-btn" id="copyLinkBtn" onclick="(function(){navigator.clipboard.writeText(window.location.href);var b=document.getElementById('copyLinkBtn');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Link'},2000)})()">Copy Link</button>
+      <a class="share-btn share-x" href="" target="_blank" rel="noopener noreferrer" id="shareXBtn">Share on X</a>
+      <a class="share-btn share-reddit" href="" target="_blank" rel="noopener noreferrer" id="shareRedditBtn">Share on Reddit</a>
+    </div>
+    <script>
+      (function () {
+        var url = encodeURIComponent(window.location.href);
+        var title = encodeURIComponent(document.title);
+        var xBtn = document.getElementById('shareXBtn');
+        var redditBtn = document.getElementById('shareRedditBtn');
+        if (xBtn) xBtn.href = 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title;
+        if (redditBtn) redditBtn.href = 'https://www.reddit.com/submit?url=' + url + '&title=' + title;
+      })();
+    </script>
+
     </div>
 
     <div class="seo-sections">
