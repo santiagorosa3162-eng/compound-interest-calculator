@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a0d14"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="300" y1="0" x2="300" y2="630" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="630" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="900" y1="0" x2="900" y2="630" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+  <!-- Gold glow orb -->
+  <ellipse cx="600" cy="315" rx="420" ry="220" fill="rgba(232,201,122,0.05)"/>
+  <ellipse cx="920" cy="160" rx="180" ry="140" fill="rgba(232,201,122,0.04)"/>
+
+  <!-- Chart line illustration -->
+  <polyline points="160,440 260,360 360,390 480,300 600,260 720,200 820,170 940,120" stroke="#E8C97A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+  <circle cx="940" cy="120" r="6" fill="#E8C97A" opacity="0.45"/>
+
+  <!-- Logo icon -->
+  <rect x="120" y="170" width="56" height="56" rx="14" fill="rgba(232,201,122,0.1)" stroke="rgba(232,201,122,0.25)" stroke-width="1.5"/>
+  <polyline points="135,208 145,190 155,200 163,192 179,208" stroke="#E8C97A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="179" cy="186" r="4" stroke="#E8C97A" stroke-width="2.2" fill="none"/>
+
+  <!-- Site title -->
+  <text x="192" y="212" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#E8C97A" letter-spacing="-0.5">Financial Calculators</text>
+
+  <!-- Divider -->
+  <line x1="120" y1="256" x2="600" y2="256" stroke="rgba(232,201,122,0.2)" stroke-width="1"/>
+
+  <!-- Tagline -->
+  <text x="120" y="296" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.55)" letter-spacing="0.2">Free tools for smarter money decisions</text>
+
+  <!-- Calculator pills -->
+  <rect x="120" y="336" width="190" height="38" rx="19" fill="rgba(232,201,122,0.08)" stroke="rgba(232,201,122,0.2)" stroke-width="1"/>
+  <text x="215" y="360" font-family="Arial, sans-serif" font-size="15" fill="#E8C97A" text-anchor="middle">Compound Interest</text>
+
+  <rect x="326" y="336" width="140" height="38" rx="19" fill="rgba(232,201,122,0.08)" stroke="rgba(232,201,122,0.2)" stroke-width="1"/>
+  <text x="396" y="360" font-family="Arial, sans-serif" font-size="15" fill="#E8C97A" text-anchor="middle">Loan Calculator</text>
+
+  <rect x="482" y="336" width="160" height="38" rx="19" fill="rgba(232,201,122,0.08)" stroke="rgba(232,201,122,0.2)" stroke-width="1"/>
+  <text x="562" y="360" font-family="Arial, sans-serif" font-size="15" fill="#E8C97A" text-anchor="middle">Retirement Planner</text>
+
+  <rect x="658" y="336" width="126" height="38" rx="19" fill="rgba(232,201,122,0.08)" stroke="rgba(232,201,122,0.2)" stroke-width="1"/>
+  <text x="721" y="360" font-family="Arial, sans-serif" font-size="15" fill="#E8C97A" text-anchor="middle">ROI Calculator</text>
+
+  <!-- URL -->
+  <text x="120" y="430" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.25)">compound-interest-calculator-c3q.pages.dev</text>
+</svg>
