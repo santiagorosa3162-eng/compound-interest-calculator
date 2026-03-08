@@ -2,19 +2,19 @@
    NAVIGATION
 =========================== */
 .site-nav {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(10, 13, 20, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(10, 13, 20, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
 .nav-inner {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
   height: 56px;
@@ -68,19 +68,19 @@
 
 .nav-links a.active { color: var(--gold); }
 
-body.has-nav { padding-top: calc(56px + 3rem); }
+/* sticky nav — no extra padding needed since nav is in flow */
+body.has-nav { padding-top: 0; }
 
 @media (max-width: 560px) {
   .nav-inner { padding: 0 1rem; gap: 1rem; }
   .nav-brand { font-size: 0.9rem; }
   .nav-links a { font-size: 0.75rem; padding: 0.35rem 0.5rem; }
-  body.has-nav { padding-top: calc(56px + 2rem); }
 }
 
 /* ===========================
    HOMEPAGE
 =========================== */
-.homepage .page-wrap { max-width: 760px; }
+.homepage .page-wrap { max-width: 900px; }
 
 .calculator-grid {
   display: grid;
@@ -383,10 +383,10 @@ body {
   color: var(--ink);
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   overflow-x: hidden;
-  padding: 3rem 1rem 4rem;
+  padding: 0 1rem 4rem;
   position: relative;
 }
 
@@ -412,7 +412,8 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 720px;
+  max-width: 900px;
+  margin: 3rem auto 0;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -1270,11 +1271,11 @@ html.embed-mode .site-footer {
 }
 
 html.embed-mode body.has-nav {
-  padding-top: 1rem;
+  padding-top: 0;
 }
 
 html.embed-mode .page-wrap {
-  padding-top: 0.5rem;
+  margin-top: 1rem;
   padding-bottom: 1rem;
 }
 
@@ -1290,13 +1291,12 @@ html.embed-mode .card {
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--ink-muted);
-  padding: 0.6rem 1.5rem;
-  max-width: var(--max-w, 900px);
-  margin: 0 auto;
+  padding: 0.5rem 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.3rem;
+  margin-bottom: -1rem;
 }
 
 .breadcrumbs a {
@@ -1332,9 +1332,7 @@ html.embed-mode .breadcrumbs {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-  padding: 0.75rem 1.5rem 0.25rem;
-  max-width: var(--max-w, 900px);
-  margin: 0 auto;
+  padding: 0.5rem 0 0.25rem;
 }
 
 .share-label {
@@ -1375,3 +1373,42 @@ html.embed-mode .breadcrumbs {
 html.embed-mode .share-tools {
   display: none !important;
 }
+
+/* ===========================
+   SCROLL TO TOP BUTTON
+=========================== */
+.back-to-top {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 200;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  border: 1px solid rgba(232,201,122,0.35);
+  background: rgba(10,13,20,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--gold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s, background 0.2s, border-color 0.2s;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  background: rgba(232,201,122,0.12);
+  border-color: rgba(232,201,122,0.6);
+}
+
+html.embed-mode .back-to-top { display: none !important; }
