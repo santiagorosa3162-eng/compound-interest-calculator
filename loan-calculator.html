@@ -55,8 +55,78 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Loan Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/loan-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is a monthly loan payment calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your monthly payment is calculated using the loan amortization formula: M = P \u00d7 [r(1+r)\u207f] / [(1+r)\u207f \u2212 1], where P is the principal, r is the monthly interest rate (annual rate \u00f7 12), and n is the total number of monthly payments. This formula ensures that every payment is equal while the split between interest and principal shifts over time \u2014 early payments are mostly interest, while later payments are mostly principal. Our calculator applies this formula instantly the moment you hit Calculate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between interest rate and APR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The interest rate is the base cost of borrowing money, expressed as a percentage of the loan principal. APR (Annual Percentage Rate) is broader \u2014 it includes the interest rate plus any additional fees, origination charges, or other costs rolled into the loan, expressed as a single annualized rate. When comparing loan offers, APR gives you a more accurate picture of the true annual cost. This calculator uses the interest rate you enter directly, so for the most accurate results, input the APR if your lender provides it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a shorter loan term always save money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 a shorter loan term always reduces the total interest you pay, because you are borrowing the money for less time. The trade-off is a higher monthly payment. For example, a $20,000 loan at 7% costs around $594/month over 3 years (total interest: ~$1,400) but only $396/month over 5 years (total interest: ~$3,700). If your budget allows for the higher payment, the shorter term saves you significantly. Many financial advisors suggest choosing the shortest term that fits comfortably within your monthly budget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I make extra payments on my loan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Making extra payments \u2014 even small ones \u2014 directly reduces your outstanding principal, which cuts the amount of interest that accrues each month. Over time, this shortens your loan term and reduces the total interest you pay, sometimes by thousands of dollars. Many lenders allow extra payments without penalty, but it is worth confirming this before you borrow. Even rounding up your monthly payment by $50 or $100 can make a meaningful difference, especially early in the loan when interest charges are at their highest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What credit score do I need for a good interest rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lenders use credit scores as the primary indicator of lending risk. Generally, a score of 720 or above qualifies you for the best (lowest) interest rates. Scores between 670 and 719 are considered \"good\" and typically attract competitive rates. Below 670, rates rise sharply, and below 580, many traditional lenders will decline an application entirely. Beyond the credit score, lenders also look at your income, debt-to-income ratio, and the loan purpose. If your score is not where you want it, paying down existing debt and ensuring on-time payments for 6\u201312 months can meaningfully improve it before you apply."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +166,17 @@
       <p class="subtitle">Find out your exact monthly payment and total cost before you borrow — principal, interest, and every dollar laid out clearly.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-a-loan-calculator">Overview</a></li>
+      <li><a href="#loan-payment-formula">Formula</a></li>
+      <li><a href="#loan-calculation-example">Example</a></li>
+      <li><a href="#loan-calculator-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Loan Details</h2>
@@ -349,7 +430,7 @@
     <!-- /seo-sections -->
 
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="mortgage-calculator.html" class="related-card">

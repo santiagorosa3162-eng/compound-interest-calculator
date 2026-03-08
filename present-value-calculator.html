@@ -55,8 +55,70 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Present Value Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/present-value-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What discount rate should I use for present value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The discount rate should reflect your opportunity cost \u2014 what you could reasonably earn on an alternative investment of equal risk. For conservative savings (CDs, bonds), use 3\u20135%. For moderate investments (balanced fund), use 5\u20137%. For stock-market-equivalent investments, use 7\u201310%. For evaluating business cash flows, companies typically use their Weighted Average Cost of Capital (WACC), often 8\u201312%. Using a higher discount rate makes future cash flows worth less today, so conservative investors should use a rate that reflects what they'd actually earn, not wishful thinking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is present value used in bond pricing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A bond's price is the present value of all its future cash flows \u2014 the periodic coupon payments plus the face value returned at maturity \u2014 discounted at the current market interest rate (yield). When market yields rise above the coupon rate, the bond's present value falls below face value (it trades at a discount). When yields fall below the coupon, the bond trades at a premium. This inverse relationship between bond prices and interest rates is entirely explained by present value math. Duration measures how sensitive a bond's price is to interest rate changes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is NPV and how is it related to PV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Net Present Value (NPV) is the sum of the present values of all future cash flows from an investment, minus the initial investment cost. NPV is the cornerstone of capital budgeting and investment analysis. A positive NPV means the investment is expected to add value (the present value of future returns exceeds the cost). A zero NPV means you earn exactly your required rate of return. A negative NPV means you'd be better off putting the money in an alternative investment. This calculator computes the PV of a single future amount; for multiple cash flows at different times, you'd sum multiple PV calculations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I take a pension lump sum or monthly payments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is one of the most important financial decisions many people face. Key factors: (1) Calculate the present value of the monthly pension payments using a reasonable discount rate \u2014 if the lump sum is less than this PV, monthly payments are better. (2) Consider longevity risk \u2014 a pension protects against outliving your money; a lump sum doesn't. (3) Evaluate survivor benefits \u2014 some pensions include spousal coverage. (4) Consider your health and life expectancy. (5) Think about your investment confidence \u2014 if you're not a disciplined investor, guaranteed monthly income may be more valuable than the flexibility of a lump sum. There is no universal right answer; present value analysis is just the starting point."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +158,17 @@
       <p class="subtitle">Discover what a future sum of money is worth in today's dollars. Use present value to compare investment options, evaluate annuities, and make smarter financial decisions.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-present-value">Overview</a></li>
+      <li><a href="#present-value-formula">Formula</a></li>
+      <li><a href="#pv-example">Example</a></li>
+      <li><a href="#pv-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Calculation Details</h2>
@@ -330,7 +403,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="future-value-calculator.html" class="related-card">

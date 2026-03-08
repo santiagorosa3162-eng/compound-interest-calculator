@@ -55,8 +55,70 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Salary to Hourly Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/salary-to-hourly-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many working hours are in a year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard full-time year is typically 2,080 hours (40 hours/week \u00d7 52 weeks). However, this doesn't account for paid time off. If you take 2 weeks of vacation, the actual hours worked drop to 2,000 (40 \u00d7 50). The U.S. Bureau of Labor Statistics uses 2,080 as the standard. Some employers define full-time as 37.5 hours per week, giving 1,950 hours annually. When calculating a salary offer, always clarify the expected weekly hours to get an accurate hourly equivalent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I set freelance rates based on my salary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Convert your target annual income to an hourly rate, then apply a freelance multiplier of at least 1.5\u20132\u00d7. Here's why: as a freelancer you pay self-employment tax (15.3%), must fund your own benefits (health insurance, retirement), spend unpaid time on admin, marketing, and business development, and face income gaps between clients. A common formula: (Target income \u00f7 billable hours) \u00d7 1.5 or higher. Many freelancers target 1,000\u20131,500 billable hours per year rather than 2,080, further increasing the required rate. Research market rates for your skill set to validate your calculation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is salary or hourly pay better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the role and your situation. Salary provides income stability and often comes with more benefits. Hourly pay compensates you for every hour worked, including overtime (often at 1.5\u00d7). If your salaried role regularly requires 50\u201360 hours per week, your effective hourly rate is much lower than nominal, while an hourly worker earns proportionally more in that situation. Salaried roles often (but not always) come with more career advancement, benefits, and job security. Non-exempt hourly workers are entitled to overtime protections under the FLSA that salary workers may not have."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good hourly rate or annual salary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The U.S. median household income was approximately $74,580 in 2022, equating to about $35.86/hour for a standard full-time year. \"Good\" varies enormously by location, industry, experience, and education. A $50,000 salary in rural Mississippi and a $50,000 salary in San Francisco represent very different standards of living. The most useful benchmark is your local cost of living: calculate the income needed to cover housing, transportation, food, and other essentials in your area, then determine how much above that minimum you earn \u2014 that's your real financial position regardless of nominal salary."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +158,17 @@
       <p class="subtitle">Convert any annual salary to an hourly rate, daily wage, weekly pay, and monthly income in seconds. Compare job offers, evaluate freelance rates, and understand your true earnings.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#why-convert-salary">Overview</a></li>
+      <li><a href="#salary-formula">Formula</a></li>
+      <li><a href="#salary-examples">Example</a></li>
+      <li><a href="#salary-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Salary Details</h2>
@@ -318,7 +391,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="budget-calculator.html" class="related-card">

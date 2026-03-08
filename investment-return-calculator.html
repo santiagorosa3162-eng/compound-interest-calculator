@@ -55,8 +55,70 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Investment Return Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/investment-return-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good investment return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A \"good\" return depends on the asset class and risk level. For context: the S&P 500 has historically returned ~10% annually before inflation, or ~7% after inflation. High-yield savings accounts currently offer 4\u20135%. Investment-grade bonds typically return 4\u20136% annually. Real estate has historically returned 8\u201312% (including rental income). For long-term wealth building, a return that consistently beats inflation (3%+) is the minimum threshold. A 7% real return is an excellent long-term benchmark for diversified stock investments. Returns above 15\u201320% annually over long periods are extremely rare and should be viewed with skepticism."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between ROI and CAGR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ROI (Return on Investment) is the simple percentage gain or loss: (Final \u2212 Initial) \u00f7 Initial \u00d7 100. It measures total return regardless of the time period. CAGR (Compound Annual Growth Rate) annualizes the return, showing what steady annual rate would produce the same result. CAGR is better for comparing investments held for different time periods. For example, Investment A gained 50% in 3 years (CAGR: 14.5%) while Investment B gained 75% in 5 years (CAGR: 11.8%). ROI alone would suggest B is better, but CAGR shows A had a higher annual growth rate. Use CAGR for meaningful comparisons across different time horizons."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do dividends affect investment return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This calculator measures return based on beginning and ending values, which works for \"total return\" only if dividends were reinvested (as in a DRIP program or total return index fund). If dividends were paid out as cash, you need to add the total dividends received to your Final Value to calculate true total return. For individual dividend stocks or funds that distribute income, the price appreciation alone understates your actual return. For S&P 500 index funds, total return (including reinvested dividends) has historically been ~10% annually, compared to ~6\u20137% for price appreciation alone \u2014 dividends account for roughly 30\u201340% of historical stock market returns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include taxes when calculating investment return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For evaluating investment performance, use pre-tax returns \u2014 that's the standard used in performance reporting and benchmarks. However, for personal financial planning, after-tax return is what matters. Long-term capital gains (assets held over 1 year) are taxed at 0%, 15%, or 20% depending on your income. Short-term gains are taxed as ordinary income (up to 37%). Tax-advantaged accounts (401k, IRA, Roth IRA) shelter returns from taxes, dramatically improving after-tax returns \u2014 a 7% pre-tax return becomes a significantly higher after-tax return in a Roth IRA than in a taxable account. Always maximize tax-advantaged accounts before investing in taxable accounts."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +158,17 @@
       <p class="subtitle">Calculate your total return, percentage gain, and annualized CAGR on any investment. Simply enter your initial investment, final value, and holding period to see how your money performed.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-investment-return">Overview</a></li>
+      <li><a href="#investment-return-formula">Formula</a></li>
+      <li><a href="#return-example">Example</a></li>
+      <li><a href="#investment-return-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Investment Details</h2>
@@ -337,7 +410,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="roi-calculator.html" class="related-card">

@@ -55,8 +55,78 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Savings Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/savings-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much should I save each month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A common guideline is the 50/30/20 rule: allocate 50% of after-tax income to needs, 30% to wants, and 20% to savings and debt repayment. For most people, saving 15\u201320% of income is a solid long-term target. If that's not immediately achievable, starting with any consistent amount \u2014 even $50 per month \u2014 builds the habit and grows over time. The most important factor is consistency rather than the specific amount."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good savings interest rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Traditional savings accounts at large banks often pay as little as 0.01\u20130.05% APY. High-yield savings accounts (HYSAs) at online banks typically offer 4\u20135% APY when the federal funds rate is elevated. Money market accounts and short-term CDs can offer comparable rates. For your savings calculator, use your account's actual APY for the most accurate projection. Always compare current rates since they change with Federal Reserve policy decisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does compound interest help savings grow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compound interest means your interest earns interest. Each year (or month, if your account compounds monthly), the interest earned is added to your balance, and future interest is calculated on that larger total. Over time this creates exponential growth. For example, at 4% annual interest, $10,000 grows to $10,400 after year one, then $10,816 after year two (not $10,800), because the second year's interest is calculated on $10,400 \u2014 the extra $16 is compounding at work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I prioritize saving or paying off debt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The general rule is to compare your savings interest rate against your debt interest rate. High-interest debt (like credit cards at 20%+ APR) almost always costs more than you can earn in a savings account, so paying it off first makes mathematical sense. However, it is wise to keep a small emergency fund (1\u20133 months of expenses) even while paying down debt, to avoid going deeper into debt for unexpected expenses. Low-interest debt (like mortgages at 3\u20134%) can be carried alongside saving and investing, especially if your investments earn a higher rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to save $100,000?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends entirely on your monthly deposit and interest rate. Saving $500/month at 4.5% takes approximately 13 years to reach $100,000. Saving $1,000/month at the same rate takes about 7 years. At $2,000/month, you'd reach $100,000 in under 4 years. Use this calculator to model your specific situation \u2014 enter your target balance and work backwards to find the monthly deposit needed, or enter your current deposit and see how long it takes to hit your goal."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +166,17 @@
       <p class="subtitle">Find out exactly how much your savings will grow with regular deposits and compound interest — see your balance, deposits, and earned interest at a glance.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-savings-calculator">Overview</a></li>
+      <li><a href="#savings-formula">Formula</a></li>
+      <li><a href="#savings-example">Example</a></li>
+      <li><a href="#savings-calculator-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Savings Details</h2>
@@ -349,7 +430,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="compound-interest-calculator.html" class="related-card">

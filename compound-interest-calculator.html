@@ -55,8 +55,78 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Compound Interest Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/compound-interest-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is compound interest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compound interest means earning interest on both your original investment and on the interest you have already earned. It is the opposite of simple interest, which only ever calculates a return on your starting balance. With compounding, each period your interest gets added to your total, and the next period's interest is calculated on that larger amount. Over many years this leads to exponential \u2014 rather than linear \u2014 growth of your savings or investments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is compound interest calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The core formula is FV = P \u00d7 (1 + r)n, where FV is the future value, P is the principal, r is the annual interest rate as a decimal, and n is the number of years. If you also make regular contributions \u2014 like monthly deposits \u2014 a second term is added to account for those payments growing over time. Our calculator handles both parts automatically so you can see a realistic projection in seconds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is compound interest monthly or yearly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compound interest can be calculated on any schedule \u2014 daily, monthly, quarterly, or annually. The more frequently it compounds, the slightly higher your effective return. A savings account might compound daily. Many investment calculators, including this one, use annual compounding, which is a straightforward and widely-used standard. The difference between monthly and annual compounding is small at typical interest rates, but daily compounding will always produce the highest final value over a long period."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much can compound interest grow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The growth potential of compound interest is remarkable \u2014 and highly dependent on time. A single $10,000 investment at 7% per year becomes roughly $76,000 in 30 years without any additional contributions. Add $200 per month on top of that, and it grows to over $318,000. The two most important variables are the rate of return and how long you leave the money invested. Starting even five years earlier can add tens of thousands of dollars to your final balance, which is why beginning as early as possible is the most common financial advice given to young investors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What interest rate is good for investments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A \"good\" interest rate depends on the type of investment. High-yield savings accounts currently offer between 4\u20135% annually, which is excellent for short-term savings with zero risk. For long-term investing, a diversified index fund tracking the S&amp;P 500 has historically returned an average of around 7\u201310% per year before inflation. When planning for retirement, many financial planners use 6\u20137% as a conservative estimate to account for inflation and market variability. Anything above 10% is generally considered optimistic and should be approached with caution."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +166,17 @@
       <p class="subtitle">See exactly how your money compounds over time — principal, contributions, and interest, all laid out clearly.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-compound-interest">Overview</a></li>
+      <li><a href="#compound-interest-formula">Formula</a></li>
+      <li><a href="#compound-interest-example">Example</a></li>
+      <li><a href="#compound-interest-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Your Investment Details</h2>
@@ -358,7 +439,7 @@
     <!-- /seo-sections -->
 
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="savings-calculator.html" class="related-card">

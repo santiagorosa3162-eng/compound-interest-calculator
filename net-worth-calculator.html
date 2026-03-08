@@ -55,8 +55,70 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Net Worth Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "url": "https://compound-interest-calculator-c3q.pages.dev/net-worth-calculator.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good net worth by age?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A popular rule of thumb from financial experts is: net worth = age \u00d7 annual salary / 10. So a 40-year-old earning $80,000/year should aim for a net worth of roughly $320,000. However, this rule is just a guideline \u2014 net worth varies enormously by location, career, and life circumstances. A more practical target is to ensure your net worth grows consistently each year, regardless of where it stands today. Tracking the trend over time matters more than hitting a specific number by a specific age."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include my home in my net worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 your home's market value goes in the assets column, and your remaining mortgage balance goes in liabilities. The difference is your home equity, which is real wealth. However, it is worth tracking your liquid net worth separately (excluding home equity and other illiquid assets), since you can't easily spend home equity without selling or taking on more debt. Many financial planners use liquid net worth \u2014 cash, investments, retirement accounts \u2014 as the key planning figure for retirement readiness."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I calculate my net worth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most financial advisors recommend calculating net worth at least once per year \u2014 ideally at the same time each year (like January 1st or your birthday) so you have consistent comparisons. Some people track it quarterly or even monthly, especially when actively paying off debt or building wealth. The key insight is the year-over-year change: is your net worth growing? By how much? Setting an annual net worth goal is a powerful motivator for financial progress."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a negative net worth bad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A negative net worth is extremely common, especially for people under 35 who carry student loans, mortgages, or other debt without yet having had time to accumulate significant assets. What matters is context and trajectory. If you have $50,000 in student loan debt and a medical degree, a negative net worth is a temporary condition on the path to high earnings and wealth. The concern is negative net worth combined with stagnant or declining trend \u2014 that suggests spending is exceeding wealth-building capacity. Focus on whether the number is improving, not just whether it is positive."
+      }
+    }
+    ]
+  }
+  </script>
 </head>
 <body class="has-nav">
+  <script>
+    (function () {
+      if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+        document.documentElement.classList.add('embed-mode');
+      }
+    })();
+  </script>
 
   <nav class="site-nav">
     <div class="nav-inner">
@@ -96,6 +158,17 @@
       <p class="subtitle">Calculate your true financial picture by adding up everything you own and subtracting everything you owe. Your net worth is the clearest measure of financial health.</p>
     </header>
 
+
+    <nav class="toc" aria-label="Page contents">
+      <h2 class="toc-heading">Contents</h2>
+      <ol class="toc-list">
+      <li><a href="#what-is-net-worth">Overview</a></li>
+      <li><a href="#net-worth-formula">Formula</a></li>
+      <li><a href="#net-worth-example">Example</a></li>
+      <li><a href="#net-worth-faq">FAQ</a></li>
+      <li><a href="#related-calculators">Related Calculators</a></li>
+      </ol>
+    </nav>
     <div class="card">
       <section class="inputs-section">
         <h2 class="section-label">Assets &amp; Liabilities</h2>
@@ -368,7 +441,7 @@
 
     </div>
 
-    <section class="related-calculators">
+    <section class="related-calculators" id="related-calculators">
       <h2 class="related-heading">Related Calculators</h2>
       <div class="related-grid">
         <a href="budget-calculator.html" class="related-card">
